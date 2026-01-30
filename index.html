@@ -57,6 +57,11 @@
     }
     .cat-name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
     .cat-meta { font-size: 11px; font-weight: bold; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+    .tag-current {
+      font-size: 10px; font-weight: 900; padding: 6px 10px; border-radius: 999px;
+      background: rgba(34,211,238,0.12); color: var(--accent); border: 1px solid rgba(34,211,238,0.2);
+      letter-spacing: 1px;
+    }
 
     #quiz-screen, #history-screen {
       position: fixed; inset: 0; background: var(--bg); z-index: 1000;
@@ -162,7 +167,7 @@
 
   <div id="quiz-screen">
     <div style="display:flex; justify-content:space-between; align-items:center;">
-      <span style="font-size:11px; font-weight:900; color:var(--text-dim);">MIXED REVIEW</span>
+      <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">SMART REVIEW</span>
       <span id="q-idx" style="font-size:12px; font-weight:900;">1 / 10</span>
     </div>
     <div id="timer-track"><div id="timer-bar"></div></div>
@@ -187,10 +192,21 @@
   </div>
 
   <script>
+    /**********************
+     * NextStage v1.2
+     * - カテゴリ順（Point番号順）で定着
+     * - 定着後は忘却曲線（間隔反復）で復習
+     **********************/
+
     const INITIAL = [
       { id: 1, cat: "Point 008", q: "I'll be at home watching TV until ( ).", opts: ["you come back", "you be back", "you will be back", "you will have been back"], ans: 0, exp: "until節（時の副詞節）の中では現在時制を用います。", jp: "あなたが戻ってくるまで家にいます。" },
       { id: 2, cat: "Point 009", q: "I don't know when he ( ) in the office.", opts: ["will be back", "is back", "is being back", "be back"], ans: 0, exp: "「いつ〜するか」という名詞節なのでwillが必要です。", jp: "いつ戻るか分かりません。" }
     ];
+
+    // ★ Point番号順でOK → ここは空のままで自動並び
+    const CATEGORY_ORDER = [];
+    const MASTERY_DONE_LEVEL = 4;                 // 4以上を定着扱い
+    const SR_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30]; // level 0..5 の次回間隔（日）
 
     // ローカルストレージ
     let state = JSON.parse(localStorage.getItem('gd_v4_pro')) || {
@@ -198,12 +214,15 @@
       last: 0,
       mastery: {},
       custom: [],
-      history: []
+      history: [],
+      currCat: null
     };
+
     // 旧データ互換
     state.history = state.history || [];
     state.custom = state.custom || [];
     state.mastery = state.mastery || {};
+    state.currCat = state.currCat || null;
 
     let currentQ = [];
     let curIdx = 0;
@@ -213,6 +232,7 @@
 
     // セッション記録（履歴用）
     let session = null;
+    let sessionMode = "SMART REVIEW";
 
     window.onload = () => {
       render();
@@ -220,6 +240,81 @@
 
     function allQuestions() {
       return [...INITIAL, ...state.custom];
+    }
+
+    /********** mastery互換（levelだけの旧データを lastSeen/nextDue付きへ） **********/
+    function getM(qid) {
+      const m = state.mastery[qid];
+      if (!m) return { level: 0, lastSeen: 0, nextDue: 0 };
+      if (typeof m === 'number') return { level: m, lastSeen: 0, nextDue: 0 };
+      return {
+        level: Number(m.level || 0),
+        lastSeen: Number(m.lastSeen || 0),
+        nextDue: Number(m.nextDue || 0)
+      };
+    }
+    function setM(qid, obj) {
+      state.mastery[qid] = {
+        level: Number(obj.level || 0),
+        lastSeen: Number(obj.lastSeen || 0),
+        nextDue: Number(obj.nextDue || 0)
+      };
+    }
+    function isMastered(q) {
+      return getM(q.id).level >= MASTERY_DONE_LEVEL;
+    }
+
+    function autoCategoryOrder(all) {
+      const uniq = [];
+      const seen = new Set();
+      for (const q of all) {
+        if (!seen.has(q.cat)) { seen.add(q.cat); uniq.push(q.cat); }
+      }
+      const withNum = [];
+      const withoutNum = [];
+      for (const c of uniq) {
+        const m = String(c).match(/Point\s*0*([0-9]+)/i);
+        if (m) withNum.push({ c, n: Number(m[1]) });
+        else withoutNum.push(c);
+      }
+      withNum.sort((a,b)=>a.n-b.n);
+      return [...withNum.map(x=>x.c), ...withoutNum];
+    }
+
+    function getCategoryOrder(all) {
+      if (Array.isArray(CATEGORY_ORDER) && CATEGORY_ORDER.length > 0) return CATEGORY_ORDER;
+      return autoCategoryOrder(all);
+    }
+
+    function getCurrentCategory(all) {
+      const order = getCategoryOrder(all);
+      if (!state.currCat || !order.includes(state.currCat)) {
+        state.currCat = order[0] || null;
+      }
+      return state.currCat;
+    }
+
+    // 現カテゴリが全て定着なら次へ
+    function advanceCategoryIfNeeded(all) {
+      const order = getCategoryOrder(all);
+      const cur = getCurrentCategory(all);
+      if (!cur) return;
+
+      const remaining = all.filter(q => q.cat === cur && !isMastered(q));
+      if (remaining.length === 0) {
+        const idx = order.indexOf(cur);
+        if (idx >= 0 && idx < order.length - 1) {
+          state.currCat = order[idx + 1];
+        }
+      }
+    }
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
     }
 
     function render() {
@@ -230,51 +325,96 @@
       document.getElementById('xp-bar').style.width = (xp / 10) + '%';
 
       const all = allQuestions();
+      const cur = getCurrentCategory(all);
+
+      // カテゴリ進捗（平均levelで%化）
       const cats = {};
       all.forEach(q => {
-        if (!cats[q.cat]) cats[q.cat] = { count: 0, score: 0 };
+        if (!cats[q.cat]) cats[q.cat] = { count: 0, sumLevel: 0 };
         cats[q.cat].count++;
-        cats[q.cat].score += (state.mastery[q.id]?.level || 0) * 20;
+        cats[q.cat].sumLevel += (getM(q.id).level || 0);
       });
 
       const sorted = Object.keys(cats).map(n => ({
         name: n,
-        prog: Math.floor(cats[n].score / cats[n].count)
+        avgLv: cats[n].sumLevel / cats[n].count,
+        prog: Math.floor((cats[n].sumLevel / cats[n].count) * 20) // Lv0..5 -> 0..100
       })).sort((a,b) => a.prog - b.prog);
 
       const list = document.getElementById('cat-list');
       list.innerHTML = '';
+
       sorted.forEach(c => {
         const div = document.createElement('div');
         div.className = 'cat-card';
+
+        const isCur = (cur && c.name === cur);
         div.innerHTML =
           `<div>
-            <div class="cat-name">${escapeHtml(c.name)}</div>
+            <div class="cat-name">${escapeHtml(c.name)} ${isCur ? `<span class="tag-current">CURRENT</span>` : ``}</div>
             <div class="cat-meta">${c.prog}% MASTERED</div>
           </div>
-          <div style="font-size:10px; font-weight:900; color:var(--text-dim);">${c.prog < 40 ? '⚠️ LOW' : 'OK'}</div>`;
+          <div style="font-size:10px; font-weight:900; color:var(--text-dim);">
+            ${c.prog < 40 ? '⚠️ LOW' : (c.prog >= 80 ? '✨ STRONG' : 'OK')}
+          </div>`;
         list.appendChild(div);
       });
+
+      localStorage.setItem('gd_v4_pro', JSON.stringify(state));
     }
 
+    /********** v1.2 出題（カテゴリ順 + 忘却曲線） **********/
     function startSession() {
       const all = allQuestions();
-      // 理解度が低いものを優先して最大10問（10問未満ならそのまま）
-      currentQ = all
-        .slice()
-        .sort((a,b) => (state.mastery[a.id]?.level || 0) - (state.mastery[b.id]?.level || 0))
-        .slice(0, 10)
-        .sort(() => Math.random() - 0.5);
+      const now = Date.now();
+      const curCat = getCurrentCategory(all);
 
+      // 1) 期限が来た復習（nextDue <= now）
+      const due = all
+        .filter(q => (getM(q.id).nextDue || 0) <= now)
+        .sort((a,b) => (getM(a.id).nextDue - getM(b.id).nextDue) || (getM(a.id).level - getM(b.id).level));
+
+      // 2) 現カテゴリの未定着（カテゴリ順で定着）
+      const learn = curCat
+        ? all
+            .filter(q => q.cat === curCat && !isMastered(q))
+            .sort((a,b) => getM(a.id).level - getM(b.id).level)
+        : [];
+
+      // 3) 補充：全体の弱い問題
+      const weak = all
+        .slice()
+        .sort((a,b) => getM(a.id).level - getM(b.id).level);
+
+      const picked = [];
+      const pickedIds = new Set();
+
+      function addFrom(list) {
+        for (const q of list) {
+          if (picked.length >= 10) break;
+          if (pickedIds.has(q.id)) continue;
+          picked.push(q);
+          pickedIds.add(q.id);
+        }
+      }
+
+      // 期限復習 → 学習カテゴリ → 弱点補充
+      addFrom(shuffle(due.slice()));
+      addFrom(shuffle(learn.slice()));
+      addFrom(shuffle(weak.slice()));
+
+      currentQ = picked;     // 10問未満ならそのまま
       curIdx = 0;
 
-      // 履歴用セッション開始
+      sessionMode = (learn.length > 0) ? `LEARN: ${curCat}` : "SMART REVIEW";
+      document.getElementById('mode-tag').innerText = sessionMode;
+
       session = {
         startedAt: Date.now(),
         totalPlanned: currentQ.length,
         answered: 0,
         correct: 0,
-        wrong: [] // {id, selected, correct}
+        wrong: []
       };
 
       document.getElementById('home').style.display = 'none';
@@ -321,7 +461,7 @@
       const q = currentQ[curIdx];
       const ok = idx === q.ans;
 
-      // セッション記録
+      // 履歴用セッション記録
       session.answered += 1;
       if (ok) {
         session.correct += 1;
@@ -329,17 +469,26 @@
         session.wrong.push({ id: q.id, selected: idx, correct: q.ans });
       }
 
+      // ★ v1.2: 忘却曲線（間隔反復）＋level更新
+      const m = getM(q.id);
+      m.lastSeen = Date.now();
+
       if (ok) {
         const pop = document.getElementById('success-msg');
         pop.style.display = 'flex';
         setTimeout(() => pop.style.display = 'none', 2000);
+
         state.xp += 50;
-        if (!state.mastery[q.id]) state.mastery[q.id] = { level: 0 };
-        state.mastery[q.id].level = Math.min(state.mastery[q.id].level + 1, 5);
+
+        const nextLevel = Math.min(m.level + 1, 5);
+        m.level = nextLevel;
+        const days = SR_INTERVAL_DAYS[nextLevel] || 1;
+        m.nextDue = Date.now() + days * 24 * 60 * 60 * 1000;
       } else {
-        if (!state.mastery[q.id]) state.mastery[q.id] = { level: 0 };
-        state.mastery[q.id].level = Math.max(0, state.mastery[q.id].level - 1);
+        m.level = Math.max(0, m.level - 1);
+        m.nextDue = Date.now(); // すぐ復習対象
       }
+      setM(q.id, m);
 
       const btns = document.getElementById('opts').children;
       for (let i = 0; i < btns.length; i++) {
@@ -358,7 +507,6 @@
     }
 
     function finishSession() {
-      // 履歴に保存
       const total = session.answered;
       const correct = session.correct;
       const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
@@ -370,6 +518,9 @@
         accuracy,
         wrong: session.wrong
       });
+
+      // ★ v1.2: カテゴリ進行（定着したら次へ）
+      advanceCategoryIfNeeded(allQuestions());
 
       localStorage.setItem('gd_v4_pro', JSON.stringify(state));
       session = null;
@@ -415,7 +566,7 @@
 
       const qMap = new Map(allQuestions().map(q => [q.id, q]));
 
-      state.history.forEach((h, idx) => {
+      state.history.forEach(h => {
         const d = new Date(h.at);
         const dateStr = `${d.getFullYear()}/${pad2(d.getMonth()+1)}/${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
         const card = document.createElement('div');
@@ -446,7 +597,7 @@
         } else {
           h.wrong.forEach(wi => {
             const q = qMap.get(wi.id);
-            const qText = q ? q.q : '(問題が見つかりません：削除/変更された可能性)';
+            const qText = q ? q.q : '(問題が見つかりません：変更/削除された可能性)';
             const correctOpt = q ? q.opts[wi.correct] : '(不明)';
             const selectedOpt =
               wi.selected === -1 ? '（時間切れ）' : (q ? q.opts[wi.selected] : '(不明)');
@@ -519,12 +670,12 @@
           const obj = JSON.parse(reader.result);
           if (!obj || typeof obj !== 'object') throw new Error('invalid');
 
-          // 最低限の形だけ整える（安全）
           obj.xp = Number(obj.xp || 0);
           obj.last = Number(obj.last || 0);
           obj.mastery = obj.mastery || {};
           obj.custom = obj.custom || [];
           obj.history = obj.history || [];
+          obj.currCat = obj.currCat || null;
 
           state = obj;
           localStorage.setItem('gd_v4_pro', JSON.stringify(state));
