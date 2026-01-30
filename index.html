@@ -167,7 +167,7 @@
 
   <div id="quiz-screen">
     <div style="display:flex; justify-content:space-between; align-items:center;">
-      <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">SMART REVIEW</span>
+      <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">CATEGORY FLOW</span>
       <span id="q-idx" style="font-size:12px; font-weight:900;">1 / 10</span>
     </div>
     <div id="timer-track"><div id="timer-bar"></div></div>
@@ -193,9 +193,10 @@
 
   <script>
     /**********************
-     * NextStage v1.2
-     * - カテゴリ順（Point番号順）で定着
-     * - 定着後は忘却曲線（間隔反復）で復習
+     * NextStage v1.3
+     * - カテゴリ順に出題し、10問未満は次カテゴリで補充
+     * - 未定着でも次カテゴリへ進む（固定しない）
+     * - 同じ日に解いた問題はその日は出さない
      **********************/
 
     const INITIAL = [
@@ -203,12 +204,10 @@
       { id: 2, cat: "Point 009", q: "I don't know when he ( ) in the office.", opts: ["will be back", "is back", "is being back", "be back"], ans: 0, exp: "「いつ〜するか」という名詞節なのでwillが必要です。", jp: "いつ戻るか分かりません。" }
     ];
 
-    // ★ Point番号順でOK → ここは空のままで自動並び
+    // Point番号順（空で自動）
     const CATEGORY_ORDER = [];
-    const MASTERY_DONE_LEVEL = 4;                 // 4以上を定着扱い
-    const SR_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30]; // level 0..5 の次回間隔（日）
+    const SR_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30]; // 忘却曲線（正解時に次回表示を遅らせる）
 
-    // ローカルストレージ
     let state = JSON.parse(localStorage.getItem('gd_v4_pro')) || {
       xp: 0,
       last: 0,
@@ -218,7 +217,6 @@
       currCat: null
     };
 
-    // 旧データ互換
     state.history = state.history || [];
     state.custom = state.custom || [];
     state.mastery = state.mastery || {};
@@ -230,9 +228,8 @@
     let timeLeft = 100;
     let isAnswered = false;
 
-    // セッション記録（履歴用）
     let session = null;
-    let sessionMode = "SMART REVIEW";
+    let sessionMode = "CATEGORY FLOW";
 
     window.onload = () => {
       render();
@@ -242,7 +239,6 @@
       return [...INITIAL, ...state.custom];
     }
 
-    /********** mastery互換（levelだけの旧データを lastSeen/nextDue付きへ） **********/
     function getM(qid) {
       const m = state.mastery[qid];
       if (!m) return { level: 0, lastSeen: 0, nextDue: 0 };
@@ -259,9 +255,6 @@
         lastSeen: Number(obj.lastSeen || 0),
         nextDue: Number(obj.nextDue || 0)
       };
-    }
-    function isMastered(q) {
-      return getM(q.id).level >= MASTERY_DONE_LEVEL;
     }
 
     function autoCategoryOrder(all) {
@@ -294,27 +287,22 @@
       return state.currCat;
     }
 
-    // 現カテゴリが全て定着なら次へ
-    function advanceCategoryIfNeeded(all) {
-      const order = getCategoryOrder(all);
-      const cur = getCurrentCategory(all);
-      if (!cur) return;
-
-      const remaining = all.filter(q => q.cat === cur && !isMastered(q));
-      if (remaining.length === 0) {
-        const idx = order.indexOf(cur);
-        if (idx >= 0 && idx < order.length - 1) {
-          state.currCat = order[idx + 1];
-        }
-      }
-    }
-
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
       return arr;
+    }
+
+    function startOfToday() {
+      const d = new Date();
+      d.setHours(0, 0, 0, 0);
+      return d.getTime();
+    }
+    function seenToday(qid) {
+      const m = getM(qid);
+      return (m.lastSeen || 0) >= startOfToday();
     }
 
     function render() {
@@ -327,7 +315,6 @@
       const all = allQuestions();
       const cur = getCurrentCategory(all);
 
-      // カテゴリ進捗（平均levelで%化）
       const cats = {};
       all.forEach(q => {
         if (!cats[q.cat]) cats[q.cat] = { count: 0, sumLevel: 0 };
@@ -337,17 +324,14 @@
 
       const sorted = Object.keys(cats).map(n => ({
         name: n,
-        avgLv: cats[n].sumLevel / cats[n].count,
-        prog: Math.floor((cats[n].sumLevel / cats[n].count) * 20) // Lv0..5 -> 0..100
+        prog: Math.floor((cats[n].sumLevel / cats[n].count) * 20)
       })).sort((a,b) => a.prog - b.prog);
 
       const list = document.getElementById('cat-list');
       list.innerHTML = '';
-
       sorted.forEach(c => {
         const div = document.createElement('div');
         div.className = 'cat-card';
-
         const isCur = (cur && c.name === cur);
         div.innerHTML =
           `<div>
@@ -363,50 +347,56 @@
       localStorage.setItem('gd_v4_pro', JSON.stringify(state));
     }
 
-    /********** v1.2 出題（カテゴリ順 + 忘却曲線） **********/
+    /********** v1.3 出題（カテゴリ補充 + 日内重複なし + 毎回カテゴリ進行） **********/
     function startSession() {
       const all = allQuestions();
-      const now = Date.now();
-      const curCat = getCurrentCategory(all);
+      const order = getCategoryOrder(all);
+      if (!order.length) return;
 
-      // 1) 期限が来た復習（nextDue <= now）
-      const due = all
-        .filter(q => (getM(q.id).nextDue || 0) <= now)
-        .sort((a,b) => (getM(a.id).nextDue - getM(b.id).nextDue) || (getM(a.id).level - getM(b.id).level));
-
-      // 2) 現カテゴリの未定着（カテゴリ順で定着）
-      const learn = curCat
-        ? all
-            .filter(q => q.cat === curCat && !isMastered(q))
-            .sort((a,b) => getM(a.id).level - getM(b.id).level)
-        : [];
-
-      // 3) 補充：全体の弱い問題
-      const weak = all
-        .slice()
-        .sort((a,b) => getM(a.id).level - getM(b.id).level);
+      const cur = getCurrentCategory(all);
+      let startIdx = order.indexOf(cur);
+      if (startIdx < 0) startIdx = 0;
 
       const picked = [];
       const pickedIds = new Set();
 
-      function addFrom(list) {
-        for (const q of list) {
-          if (picked.length >= 10) break;
-          if (pickedIds.has(q.id)) continue;
-          picked.push(q);
-          pickedIds.add(q.id);
-        }
+      function addQ(q) {
+        if (picked.length >= 10) return;
+        if (pickedIds.has(q.id)) return;
+        if (seenToday(q.id)) return; // ★同日重複なし
+        picked.push(q);
+        pickedIds.add(q.id);
       }
 
-      // 期限復習 → 学習カテゴリ → 弱点補充
-      addFrom(shuffle(due.slice()));
-      addFrom(shuffle(learn.slice()));
-      addFrom(shuffle(weak.slice()));
+      // ① 期限復習（今日解いたものは除外）
+      const now = Date.now();
+      const due = all
+        .filter(q => (getM(q.id).nextDue || 0) <= now)
+        .sort((a,b) => (getM(a.id).nextDue - getM(b.id).nextDue) || (getM(a.id).level - getM(b.id).level));
+      shuffle(due.slice()).forEach(addQ);
 
-      currentQ = picked;     // 10問未満ならそのまま
+      // ② カテゴリ順で補充：cur → 次 → 次...
+      for (let k = 0; k < order.length && picked.length < 10; k++) {
+        const cat = order[(startIdx + k) % order.length];
+        const catQs = all
+          .filter(q => q.cat === cat)
+          .sort((a,b) => (getM(a.id).level - getM(b.id).level) || ((getM(a.id).nextDue||0) - (getM(b.id).nextDue||0)));
+        shuffle(catQs.slice()).forEach(addQ);
+      }
+
+      // ③ それでも不足なら：全体から補充（今日解いてない）
+      if (picked.length < 10) {
+        const weak = all.slice().sort((a,b) => getM(a.id).level - getM(b.id).level);
+        shuffle(weak.slice()).forEach(addQ);
+      }
+
+      currentQ = picked; // 10未満ならそのまま
       curIdx = 0;
 
-      sessionMode = (learn.length > 0) ? `LEARN: ${curCat}` : "SMART REVIEW";
+      // ★未定着でも次カテゴリへ進む（毎回1つ進める）
+      state.currCat = order[(startIdx + 1) % order.length];
+
+      sessionMode = `CAT FLOW: ${cur} → ${state.currCat}`;
       document.getElementById('mode-tag').innerText = sessionMode;
 
       session = {
@@ -416,6 +406,8 @@
         correct: 0,
         wrong: []
       };
+
+      localStorage.setItem('gd_v4_pro', JSON.stringify(state));
 
       document.getElementById('home').style.display = 'none';
       document.getElementById('quiz-screen').style.display = 'flex';
@@ -449,8 +441,8 @@
       timer = setInterval(() => {
         timeLeft -= 1.0;
         document.getElementById('timer-bar').style.width = timeLeft + '%';
-        if (timeLeft <= 0) handleAns(-1); // timeout
-      }, 100); // 約10秒
+        if (timeLeft <= 0) handleAns(-1);
+      }, 100);
     }
 
     function handleAns(idx) {
@@ -461,15 +453,10 @@
       const q = currentQ[curIdx];
       const ok = idx === q.ans;
 
-      // 履歴用セッション記録
       session.answered += 1;
-      if (ok) {
-        session.correct += 1;
-      } else {
-        session.wrong.push({ id: q.id, selected: idx, correct: q.ans });
-      }
+      if (ok) session.correct += 1;
+      else session.wrong.push({ id: q.id, selected: idx, correct: q.ans });
 
-      // ★ v1.2: 忘却曲線（間隔反復）＋level更新
       const m = getM(q.id);
       m.lastSeen = Date.now();
 
@@ -519,9 +506,6 @@
         wrong: session.wrong
       });
 
-      // ★ v1.2: カテゴリ進行（定着したら次へ）
-      advanceCategoryIfNeeded(allQuestions());
-
       localStorage.setItem('gd_v4_pro', JSON.stringify(state));
       session = null;
 
@@ -531,12 +515,8 @@
     }
 
     function nextStep() {
-      if (curIdx < currentQ.length - 1) {
-        curIdx++;
-        loadQ();
-      } else {
-        finishSession();
-      }
+      if (curIdx < currentQ.length - 1) { curIdx++; loadQ(); }
+      else { finishSession(); }
     }
 
     function openHistory() {
@@ -623,7 +603,6 @@
       });
     }
 
-    // 擬似スキャン（現状はデモ挙動）
     function handleScan(input) {
       if (input.files.length === 0) return;
       document.getElementById('loading-overlay').style.display = 'flex';
@@ -649,7 +628,6 @@
       }, 1500);
     }
 
-    // バックアップ/復元
     function exportData() {
       const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
@@ -703,4 +681,3 @@
   </script>
 </body>
 </html>
-
