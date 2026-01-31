@@ -199,14 +199,33 @@
      * - 同じ日に解いた問題はその日は出さない
      **********************/
 
-    const INITIAL = [
-      { id: 1, cat: "Point 008", q: "I'll be at home watching TV until ( ).", opts: ["you come back", "you be back", "you will be back", "you will have been back"], ans: 0, exp: "until節（時の副詞節）の中では現在時制を用います。", jp: "あなたが戻ってくるまで家にいます。" },
-      { id: 2, cat: "Point 009", q: "I don't know when he ( ) in the office.", opts: ["will be back", "is back", "is being back", "be back"], ans: 0, exp: "「いつ〜するか」という名詞節なのでwillが必要です。", jp: "いつ戻るか分かりません。" }
-    ];
+    const INITIAL = [];
+
 
     // Point番号順（空で自動）
     const CATEGORY_ORDER = [];
     const SR_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30]; // 忘却曲線（正解時に次回表示を遅らせる）
+
+    // ===== Question JSON loader =====
+const QUESTION_FILES = [
+  "questions/point008.json",
+  "questions/point009.json",
+  "questions/point010.json",
+  "questions/point011.json"
+];
+
+let loadedQuestions = [];
+
+async function loadAllQuestions() {
+  let all = [];
+  for (const f of QUESTION_FILES) {
+    const res = await fetch(f, { cache: "no-store" });
+    if (!res.ok) throw new Error("Failed to load " + f);
+    const data = await res.json();
+    all = all.concat(data);
+  }
+  return all;
+}
 
     let state = JSON.parse(localStorage.getItem('gd_v4_pro')) || {
       xp: 0,
@@ -231,13 +250,21 @@
     let session = null;
     let sessionMode = "CATEGORY FLOW";
 
-    window.onload = () => {
-      render();
-    };
+    window.onload = async () => {
+  try {
+    loadedQuestions = await loadAllQuestions();
+    render();
+  } catch (e) {
+    alert("問題データの読み込みに失敗しました。\n" + e.message);
+    render();
+  }
+};
+
 
     function allQuestions() {
-      return [...INITIAL, ...state.custom];
-    }
+  return [...loadedQuestions, ...state.custom];
+}
+
 
     function getM(qid) {
       const m = state.mastery[qid];
@@ -681,3 +708,4 @@
   </script>
 </body>
 </html>
+
