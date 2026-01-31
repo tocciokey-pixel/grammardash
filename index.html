@@ -63,10 +63,11 @@
       letter-spacing: 1px;
     }
 
-    #quiz-screen, #history-screen {
-      position: fixed; inset: 0; background: var(--bg); z-index: 1000;
-      display: none; flex-direction: column; padding: 20px; padding-top: 60px;
-    }
+    #quiz-screen, #history-screen, #bookmarks-screen {
+  　　position: fixed; inset: 0; background: var(--bg); z-index: 1000;
+　　  display: none; flex-direction: column; padding: 20px; padding-top: 60px;
+　　}
+
     #timer-track { width: 100%; height: 6px; background: #1e293b; border-radius: 3px; margin: 20px 0; overflow: hidden; }
     #timer-bar { height: 100%; background: var(--accent); width: 100%; transition: width 0.1s linear; }
 
@@ -157,6 +158,11 @@
       <input type="file" id="input" multiple accept="image/*,application/pdf" style="display:none" onchange="handleScan(this)">
     </button>
 
+    <button class="btn-secondary" onclick="openBookmarks()">
+  　　<span>📌 BOOKMARKS</span>
+　　</button>
+
+    
     <div class="section-title">Weakness Areas</div>
     <div id="cat-list"></div>
 
@@ -171,6 +177,19 @@
       <span id="q-idx" style="font-size:12px; font-weight:900;">1 / 10</span>
     </div>
     <div id="timer-track"><div id="timer-bar"></div></div>
+    
+    <div style="display:flex; gap:10px; align-items:center; margin-top:6px; margin-bottom:14px;">      
+  　　<span class="small" style="flex:1;">📌 付箋</span>
+
+　　  <button class="pill" style="border:1px solid rgba(255,255,255,0.12);" onclick="setStar('red')">赤</button>
+　　  <button class="pill" style="border:1px solid rgba(255,255,255,0.12);" onclick="setStar('blue')">青</button>
+　　  <button class="pill" style="border:1px solid rgba(255,255,255,0.12);" onclick="setStar('yellow')">黄</button>
+　　  <button class="pill" style="border:1px solid rgba(255,255,255,0.12);" onclick="clearStar()">解除</button>
+      
+</div>
+
+<div id="star-now" class="small" style="margin-top:-6px; margin-bottom:10px;"></div>
+
     <div id="q-box" style="flex:1; overflow-y:auto;">
       <div class="q-text" id="q-txt"></div>
       <div id="opts"></div>
@@ -183,6 +202,24 @@
   </div>
 
   <div id="history-screen">
+    <div id="bookmarks-screen">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <span style="font-size:12px; font-weight:900; color:var(--text-dim); letter-spacing:1px;">BOOKMARKS</span>
+    <button class="pill" onclick="closeBookmarks()">BACK</button>
+  </div>
+
+  <div style="height:14px"></div>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+    <button class="pill" onclick="setStarFilter('all')">全部</button>
+    <button class="pill" onclick="setStarFilter('red')">赤（苦手）</button>
+    <button class="pill" onclick="setStarFilter('blue')">青（迷った）</button>
+    <button class="pill" onclick="setStarFilter('yellow')">黄（重要）</button>
+  </div>
+
+  <div id="bookmarks-list" style="flex:1; overflow-y:auto;"></div>
+</div>
+
     <div style="display:flex; justify-content:space-between; align-items:center;">
       <span style="font-size:12px; font-weight:900; color:var(--text-dim); letter-spacing:1px;">STUDY HISTORY</span>
       <button class="pill" onclick="closeHistory()">BACK</button>
@@ -234,12 +271,14 @@ async function loadAllQuestions() {
       custom: [],
       history: [],
       currCat: null
+      stars: {}
     };
 
     state.history = state.history || [];
     state.custom = state.custom || [];
     state.mastery = state.mastery || {};
     state.currCat = state.currCat || null;
+    state.stars = state.stars || {};
 
     let currentQ = [];
     let curIdx = 0;
@@ -443,6 +482,9 @@ async function loadAllQuestions() {
 
     function loadQ() {
       const q = currentQ[curIdx];
+      activeQ = q;
+　　　document.getElementById('mode-tag').innerText = `${q.cat} ${q.id}`;
+　　　renderStarNow();
       isAnswered = false;
       document.getElementById('q-idx').innerText = `${curIdx + 1} / ${currentQ.length}`;
       document.getElementById('q-txt').innerText = q.q;
@@ -702,10 +744,130 @@ async function loadAllQuestions() {
     }
 
     function pad2(n) { return String(n).padStart(2, '0'); }
+    let activeQ = null;           // 今表示している問題
+let starFilter = "all";       // bookmarks画面フィルタ
+
+function ensureStars() {
+  state.stars = state.stars || {};
+}
+
+function getStar(qid) {
+  ensureStars();
+  return state.stars[String(qid)] || null;
+}
+
+function setStar(color) {
+  if (!activeQ) return;
+  ensureStars();
+  state.stars[String(activeQ.id)] = color;
+  localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+  renderStarNow();
+}
+
+function clearStar() {
+  if (!activeQ) return;
+  ensureStars();
+  delete state.stars[String(activeQ.id)];
+  localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+  renderStarNow();
+}
+
+function starLabel(c) {
+  if (c === "red") return "赤（苦手）";
+  if (c === "blue") return "青（迷った）";
+  if (c === "yellow") return "黄（重要）";
+  return "なし";
+}
+
+function renderStarNow() {
+  const el = document.getElementById("star-now");
+  if (!el) return;
+  if (!activeQ) { el.textContent = ""; return; }
+  const s = getStar(activeQ.id);
+  el.textContent = s ? `この問題の付箋：${starLabel(s)}` : "この問題の付箋：なし";
+}
+
+/********** BOOKMARKS画面 **********/
+function openBookmarks() {
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('history-screen').style.display = 'none';
+  document.getElementById('bookmarks-screen').style.display = 'flex';
+  renderBookmarks();
+}
+
+function closeBookmarks() {
+  document.getElementById('bookmarks-screen').style.display = 'none';
+  document.getElementById('home').style.display = 'flex';
+  render();
+}
+
+function setStarFilter(f) {
+  starFilter = f;
+  renderBookmarks();
+}
+
+function renderBookmarks() {
+  ensureStars();
+  const list = document.getElementById('bookmarks-list');
+  list.innerHTML = '';
+
+  const all = allQuestions();
+  const qMap = new Map(all.map(q => [String(q.id), q]));
+  const entries = Object.entries(state.stars); // [id, color]
+
+  const filtered = entries
+    .filter(([id, color]) => starFilter === "all" ? true : color === starFilter)
+    .map(([id, color]) => ({ id, color, q: qMap.get(id) }))
+    .filter(x => !!x.q); // 問題が存在するものだけ
+
+  if (filtered.length === 0) {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `<div style="font-weight:900;">付箋がありません</div>
+                     <div class="small" style="margin-top:8px;">問題画面で「赤/青/黄」を押すと、ここに集まります。</div>`;
+    list.appendChild(div);
+    return;
+  }
+
+  // 表示：Point番号順→問題番号順
+  filtered.sort((a,b) => {
+    const ac = a.q.cat || "";
+    const bc = b.q.cat || "";
+    if (ac !== bc) return ac.localeCompare(bc, "ja");
+    return Number(a.q.id) - Number(b.q.id);
+  });
+
+  filtered.forEach(x => {
+    const q = x.q;
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="row">
+        <div style="font-weight:900;">${escapeHtml(q.cat)} / ${escapeHtml(q.id)}</div>
+        <div class="pill">📌 ${escapeHtml(starLabel(x.color))}</div>
+      </div>
+      <div style="height:10px"></div>
+      <div style="line-height:1.5;">${escapeHtml(q.q)}</div>
+      ${q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
+      <div style="height:10px"></div>
+      <button class="pill" onclick="removeBookmark('${escapeHtml(String(q.id))}')">この付箋を外す</button>
+    `;
+    list.appendChild(card);
+  });
+}
+
+function removeBookmark(qidStr) {
+  ensureStars();
+  delete state.stars[String(qidStr)];
+  localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+  renderBookmarks();
+}
+
     function escapeHtml(s) {
       return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
     }
   </script>
 </body>
 </html>
+
 
