@@ -298,7 +298,8 @@
         const data = await res.json();
         if (Array.isArray(data)) all = all.concat(data);
       }
-      return all;
+      return all.filter(q => q && q.id != null && q.cat && q.q);
+
     }
 
     function allQuestions() {
@@ -822,4 +823,5 @@
   </script>
 </body>
 </html>
+
 
