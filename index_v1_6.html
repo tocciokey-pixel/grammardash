@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0a0f1e" />
+  <title>NextStage</title>
+
+  <style>
+   button.pill:disabled {
+     opacity: 0.35;
+  }
+
+
+    :root {
+      --bg: #0a0f1e;
+      --card: #161e31;
+      --accent: #22d3ee;
+      --danger: #f43f5e;
+      --success: #10b981;
+      --text: #ffffff;
+      --text-dim: #64748b;
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif;
+      overflow-x: hidden;
+      -webkit-user-select: none;
+    }
+    .container { max-width: 500px; margin: 0 auto; min-height: 100vh; padding: 20px; display: flex; flex-direction: column; padding-bottom: 50px; }
+    header { padding: 40px 0 20px; }
+    h1 { font-size: 32px; font-weight: 900; font-style: italic; background: linear-gradient(90deg, #22d3ee, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; }
+
+    .xp-container { background: #1e293b; height: 10px; border-radius: 5px; margin-top: 15px; overflow: hidden; }
+    .xp-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .stats-text { display: flex; justify-content: space-between; font-size: 11px; font-weight: 900; color: var(--text-dim); margin-top: 6px; letter-spacing: 1px; }
+
+    .btn-start {
+      background: linear-gradient(135deg, #22d3ee, #3b82f6);
+      border: none; border-radius: 28px; padding: 28px; color: #0a0f1e;
+      font-size: 20px; font-weight: 900; width: 100%; margin: 18px 0 12px;
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.3); transition: transform 0.1s;
+    }
+    .btn-start:active { transform: scale(0.96); }
+
+    .btn-secondary {
+      background: var(--card); border: 1px solid #2d3748; padding: 18px;
+      border-radius: 20px; color: white; font-weight: bold; font-size: 14px;
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section-title { font-size: 11px; font-weight: 900; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; margin: 18px 0 12px; }
+    .cat-card {
+      background: var(--card); border-radius: 22px; padding: 20px; margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .cat-name { font-size: 16px; font-weight: 800; margin-bottom: 4px; }
+    .cat-meta { font-size: 11px; font-weight: bold; color: var(--accent); display: flex; align-items: center; gap: 6px; }
+    .tag-current {
+      font-size: 10px; font-weight: 900; padding: 6px 10px; border-radius: 999px;
+      background: rgba(34,211,238,0.12); color: var(--accent); border: 1px solid rgba(34,211,238,0.2);
+      letter-spacing: 1px;
+    }
+
+    #quiz-screen, #history-screen, #bookmarks-screen {
+      position: fixed; inset: 0; background: var(--bg); z-index: 1000;
+      display: none; flex-direction: column; padding: 20px; padding-top: 60px;
+    }
+
+    #timer-track { width: 100%; height: 6px; background: #1e293b; border-radius: 3px; margin: 16px 0 10px; overflow: hidden; }
+    #timer-bar { height: 100%; background: var(--accent); width: 100%; transition: width 0.1s linear; }
+
+    .q-text { font-size: 24px; font-weight: 800; line-height: 1.4; margin-bottom: 22px; }
+    .option {
+      background: var(--card); border: 2px solid #2d3748; padding: 20px;
+      border-radius: 18px; color: white; text-align: left; font-size: 17px; font-weight: 600;
+      margin-bottom: 12px; width: 100%;
+    }
+    .option.correct { border-color: var(--success); background: rgba(16,185,129,0.15); color: var(--success); }
+    .option.wrong { border-color: var(--danger); background: rgba(244,63,89,0.15); color: var(--danger); }
+
+    #success-msg {
+      position: fixed; inset: 0; z-index: 2000; display: none;
+      align-items: center; justify-content: center; background: rgba(10,15,30,0.7);
+    }
+    .pop {
+      background: var(--accent); color: #0a0f1e; padding: 40px; border-radius: 50%;
+      width: 200px; height: 200px; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; font-weight: 900; font-size: 26px;
+      animation: slowPop 2.0s ease-in-out forwards;
+    }
+    @keyframes slowPop {
+      0% { transform: scale(0.2); opacity: 0; }
+      15% { transform: scale(1.1); opacity: 1; }
+      85% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.2); opacity: 0; }
+    }
+
+    #loading-overlay {
+      position: fixed; inset: 0; background: rgba(10,15,30,0.95); z-index: 5000;
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 20px;
+    }
+    .spinner { width: 40px; height: 40px; border: 4px solid var(--accent); border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 20px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .small { font-size: 11px; font-weight: 900; color: var(--text-dim); letter-spacing: 1px; }
+    .card {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px; padding: 16px; margin-bottom: 12px;
+    }
+    .row { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+    .pill { font-size: 11px; font-weight: 900; padding: 8px 12px; border-radius: 999px; background: #1e293b; color: #cbd5e1; border:none; }
+    .danger { color: var(--danger); }
+    .success { color: var(--success); }
+    .topbar {
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loading-overlay">
+    <div class="spinner"></div>
+    <div style="font-weight:900;">LOADING...</div>
+    <div id="loading-sub" style="font-size:11px; color:var(--text-dim); margin-top:10px;">問題を読み込み中</div>
+  </div>
+
+  <div id="success-msg"><div class="pop">EXCELLENT!</div></div>
+
+  <div class="container" id="home">
+    <header>
+      <h1>NextStage</h1>
+      <div class="xp-container"><div id="xp-bar" class="xp-fill"></div></div>
+      <div class="stats-text">
+        <span id="lv-text">LEVEL 1</span>
+        <span id="xp-val">0 / 1000 XP</span>
+      </div>
+    </header>
+
+    <button class="btn-start" onclick="startSession()">START </button>
+
+    <button class="btn-secondary" onclick="openHistory()"><span>📈 STUDY HISTORY</span></button>
+    <button class="btn-secondary" onclick="openBookmarks()"><span>📌 BOOKMARKS</span></button>
+
+    <button class="btn-secondary" onclick="exportData()"><span>💾 BACKUP DATA</span></button>
+
+    <button class="btn-secondary" onclick="document.getElementById('import').click()">
+      <span>📥 RESTORE DATA</span>
+      <input type="file" id="import" accept="application/json" style="display:none" onchange="importData(this)">
+    </button>
+
+    <div class="section-title">Weakness Areas</div>
+    <div id="cat-list"></div>
+
+    <div style="margin-top:auto; padding-top:28px; text-align:center;">
+      <button onclick="resetData()" style="background:none; border:none; color:var(--text-dim); font-size:10px; font-weight:bold; letter-spacing:1px;">RESET ALL DATA</button>
+      <button class="btn-secondary" onclick="resetToday()"><span>🕘 今日の解答履歴だけリセット</span></button>
+    </div>
+  </div>
+
+  <!-- ★クイズ画面（必ず #quiz-screen で包む） -->
+  <div id="quiz-screen">
+    <div class="topbar">
+      <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
+      <span id="q-idx" style="font-size:12px; font-weight:900;">1 / ∞</span>
+      <button class="pill" onclick="stopSession()">STOP</button>
+    </div>
+
+    <div id="timer-track"><div id="timer-bar"></div></div>
+
+    <div style="display:flex; gap:10px; align-items:center; margin-top:2px; margin-bottom:10px;">
+      <span class="small" style="flex:1;">📌 付箋</span>
+      <button class="pill" onclick="setStar('red')">赤</button>
+      <button class="pill" onclick="setStar('blue')">青</button>
+      <button class="pill" onclick="setStar('yellow')">黄</button>
+      <button class="pill" onclick="clearStar()">解除</button>
+    </div>
+    <div id="star-now" class="small" style="margin-top:-6px; margin-bottom:10px;"></div>
+
+    <div id="q-box" style="flex:1; overflow-y:auto;">
+      <div class="q-text" id="q-txt"></div>
+      <div id="opts"></div>
+      <div id="exp-box" style="display:none; margin-top:18px; background:#1e293b; padding:18px; border-radius:22px;">
+        <p id="e-txt" style="font-size:15px; color:#cbd5e1; margin-bottom:10px; white-space:pre-wrap;"></p>
+        <p id="j-txt" style="font-size:13px; color:var(--accent); font-style:italic;"></p>
+      </div>
+    </div>
+
+    <button id="next-btn" style="display:none; width:100%; background:white; color:black; padding:22px; border:none; border-radius:24px; font-weight:900; margin-top:18px;" onclick="nextStep()">NEXT</button>
+  </div>
+
+  <div id="history-screen">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:12px; font-weight:900; color:var(--text-dim); letter-spacing:1px;">STUDY HISTORY</span>
+      <button class="pill" onclick="closeHistory()">BACK</button>
+    </div>
+    <div style="height:18px"></div>
+    <div id="history-list" style="flex:1; overflow-y:auto;"></div>
+  </div>
+
+  <div id="bookmarks-screen">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span style="font-size:12px; font-weight:900; color:var(--text-dim); letter-spacing:1px;">BOOKMARKS</span>
+      <button class="pill" onclick="closeBookmarks()">BACK</button>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+      <button class="pill" onclick="setStarFilter('all')">全部</button>
+      <button class="pill" onclick="setStarFilter('red')">赤</button>
+      <button class="pill" onclick="setStarFilter('blue')">青</button>
+      <button class="pill" onclick="setStarFilter('yellow')">黄</button>
+    </div>
+
+    <div id="bookmarks-list" style="flex:1; overflow-y:auto;"></div>
+  </div>
+<script>
+  
+  window.onerror = function (msg, src, line, col, err) {
+    alert("JSエラー: " + msg + "\n" + (src || "") + "\n行:" + line + " 列:" + col);
+    return false;
+  };
+
+  const CATEGORY_ORDER = [];
+  const SR_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30];
+
+  const QUESTION_FILES = [
+    "questions/point008.json",
+    "questions/point009.json",
+    "questions/point010.json",
+    "questions/point011.json"
+  ];
+
+  let loadedQuestions = [];
+
+  let state = JSON.parse(localStorage.getItem('gd_v4_pro')) || {
+    xp: 0,
+    last: 0,
+    mastery: {},
+    custom: [],
+    history: [],
+    currCat: null,
+    stars: {}
+  };
+
+  state.history = state.history || [];
+  state.custom = state.custom || [];
+  state.mastery = state.mastery || {};
+  state.currCat = state.currCat || null;
+  state.stars = state.stars || {};
+
+  let session = null;
+  let activeQ = null;
+  let timer = null;
+  let timeLeft = 100;// 
+  let isAnswered = false;
+  let starFilter = "all";
+
+  let reorderPicked = [];
+
+  window.onload = () => { initApp(); };
+
+  async function initApp() {
+    try {
+      showLoading("問題を読み込み中...");
+      loadedQuestions = await loadAllQuestions();
+    } catch (e) {
+      loadedQuestions = [];
+    } finally {
+      hideLoading();
+      render();
+    }
+  }
+
+  function showLoading(msg) {
+    const o = document.getElementById('loading-overlay');
+    const s = document.getElementById('loading-sub');
+    if (s) s.textContent = msg || "LOADING...";
+    if (o) o.style.display = 'flex';
+  }
+  function hideLoading() {
+    const o = document.getElementById('loading-overlay');
+    if (o) o.style.display = 'none';
+  }
+
+  // JSON仕様：point / question / choices / answer / explanation / jp
+  function normalizeQuestion(raw) {
+    if (!raw || raw.id == null) return null;
+
+    const type = raw.type || "choice";
+    const cat  = raw.point || raw.cat || null;
+    const text = raw.question || raw.q || "";
+    const exp  = raw.explanation || raw.exp || "";
+    const jp   = raw.jp || "";
+
+    if (type === "reorder") {
+      const tokens = Array.isArray(raw.tokens) ? raw.tokens : [];
+      const answerArr = Array.isArray(raw.answer) ? raw.answer : [];
+      if (!cat || !text || tokens.length === 0 || answerArr.length === 0) return null;
+      return { id: raw.id, type: "reorder", cat, text, tokens, answerArr, exp, jp };
+    }
+
+    const opts = raw.choices || raw.opts || [];
+    const ans  = raw.answer;
+    if (!cat || !text || !Array.isArray(opts) || opts.length === 0 || ans == null) return null;
+    return { id: raw.id, type: "choice", cat, text, opts, ans: Number(ans), exp, jp };
+  }
+
+ async function loadAllQuestions() {
+  let all = [];
+
+  for (const f of QUESTION_FILES) {
+    try {
+      const res = await fetch(f, { cache: "no-store" });
+      if (!res.ok) throw new Error("Failed to load " + f);
+
+      const data = await res.json();
+      if (!Array.isArray(data)) throw new Error("Not an array: " + f);
+
+      const normalized = data
+        .map(normalizeQuestion)
+        .filter(Boolean);
+
+      all = all.concat(normalized);
+
+    } catch (e) {
+      console.warn("Skipped broken question file:", f, e);
+      // ★ このファイルだけ無視して続行
+    }
+  }
+
+  return all;
+}
+
+
+  // ★二重normalize禁止：loadedQuestionsは既に正規化済
+  function allQuestions() {
+    return [...(loadedQuestions || []), ...(state.custom || [])];
+  }
+
+  function getM(qid) {
+    const m = state.mastery[qid];
+    if (!m) return { level: 0, lastSeen: 0, nextDue: 0 };
+    if (typeof m === 'number') return { level: m, lastSeen: 0, nextDue: 0 };
+    return {
+      level: Number(m.level || 0),
+      lastSeen: Number(m.lastSeen || 0),
+      nextDue: Number(m.nextDue || 0)
+    };
+  }
+  function setM(qid, obj) {
+    state.mastery[qid] = {
+      level: Number(obj.level || 0),
+      lastSeen: Number(obj.lastSeen || 0),
+      nextDue: Number(obj.nextDue || 0)
+    };
+  }
+
+  function autoCategoryOrder(all) {
+    const uniq = [];
+    const seen = new Set();
+    for (const q of all) {
+      if (!seen.has(q.cat)) { seen.add(q.cat); uniq.push(q.cat); }
+    }
+    const withNum = [];
+    const withoutNum = [];
+    for (const c of uniq) {
+      const m = String(c).match(/Point\s*0*([0-9]+)/i);
+      if (m) withNum.push({ c, n: Number(m[1]) });
+      else withoutNum.push(c);
+    }
+    withNum.sort((a,b)=>a.n-b.n);
+    return [...withNum.map(x=>x.c), ...withoutNum];
+  }
+  function getCategoryOrder(all) {
+    if (Array.isArray(CATEGORY_ORDER) && CATEGORY_ORDER.length > 0) return CATEGORY_ORDER;
+    return autoCategoryOrder(all);
+  }
+  function getCurrentCategory(all) {
+    const order = getCategoryOrder(all);
+    if (!state.currCat || !order.includes(state.currCat)) state.currCat = order[0] || null;
+    return state.currCat;
+  }
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function startOfToday() {
+    const d = new Date();
+    d.setHours(0,0,0,0);
+    return d.getTime();
+  }
+  function seenToday(qid) {
+    return (getM(qid).lastSeen || 0) >= startOfToday();
+  }
+
+  function render() {
+    const lv = Math.floor(state.xp / 1000) + 1;
+    const xp = state.xp % 1000;
+
+    const lvEl = document.getElementById('lv-text');
+    const xpEl = document.getElementById('xp-val');
+    const barEl = document.getElementById('xp-bar');
+    if (lvEl) lvEl.innerText = `LEVEL ${lv}`;
+    if (xpEl) xpEl.innerText = `${xp} / 1000 XP`;
+    if (barEl) barEl.style.width = (xp / 10) + '%';
+
+    const all = allQuestions();
+    const cur = getCurrentCategory(all);
+
+    const cats = {};
+    all.forEach(q => {
+      if (!cats[q.cat]) cats[q.cat] = { count: 0, sumLevel: 0 };
+      cats[q.cat].count++;
+      cats[q.cat].sumLevel += (getM(q.id).level || 0);
+    });
+
+    const sorted = Object.keys(cats).map(n => ({
+      name: n,
+      prog: Math.floor((cats[n].sumLevel / cats[n].count) * 20)
+    })).sort((a,b) => a.prog - b.prog);
+
+    const list = document.getElementById('cat-list');
+    if (list) {
+      list.innerHTML = '';
+      sorted.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'cat-card';
+        const isCur = (cur && c.name === cur);
+        div.innerHTML =
+          `<div>
+            <div class="cat-name">${escapeHtml(c.name)} ${isCur ? `<span class="tag-current">CURRENT</span>` : ``}</div>
+            <div class="cat-meta">${c.prog}% MASTERED</div>
+          </div>
+          <div style="font-size:10px; font-weight:900; color:var(--text-dim);">
+            ${c.prog < 40 ? '⚠️ LOW' : (c.prog >= 80 ? '✨ STRONG' : 'OK')}
+          </div>`;
+        list.appendChild(div);
+      });
+    }
+
+    localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+  }
+
+  function pickNextQuestion() {
+    const all = allQuestions();
+    if (all.length === 0) return null;
+
+    const order = getCategoryOrder(all);
+    const cur = getCurrentCategory(all);
+    let startIdx = order.indexOf(cur);
+    if (startIdx < 0) startIdx = 0;
+
+    const now = Date.now();
+
+    const due = all
+      .filter(q => !seenToday(q.id) && (getM(q.id).nextDue || 0) <= now)
+      .sort((a,b) => (getM(a.id).nextDue - getM(b.id).nextDue) || (getM(a.id).level - getM(b.id).level));
+
+    if (due.length) return shuffle(due.slice())[0];
+
+    for (let k = 0; k < order.length; k++) {
+      const cat = order[(startIdx + k) % order.length];
+      const catQs = all
+        .filter(q => q.cat === cat && !seenToday(q.id))
+        .sort((a,b) => (getM(a.id).level - getM(b.id).level) || ((getM(a.id).nextDue||0) - (getM(b.id).nextDue||0)));
+      if (catQs.length) {
+        state.currCat = order[(startIdx + 1) % order.length];
+        return shuffle(catQs.slice())[0];
+      }
+    }
+
+    return null;
+  }
+
+  // ======== handlers (global) ========
+  window.startSession = startSession;
+  window.stopSession = stopSession;
+  window.openHistory = openHistory;
+  window.closeHistory = closeHistory;
+  window.openBookmarks = openBookmarks;
+  window.closeBookmarks = closeBookmarks;
+  window.exportData = exportData;
+  window.importData = importData;
+  window.resetData = resetData;
+  window.setStar = setStar;
+  window.clearStar = clearStar;
+  window.nextStep = nextStep;
+  window.setStarFilter = setStarFilter;
+  window.removeBookmark = removeBookmark;
+  window.resetToday = resetToday;
+
+  function startSession() {
+    session = { startedAt: Date.now(), answered: 0, correct: 0, wrong: [] };
+
+    const home = document.getElementById('home');
+    const quiz = document.getElementById('quiz-screen');
+    if (home) home.style.display = 'none';
+    if (quiz) quiz.style.display = 'flex';
+
+    loadNext();
+  }
+
+  function loadNext() {
+    const q = pickNextQuestion();
+    if (!q) { stopSession(); return; }
+    activeQ = q;
+
+    const mode = document.getElementById('mode-tag');
+    if (mode) mode.innerText = `${q.cat} ${q.id}`;
+
+    renderStarNow();
+
+    isAnswered = false;
+
+    const qIdxEl = document.getElementById('q-idx');
+    if (qIdxEl) qIdxEl.innerText = `${(session?.answered || 0) + 1} / ∞`;
+
+    const qt = document.getElementById('q-txt');
+    if (qt) qt.innerText = q.text;
+
+    const expBox = document.getElementById('exp-box');
+    const nextBtn = document.getElementById('next-btn');
+    if (expBox) expBox.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+
+    const optCont = document.getElementById('opts');
+    if (optCont) {
+      optCont.innerHTML = '';
+      if (q.type === "choice") {
+        (q.opts || []).forEach((o, i) => {
+          const b = document.createElement('button');
+          b.className = 'option';
+          b.innerText = o;
+          b.onclick = () => handleChoiceAns(i);
+          optCont.appendChild(b);
+        });
+      } else if (q.type === "reorder") {
+        renderReorderUI(q, optCont);
+      } else {
+        stopSession();
+        return;
+      }
+    }
+
+    startTimer();
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timeLeft = 100;
+    const bar = document.getElementById('timer-bar');
+    if (bar) bar.style.width = '100%';
+
+    timer = setInterval(() => {
+      timeLeft -= 1.0;
+      const b = document.getElementById('timer-bar');
+      if (b) b.style.width = Math.max(0, timeLeft) + '%';
+
+      if (timeLeft <= 0) {
+        if (activeQ?.type === "choice") handleChoiceAns(-1);
+        else { reorderPicked = []; handleReorderSubmit(); }
+      }
+    }, 200);
+  }
+
+  function handleChoiceAns(idx) {
+    if (isAnswered) return;
+    isAnswered = true;
+    clearInterval(timer);
+
+    const q = activeQ;
+    if (!q) return;
+
+    const ok = idx === q.ans;
+
+    session.answered += 1;
+    if (ok) session.correct += 1;
+    else session.wrong.push({ id: q.id, type: q.type, selected: idx, correct: q.ans });
+
+    applyResult(ok, q);
+
+    const btns = document.getElementById('opts')?.children || [];
+    for (let i = 0; i < btns.length; i++) {
+      if (i === q.ans) btns[i].classList.add('correct');
+      else if (i === idx) btns[i].classList.add('wrong');
+      btns[i].disabled = true;
+    }
+
+    const selectedText = (idx === -1) ? "（時間切れ）" : (q.opts?.[idx] ?? "（不明）");
+    const correctText  = q.opts?.[q.ans] ?? "（不明）";
+    const extra = `\n\nあなた: ${selectedText}\n正解: ${correctText}`;
+    showExplanation(q, extra);
+
+  }
+
+function renderReorderUI(q, container) {
+  reorderPicked = [];
+
+  const pickedCard = document.createElement('div');
+  pickedCard.className = 'card';
+  pickedCard.style.background = '#111827';
+  pickedCard.innerHTML = `<div class="small">並び順（タップした順）</div><div id="picked-line" style="margin-top:10px; font-weight:900;"></div>`;
+  const pickedLine = pickedCard.querySelector('#picked-line');
+
+  const poolCard = document.createElement('div');
+  poolCard.className = 'card';
+  poolCard.innerHTML = `<div class="small">単語（タップして追加）</div>`;
+
+  const pool = document.createElement('div');
+  pool.style.display = 'flex';
+  pool.style.flexWrap = 'wrap';
+  pool.style.gap = '10px';
+  pool.style.marginTop = '10px';
+
+  // ★ ボタン参照を保持（UNDO/CLEARで戻すため）
+  const tokenButtons = [];
+
+  function refreshPicked() {
+    if (pickedLine) pickedLine.textContent = reorderPicked.join(' ');
+  }
+
+  (q.tokens || []).forEach(tok => {
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.type = 'button';
+    b.textContent = tok;
+
+    b.onclick = () => {
+      if (isAnswered) return;
+      if (b.disabled) return;        // ★ 連打・重複防止
+      reorderPicked.push(tok);
+      b.disabled = true;             // ★ 押した瞬間に無効化（確実）
+      refreshPicked();
+    };
+
+    tokenButtons.push(b);
+    pool.appendChild(b);
+  });
+
+  poolCard.appendChild(pool);
+
+  const controls = document.createElement('div');
+  controls.style.display = 'flex';
+  controls.style.gap = '10px';
+  controls.style.flexWrap = 'wrap';
+  controls.style.marginTop = '12px';
+
+  const undoBtn = document.createElement('button');
+  undoBtn.className = 'pill';
+  undoBtn.type = 'button';
+  undoBtn.textContent = 'UNDO';
+  undoBtn.onclick = () => {
+    if (isAnswered) return;
+    const last = reorderPicked.pop();
+    if (last == null) return;
+
+    // ★ 戻したトークンのボタンを再び押せるようにする
+    // （同じ文字が複数ある場合もあるので「disabledのものを1つだけ戻す」）
+    const btn = tokenButtons.find(x => x.textContent === last && x.disabled);
+    if (btn) btn.disabled = false;
+
+    refreshPicked();
+  };
+
+  const clearBtn = document.createElement('button');
+  clearBtn.className = 'pill';
+  clearBtn.type = 'button';
+  clearBtn.textContent = 'CLEAR';
+  clearBtn.onclick = () => {
+    if (isAnswered) return;
+    reorderPicked = [];
+    tokenButtons.forEach(b => (b.disabled = false)); // ★ 全部復活
+    refreshPicked();
+  };
+
+  const submitBtn = document.createElement('button');
+  submitBtn.className = 'pill';
+  submitBtn.type = 'button';
+  submitBtn.textContent = 'SUBMIT';
+  submitBtn.onclick = () => handleReorderSubmit();
+
+  controls.appendChild(undoBtn);
+  controls.appendChild(clearBtn);
+  controls.appendChild(submitBtn);
+
+  container.appendChild(pickedCard);
+  container.appendChild(poolCard);
+  container.appendChild(controls);
+
+  refreshPicked();
+}
+
+
+  function handleReorderSubmit() {
+    if (isAnswered) return;
+    isAnswered = true;
+    clearInterval(timer);
+
+    const q = activeQ;
+    if (!q) return;
+
+    const userArr = reorderPicked.slice();
+    const ansArr = q.answerArr || [];
+
+    const ok = userArr.length === ansArr.length &&
+               userArr.every((v, i) => v === ansArr[i]);
+
+    session.answered += 1;
+    if (ok) session.correct += 1;
+    else session.wrong.push({ id: q.id, type: q.type, user: userArr, correct: ansArr });
+
+    applyResult(ok, q);
+
+    document.querySelectorAll('#opts button').forEach(b => b.disabled = true);
+
+    const extra = ok ? "" : `\n\nあなた: ${userArr.join(" ")}\n正解: ${ansArr.join(" ")}`;
+    showExplanation(q, extra);
+  }
+
+  function applyResult(ok, q) {
+    const m = getM(q.id);
+    m.lastSeen = Date.now();
+
+    if (ok) {
+      const pop = document.getElementById('success-msg');
+      if (pop) {
+        pop.style.display = 'flex';
+        setTimeout(() => pop.style.display = 'none', 1600);
+      }
+
+      state.xp += 50;
+
+      const nextLevel = Math.min(m.level + 1, 5);
+      m.level = nextLevel;
+      const days = SR_INTERVAL_DAYS[nextLevel] || 1;
+      m.nextDue = Date.now() + days * 24 * 60 * 60 * 1000;
+    } else {
+      m.level = Math.max(0, m.level - 1);
+      m.nextDue = Date.now();
+    }
+    setM(q.id, m);
+
+    state.last = Date.now();
+    localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+  }
+
+  function showExplanation(q, extra) {
+    const e = document.getElementById('e-txt');
+    const j = document.getElementById('j-txt');
+    if (e) e.innerText = (q.exp || "") + (extra || "");
+    if (j) j.innerText = q.jp ? ("和訳: " + q.jp) : "";
+
+    const expBox = document.getElementById('exp-box');
+    const nextBtn = document.getElementById('next-btn');
+    if (expBox) expBox.style.display = 'block';
+    if (nextBtn) nextBtn.style.display = 'block';
+  }
+
+  function nextStep() { loadNext(); }
+
+  function stopSession() { finishSession(); }
+
+  function finishSession() {
+    clearInterval(timer);
+    timer = null;
+
+    if (session) {
+      const total = session.answered;
+      const correct = session.correct;
+      const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+      if (total > 0) {
+        state.history.unshift({
+          at: Date.now(),
+          total,
+          correct,
+          accuracy,
+          wrong: session.wrong
+        });
+      }
+      localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+    }
+
+    session = null;
+    activeQ = null;
+
+    const quiz = document.getElementById('quiz-screen');
+    const home = document.getElementById('home');
+    if (quiz) quiz.style.display = 'none';
+    if (home) home.style.display = 'flex';
+    render();
+  }
+
+  // ===== History / Bookmarks / Backup =====
+  function openHistory() {
+    const home = document.getElementById('home');
+    const hs = document.getElementById('history-screen');
+    if (home) home.style.display = 'none';
+    if (hs) hs.style.display = 'flex';
+    renderHistory();
+  }
+  function closeHistory() {
+    const hs = document.getElementById('history-screen');
+    const home = document.getElementById('home');
+    if (hs) hs.style.display = 'none';
+    if (home) home.style.display = 'flex';
+    render();
+  }
+
+  function renderHistory() {
+    const list = document.getElementById('history-list');
+    if (!list) return;
+    list.innerHTML = '';
+
+    if (!state.history || state.history.length === 0) {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `<div style="font-weight:900;">まだ履歴がありません</div>
+                       <div class="small" style="margin-top:8px;">STARTして解くと、ここに記録されます。</div>`;
+      list.appendChild(div);
+      return;
+    }
+
+    const qMap = new Map(allQuestions().map(q => [String(q.id), q]));
+
+    state.history.forEach(h => {
+      const d = new Date(h.at);
+      const dateStr = `${d.getFullYear()}/${pad2(d.getMonth()+1)}/${pad2(d.getDate())} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      card.innerHTML = `
+        <div class="row">
+          <div style="font-weight:900;">${dateStr}</div>
+          <div class="pill">${h.total}問</div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+          <div class="small">正解: <span class="success">${h.correct}</span> / ${h.total}</div>
+          <div class="small">正解率: <span class="success">${h.accuracy}%</span></div>
+        </div>
+        <div style="height:10px"></div>
+        <div class="small">誤答一覧</div>
+      `;
+
+      const wrongWrap = document.createElement('div');
+      wrongWrap.style.marginTop = '10px';
+
+      if (!h.wrong || h.wrong.length === 0) {
+        const w = document.createElement('div');
+        w.className = 'small';
+        w.style.color = 'var(--success)';
+        w.textContent = '全問正解 🎉';
+        wrongWrap.appendChild(w);
+      } else {
+        h.wrong.forEach(wi => {
+          const q = qMap.get(String(wi.id));
+          const qText = q ? q.text : '(問題が見つかりません)';
+
+          const item = document.createElement('div');
+          item.className = 'card';
+          item.style.background = '#111827';
+          item.style.border = '1px solid rgba(255,255,255,0.06)';
+          item.style.marginTop = '10px';
+
+          if (wi.type === "reorder") {
+            const user = Array.isArray(wi.user) ? wi.user.join(" ") : '(不明)';
+            const cor  = Array.isArray(wi.correct) ? wi.correct.join(" ") : '(不明)';
+            item.innerHTML = `
+              <div style="font-weight:900; line-height:1.4;">${escapeHtml(qText)}</div>
+              <div style="height:10px"></div>
+              <div class="small">あなた: <span class="danger">${escapeHtml(user)}</span></div>
+              <div class="small">正解: <span class="success">${escapeHtml(cor)}</span></div>
+              ${q && q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
+            `;
+          } else {
+            const correctOpt = q ? q.opts[wi.correct] : '(不明)';
+            const selectedOpt =
+              wi.selected === -1 ? '（時間切れ）' : (q ? q.opts[wi.selected] : '(不明)');
+
+            item.innerHTML = `
+              <div style="font-weight:900; line-height:1.4;">${escapeHtml(qText)}</div>
+              <div style="height:10px"></div>
+              <div class="small">あなた: <span class="danger">${escapeHtml(selectedOpt)}</span></div>
+              <div class="small">正解: <span class="success">${escapeHtml(correctOpt)}</span></div>
+              ${q && q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
+            `;
+          }
+
+          wrongWrap.appendChild(item);
+        });
+      }
+
+      card.appendChild(wrongWrap);
+      list.appendChild(card);
+    });
+  }
+
+  function exportData() {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    const d = new Date();
+    a.download = `nextstage_backup_${d.getFullYear()}${pad2(d.getMonth()+1)}${pad2(d.getDate())}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function importData(input) {
+    const file = input.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const obj = JSON.parse(reader.result);
+        if (!obj || typeof obj !== 'object') throw new Error('invalid');
+
+        obj.xp = Number(obj.xp || 0);
+        obj.last = Number(obj.last || 0);
+        obj.mastery = obj.mastery || {};
+        obj.custom = obj.custom || [];
+        obj.history = obj.history || [];
+        obj.currCat = obj.currCat || null;
+        obj.stars = obj.stars || {};
+
+        state = obj;
+        localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+        alert('復元しました。ページを再読み込みします。');
+        location.reload();
+      } catch (e) {
+        alert('読み込みに失敗しました。BACKUPしたJSONを選んでください。');
+      }
+    };
+    reader.readAsText(file);
+    input.value = '';
+  }
+
+  function resetData() {
+    if (confirm("データを全て消去しますか？")) {
+      localStorage.clear();
+      location.reload();
+    }
+  }
+
+  function ensureStars() { state.stars = state.stars || {}; }
+  function getStar(qid) { ensureStars(); return state.stars[String(qid)] || null; }
+  function starLabel(c) {
+    if (c === "red") return "赤";
+    if (c === "blue") return "青";
+    if (c === "yellow") return "黄";
+    return "なし";
+  }
+  function setStar(color) {
+    if (!activeQ) return;
+    ensureStars();
+    state.stars[String(activeQ.id)] = color;
+    localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+    renderStarNow();
+  }
+  function clearStar() {
+    if (!activeQ) return;
+    ensureStars();
+    delete state.stars[String(activeQ.id)];
+    localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+    renderStarNow();
+  }
+  function renderStarNow() {
+    const el = document.getElementById("star-now");
+    if (!el || !activeQ) return;
+    const s = getStar(activeQ.id);
+    el.textContent = `この問題の付箋：${starLabel(s)}`;
+  }
+
+  function openBookmarks() {
+    const home = document.getElementById('home');
+    const hs = document.getElementById('history-screen');
+    const bs = document.getElementById('bookmarks-screen');
+    if (home) home.style.display = 'none';
+    if (hs) hs.style.display = 'none';
+    if (bs) bs.style.display = 'flex';
+    renderBookmarks();
+  }
+  function closeBookmarks() {
+    const bs = document.getElementById('bookmarks-screen');
+    const home = document.getElementById('home');
+    if (bs) bs.style.display = 'none';
+    if (home) home.style.display = 'flex';
+    render();
+  }
+  function setStarFilter(f) { starFilter = f; renderBookmarks(); }
+
+  function renderBookmarks() {
+    ensureStars();
+    const list = document.getElementById('bookmarks-list');
+    if (!list) return;
+    list.innerHTML = '';
+
+    const all = allQuestions();
+    const qMap = new Map(all.map(q => [String(q.id), q]));
+    const entries = Object.entries(state.stars);
+
+    const filtered = entries
+      .filter(([id, color]) => (starFilter === "all" ? true : color === starFilter))
+      .map(([id, color]) => ({ id, color, q: qMap.get(id) }))
+      .filter(x => !!x.q);
+
+    if (filtered.length === 0) {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `<div style="font-weight:900;">付箋がありません</div>
+                       <div class="small" style="margin-top:8px;">問題画面で「赤/青/黄」を押すと、ここに集まります。</div>`;
+      list.appendChild(div);
+      return;
+    }
+
+    filtered.sort((a,b) => {
+      const ac = a.q.cat || "";
+      const bc = b.q.cat || "";
+      if (ac !== bc) return ac.localeCompare(bc, "ja");
+      return String(a.q.id).localeCompare(String(b.q.id), "ja");
+    });
+
+    filtered.forEach(x => {
+      const q = x.q;
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="row">
+          <div style="font-weight:900;">${escapeHtml(q.cat)} / ${escapeHtml(q.id)}</div>
+          <div class="pill">📌 ${escapeHtml(starLabel(x.color))}</div>
+        </div>
+        <div style="height:10px"></div>
+        <div style="line-height:1.5;">${escapeHtml(q.text)}</div>
+        ${q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
+        <div style="height:10px"></div>
+        <button class="pill" onclick="removeBookmark('${escapeHtml(String(q.id))}')">この付箋を外す</button>
+      `;
+      list.appendChild(card);
+    });
+  }
+
+  function removeBookmark(qidStr) {
+    ensureStars();
+    delete state.stars[String(qidStr)];
+    localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+    renderBookmarks();
+  }
+
+  function pad2(n) { return String(n).padStart(2, '0'); }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function resetToday() {
+  if (!confirm("今日の『同日出題禁止』だけ解除しますか？\n（学習レベルや履歴は残ります）")) return;
+
+  const yesterday = startOfToday() - 24 * 60 * 60 * 1000;
+
+  for (const [qid, m] of Object.entries(state.mastery || {})) {
+    if (m && typeof m === "object") {
+      // lastSeen が今日なら昨日に戻す
+      if (Number(m.lastSeen || 0) >= startOfToday()) {
+        m.lastSeen = yesterday;
+      }
+    } else if (typeof m === "number") {
+      // 古い形式は触らない（lastSeen情報がない）
+    }
+  }
+
+  localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+  alert("今日の解答履歴だけリセットしました。STARTしてください。");
+}
+
+</script>  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
