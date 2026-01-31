@@ -218,8 +218,7 @@
     <div id="bookmarks-list" style="flex:1; overflow-y:auto;"></div>
   </div>
 <script>
-  alert("WELCOME"); // ★これが出れば復旧成功（あとで消す）
-
+  
   window.onerror = function (msg, src, line, col, err) {
     alert("JSエラー: " + msg + "\n" + (src || "") + "\n行:" + line + " 列:" + col);
     return false;
@@ -580,10 +579,11 @@
       btns[i].disabled = true;
     }
 
-    const selectedText = (idx === -1) ? "（時間切れ）" : (q.opts?.[idx] ?? "（不明）"); const correctText = q.opts?.[q.ans] ?? "（不明）"; const extra = `
+    const selectedText = (idx === -1) ? "（時間切れ）" : (q.opts?.[idx] ?? "（不明）");
+　　const correctText  = q.opts?.[q.ans] ?? "（不明）";
+　　const extra = `\n\nあなた: ${selectedText}\n正解: ${correctText}`;
+　　showExplanation(q, extra);
 
-あなた: ${selectedText}
-正解: ${correctText}`; showExplanation(q, extra);;
   }
 
   function renderReorderUI(q, container) {
@@ -1046,6 +1046,7 @@
 </script>  
 </body>
 </html>
+
 
 
 
