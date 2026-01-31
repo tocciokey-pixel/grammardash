@@ -255,7 +255,7 @@
   let session = null;
   let activeQ = null;
   let timer = null;
-  let timeLeft = 200;// ★ 20秒
+  let timeLeft = 100;// 
   let isAnswered = false;
   let starFilter = "all";
 
@@ -569,7 +569,7 @@
         if (activeQ?.type === "choice") handleChoiceAns(-1);
         else { reorderPicked = []; handleReorderSubmit(); }
       }
-    }, 100);
+    }, 200);
   }
 
   function handleChoiceAns(idx) {
@@ -596,9 +596,9 @@
     }
 
     const selectedText = (idx === -1) ? "（時間切れ）" : (q.opts?.[idx] ?? "（不明）");
-　　const correctText  = q.opts?.[q.ans] ?? "（不明）";
-　　const extra = `\n\nあなた: ${selectedText}\n正解: ${correctText}`;
-　　showExplanation(q, extra);
+    const correctText  = q.opts?.[q.ans] ?? "（不明）";
+    const extra = `\n\nあなた: ${selectedText}\n正解: ${correctText}`;
+    showExplanation(q, extra);
 
   }
 
@@ -1062,6 +1062,7 @@
 </script>  
 </body>
 </html>
+
 
 
 
