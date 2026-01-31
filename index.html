@@ -235,6 +235,10 @@
      * - 未定着でも次カテゴリへ進む（固定しない）
      * - 同じ日に解いた問題はその日は出さない
      **********************/
+　　window.onerror = function (msg, src, line, col, err) {
+  　　alert("JSエラー: " + msg + "\n" + "行:" + line + " 列:" + col);
+ 　　 return false;
+　　};
 
     const INITIAL = [];
 
@@ -869,5 +873,6 @@ function removeBookmark(qidStr) {
   </script>
 </body>
 </html>
+
 
 
