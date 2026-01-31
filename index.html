@@ -168,18 +168,20 @@
   <!-- ★クイズ画面（必ず #quiz-screen で包む） -->
   <div id="quiz-screen">
     <div class="topbar">
-      <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
+      <span id="cat-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
       <span id="q-idx" style="font-size:12px; font-weight:900;">1 / ∞</span>
+      <span id="qid-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">-- / ∞</span>
       <button class="pill" onclick="stopSession()">STOP</button>
     </div>
+
 
     <div id="timer-track"><div id="timer-bar"></div></div>
 
     <div style="display:flex; gap:10px; align-items:center; margin-top:2px; margin-bottom:10px;">
       <span class="small" style="flex:1;">📌 付箋</span>
-      <button class="pill" onclick="setStar('red')">赤</button>
-      <button class="pill" onclick="setStar('blue')">青</button>
-      <button class="pill" onclick="setStar('yellow')">黄</button>
+      <button class="pill" onclick="setStar('red')">🔴</button>
+      <button class="pill" onclick="setStar('blue')">🔵</button>
+      <button class="pill" onclick="setStar('yellow')">🟡</button>
       <button class="pill" onclick="clearStar()">解除</button>
     </div>
     <div id="star-now" class="small" style="margin-top:-6px; margin-bottom:10px;"></div>
@@ -519,8 +521,12 @@
     if (!q) { stopSession(); return; }
     activeQ = q;
 
-    const mode = document.getElementById('mode-tag');
-    if (mode) mode.innerText = `${q.cat} ${q.id}`;
+    const catTag = document.getElementById('cat-tag');
+    if (catTag) catTag.innerText = q.cat || "READY";
+
+    const qidTag = document.getElementById('qid-tag');
+    if (qidTag) qidTag.innerText = `${q.id}`;
+
 
     renderStarNow();
 
@@ -959,11 +965,12 @@ function renderReorderUI(q, container) {
   function ensureStars() { state.stars = state.stars || {}; }
   function getStar(qid) { ensureStars(); return state.stars[String(qid)] || null; }
   function starLabel(c) {
-    if (c === "red") return "赤";
-    if (c === "blue") return "青";
-    if (c === "yellow") return "黄";
+    if (c === "red") return "🔴";
+    if (c === "blue") return "🔵";
+    if (c === "yellow") return "🟡";
     return "なし";
   }
+
   function setStar(color) {
     if (!activeQ) return;
     ensureStars();
@@ -1088,6 +1095,7 @@ function renderReorderUI(q, container) {
 </script>  
 </body>
 </html>
+
 
 
 
