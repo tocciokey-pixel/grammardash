@@ -159,11 +159,12 @@
     </div>
   </div>
 
-  <div id="quiz-screen">
-    <div class="topbar">
-      <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
-      <button class="pill" onclick="stopSession()">STOP</button>
-    </div>
+  <div class="topbar">
+ 　 <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
+　  <span id="q-idx" style="font-size:12px; font-weight:900;">1 / ∞</span>
+　  <button class="pill" onclick="stopSession()">STOP</button>
+　</div>
+
 
     <div id="timer-track"><div id="timer-bar"></div></div>
 
@@ -474,7 +475,9 @@
       renderStarNow();
 
       isAnswered = false;
-      document.getElementById('q-idx').innerText = `${session.answered + 1} / ∞`;
+      const qIdxEl = document.getElementById('q-idx');
+　　　if (qIdxEl) qIdxEl.innerText = `${(session?.answered || 0) + 1} / ∞`;
+
       document.getElementById('q-txt').innerText = q.q;
       document.getElementById('exp-box').style.display = 'none';
       document.getElementById('next-btn').style.display = 'none';
@@ -826,3 +829,4 @@
   </script>
 </body>
 </html>
+
