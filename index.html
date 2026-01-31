@@ -182,7 +182,7 @@
       <div class="q-text" id="q-txt"></div>
       <div id="opts"></div>
       <div id="exp-box" style="display:none; margin-top:18px; background:#1e293b; padding:18px; border-radius:22px;">
-        <p id="e-txt" style="font-size:15px; color:#cbd5e1; margin-bottom:10px;"></p>
+        <p id="e-txt" style="font-size:15px; color:#cbd5e1; margin-bottom:10px; white-space:pre-wrap;"></p>
         <p id="j-txt" style="font-size:13px; color:var(--accent); font-style:italic;"></p>
       </div>
     </div>
@@ -217,7 +217,7 @@
     <div id="bookmarks-list" style="flex:1; overflow-y:auto;"></div>
   </div>
 <script>
-  alert("MAIN SCRIPT LOADED"); // ★これが出れば復旧成功（あとで消す）
+  alert("WELCOME"); // ★これが出れば復旧成功（あとで消す）
 
   window.onerror = function (msg, src, line, col, err) {
     alert("JSエラー: " + msg + "\n" + (src || "") + "\n行:" + line + " 列:" + col);
@@ -578,7 +578,10 @@
       btns[i].disabled = true;
     }
 
-    showExplanation(q, "");
+    const selectedText = (idx === -1) ? "（時間切れ）" : (q.opts?.[idx] ?? "（不明）"); const correctText = q.opts?.[q.ans] ?? "（不明）"; const extra = `
+
+あなた: ${selectedText}
+正解: ${correctText}`; showExplanation(q, extra);;
   }
 
   function renderReorderUI(q, container) {
@@ -1017,15 +1020,10 @@
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
-</script>
-
-  
-<div style="position:fixed;bottom:6px;right:6px;font-size:12px;opacity:.6;z-index:99999">
-  CHECK-20260131-A
-</div>
-
-  </body>
+</script>  
+</body>
 </html>
+
 
 
 
