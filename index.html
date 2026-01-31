@@ -156,6 +156,7 @@
 
     <div style="margin-top:auto; padding-top:28px; text-align:center;">
       <button onclick="resetData()" style="background:none; border:none; color:var(--text-dim); font-size:10px; font-weight:bold; letter-spacing:1px;">RESET ALL DATA</button>
+      <button class="btn-secondary" onclick="resetToday()"><span>🕘 今日の解答履歴だけリセット</span></button>
     </div>
   </div>
 
@@ -480,6 +481,7 @@
   window.nextStep = nextStep;
   window.setStarFilter = setStarFilter;
   window.removeBookmark = removeBookmark;
+  window.resetToday = resetToday;
 
   function startSession() {
     session = { startedAt: Date.now(), answered: 0, correct: 0, wrong: [] };
@@ -1020,9 +1022,31 @@
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
+
+  function resetToday() {
+  if (!confirm("今日の『同日出題禁止』だけ解除しますか？\n（学習レベルや履歴は残ります）")) return;
+
+  const yesterday = startOfToday() - 24 * 60 * 60 * 1000;
+
+  for (const [qid, m] of Object.entries(state.mastery || {})) {
+    if (m && typeof m === "object") {
+      // lastSeen が今日なら昨日に戻す
+      if (Number(m.lastSeen || 0) >= startOfToday()) {
+        m.lastSeen = yesterday;
+      }
+    } else if (typeof m === "number") {
+      // 古い形式は触らない（lastSeen情報がない）
+    }
+  }
+
+  localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+  alert("今日の解答履歴だけリセットしました。STARTしてください。");
+}
+
 </script>  
 </body>
 </html>
+
 
 
 
