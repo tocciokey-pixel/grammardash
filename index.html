@@ -309,16 +309,32 @@
     return { id: raw.id, type: "choice", cat, text, opts, ans: Number(ans), exp, jp };
   }
 
-  async function loadAllQuestions() {
-    let all = [];
-    for (const f of QUESTION_FILES) {
+ async function loadAllQuestions() {
+  let all = [];
+
+  for (const f of QUESTION_FILES) {
+    try {
       const res = await fetch(f, { cache: "no-store" });
       if (!res.ok) throw new Error("Failed to load " + f);
+
       const data = await res.json();
-      if (Array.isArray(data)) all = all.concat(data);
+      if (!Array.isArray(data)) throw new Error("Not an array: " + f);
+
+      const normalized = data
+        .map(normalizeQuestion)
+        .filter(Boolean);
+
+      all = all.concat(normalized);
+
+    } catch (e) {
+      console.warn("Skipped broken question file:", f, e);
+      // ★ このファイルだけ無視して続行
     }
-    return all.map(normalizeQuestion).filter(Boolean);
   }
+
+  return all;
+}
+
 
   // ★二重normalize禁止：loadedQuestionsは既に正規化済
   function allQuestions() {
@@ -1046,6 +1062,7 @@
 </script>  
 </body>
 </html>
+
 
 
 
