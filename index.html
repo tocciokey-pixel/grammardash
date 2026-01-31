@@ -111,9 +111,12 @@
       border-radius: 18px; padding: 16px; margin-bottom: 12px;
     }
     .row { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
-    .pill { font-size: 11px; font-weight: 900; padding: 6px 10px; border-radius: 999px; background: #1e293b; color: #cbd5e1; border:none; }
+    .pill { font-size: 11px; font-weight: 900; padding: 8px 12px; border-radius: 999px; background: #1e293b; color: #cbd5e1; border:none; }
     .danger { color: var(--danger); }
     .success { color: var(--success); }
+    .topbar {
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+    }
   </style>
 </head>
 
@@ -136,7 +139,7 @@
       </div>
     </header>
 
-    <button class="btn-start" onclick="startSession()">START (UP TO 10)</button>
+    <button class="btn-start" onclick="startSession()">START (ENDLESS)</button>
 
     <button class="btn-secondary" onclick="openHistory()"><span>📈 STUDY HISTORY</span></button>
     <button class="btn-secondary" onclick="openBookmarks()"><span>📌 BOOKMARKS</span></button>
@@ -157,9 +160,9 @@
   </div>
 
   <div id="quiz-screen">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div class="topbar">
       <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
-      <span id="q-idx" style="font-size:12px; font-weight:900;">1 / 10</span>
+      <button class="pill" onclick="stopSession()">STOP</button>
     </div>
 
     <div id="timer-track"><div id="timer-bar"></div></div>
@@ -213,24 +216,24 @@
   </div>
 
   <script>
-    // ★ ここは原因特定に便利。安定したら消してOK（残しても害はありません）
+    // debug（残してOK）
     window.onerror = function (msg, src, line, col, err) {
       alert("JSエラー: " + msg + "\\n行:" + line + " 列:" + col);
       return false;
     };
 
     /**********************
-     * NextStage v1.5 (stable rebuild)
-     * - questions/*.json を読み込み
-     * - カテゴリ順補充 + 同日重複なし
-     * - 履歴 / バックアップ / 付箋(赤青黄)
+     * NextStage v1.6
+     * - 10問区切り廃止（無限出題）
+     * - STOPでいつでも終了（履歴保存）
+     * - questions/*.json 読み込み
+     * - 壊れデータ完全ガード
      **********************/
 
-    // ★ Point番号順は自動。固定したい場合は ["Point 008","Point 009",...] を入れる
     const CATEGORY_ORDER = [];
     const SR_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30];
 
-    // ★ ここを増やしていけば1500問でもOK
+    // ★あなたの構成に合わせて増やす
     const QUESTION_FILES = [
       "questions/point008.json",
       "questions/point009.json",
@@ -250,20 +253,18 @@
       stars: {}
     };
 
-    // 旧データ互換
     state.history = state.history || [];
     state.custom = state.custom || [];
     state.mastery = state.mastery || {};
     state.currCat = state.currCat || null;
     state.stars = state.stars || {};
 
-    let currentQ = [];
-    let curIdx = 0;
+    // endless session
+    let session = null;
+    let activeQ = null;
     let timer = null;
     let timeLeft = 100;
     let isAnswered = false;
-    let session = null;
-    let activeQ = null;
     let starFilter = "all";
 
     window.onload = () => { initApp(); };
@@ -298,16 +299,14 @@
         const data = await res.json();
         if (Array.isArray(data)) all = all.concat(data);
       }
-      return all.filter(q => q && q.id != null && q.cat && q.q);
-
-
+      // ★必須項目が揃っているものだけ採用
+      return all.filter(q => q && q.id != null && q.cat && q.q && Array.isArray(q.opts) && q.opts.length > 0);
     }
 
     function allQuestions() {
-      // JSON + 手動追加（将来用）
       return [...(loadedQuestions || []), ...(state.custom || [])]
-    　　.filter(q => q && q.id != null && q.cat && q.q);
-　　}
+        .filter(q => q && q.id != null && q.cat && q.q && Array.isArray(q.opts) && q.opts.length > 0);
+    }
 
     function getM(qid) {
       const m = state.mastery[qid];
@@ -377,7 +376,7 @@
       document.getElementById('xp-val').innerText = `${xp} / 1000 XP`;
       document.getElementById('xp-bar').style.width = (xp / 10) + '%';
 
-      const all = allQuestions();
+      const all = allQuestions(); // ここで既にフィルタ済み
       const cur = getCurrentCategory(all);
 
       const cats = {};
@@ -412,55 +411,43 @@
       localStorage.setItem('gd_v4_pro', JSON.stringify(state));
     }
 
-    function startSession() {
+    // ★ 次の1問を選ぶ（無限）
+    function pickNextQuestion() {
       const all = allQuestions();
-      const order = getCategoryOrder(all);
-      if (!order.length || all.length === 0) return;
+      if (all.length === 0) return null;
 
+      const order = getCategoryOrder(all);
       const cur = getCurrentCategory(all);
       let startIdx = order.indexOf(cur);
       if (startIdx < 0) startIdx = 0;
 
-      const picked = [];
-      const pickedIds = new Set();
-
-      function addQ(q) {
-        if (picked.length >= 10) return;
-        if (pickedIds.has(q.id)) return;
-        if (seenToday(q.id)) return;
-        picked.push(q);
-        pickedIds.add(q.id);
-      }
-
       const now = Date.now();
 
-      // ① 期限復習
+      // ① due（期限復習）から
       const due = all
-        .filter(q => (getM(q.id).nextDue || 0) <= now)
+        .filter(q => !seenToday(q.id) && (getM(q.id).nextDue || 0) <= now)
         .sort((a,b) => (getM(a.id).nextDue - getM(b.id).nextDue) || (getM(a.id).level - getM(b.id).level));
-      shuffle(due.slice()).forEach(addQ);
 
-      // ② カテゴリ順で補充
-      for (let k = 0; k < order.length && picked.length < 10; k++) {
+      if (due.length) return shuffle(due.slice())[0];
+
+      // ② カテゴリ順に探す（cur→次→…）から未実施/弱いもの
+      for (let k = 0; k < order.length; k++) {
         const cat = order[(startIdx + k) % order.length];
         const catQs = all
-          .filter(q => q.cat === cat)
+          .filter(q => q.cat === cat && !seenToday(q.id))
           .sort((a,b) => (getM(a.id).level - getM(b.id).level) || ((getM(a.id).nextDue||0) - (getM(b.id).nextDue||0)));
-        shuffle(catQs.slice()).forEach(addQ);
+        if (catQs.length) {
+          // 次回のためにカテゴリを進めておく（固定しない）
+          state.currCat = order[(startIdx + 1) % order.length];
+          return shuffle(catQs.slice())[0];
+        }
       }
 
-      // ③ 最後に全体から補充
-      if (picked.length < 10) {
-        const weak = all.slice().sort((a,b) => getM(a.id).level - getM(b.id).level);
-        shuffle(weak.slice()).forEach(addQ);
-      }
+      // ③ 今日解いてないのが無い → null（何も出せない）
+      return null;
+    }
 
-      currentQ = picked;
-      curIdx = 0;
-
-      // 次カテゴリへ進める（固定しない）
-      state.currCat = order[(startIdx + 1) % order.length];
-
+    function startSession() {
       session = {
         startedAt: Date.now(),
         answered: 0,
@@ -468,24 +455,26 @@
         wrong: []
       };
 
-      localStorage.setItem('gd_v4_pro', JSON.stringify(state));
-
       document.getElementById('home').style.display = 'none';
       document.getElementById('quiz-screen').style.display = 'flex';
 
-      loadQ();
+      loadNext();
     }
 
-    function loadQ() {
-      const q = currentQ[curIdx];
+    function loadNext() {
+      const q = pickNextQuestion();
+      if (!q) {
+        // 今日もう出せる問題が無い → STOPと同じ終了
+        stopSession();
+        return;
+      }
       activeQ = q;
 
-      // 上部に「Point008 19」表示
       document.getElementById('mode-tag').innerText = `${q.cat} ${q.id}`;
       renderStarNow();
 
       isAnswered = false;
-      document.getElementById('q-idx').innerText = `${curIdx + 1} / ${currentQ.length}`;
+      document.getElementById('q-idx').innerText = `${session.answered + 1} / ∞`;
       document.getElementById('q-txt').innerText = q.q;
       document.getElementById('exp-box').style.display = 'none';
       document.getElementById('next-btn').style.display = 'none';
@@ -518,7 +507,9 @@
       isAnswered = true;
       clearInterval(timer);
 
-      const q = currentQ[curIdx];
+      const q = activeQ;
+      if (!q) return;
+
       const ok = idx === q.ans;
 
       session.answered += 1;
@@ -531,7 +522,7 @@
       if (ok) {
         const pop = document.getElementById('success-msg');
         pop.style.display = 'flex';
-        setTimeout(() => pop.style.display = 'none', 2000);
+        setTimeout(() => pop.style.display = 'none', 1600);
 
         state.xp += 50;
 
@@ -561,30 +552,43 @@
       localStorage.setItem('gd_v4_pro', JSON.stringify(state));
     }
 
+    function nextStep() {
+      // 次の1問へ
+      loadNext();
+    }
+
+    function stopSession() {
+      // STOP = その時点までの履歴保存して帰る
+      finishSession();
+    }
+
     function finishSession() {
-      const total = session.answered;
-      const correct = session.correct;
-      const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+      clearInterval(timer);
+      timer = null;
 
-      state.history.unshift({
-        at: Date.now(),
-        total,
-        correct,
-        accuracy,
-        wrong: session.wrong
-      });
+      if (session) {
+        const total = session.answered;
+        const correct = session.correct;
+        const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-      localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+        if (total > 0) {
+          state.history.unshift({
+            at: Date.now(),
+            total,
+            correct,
+            accuracy,
+            wrong: session.wrong
+          });
+        }
+        localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+      }
+
       session = null;
+      activeQ = null;
 
       document.getElementById('quiz-screen').style.display = 'none';
       document.getElementById('home').style.display = 'flex';
       render();
-    }
-
-    function nextStep() {
-      if (curIdx < currentQ.length - 1) { curIdx++; loadQ(); }
-      else { finishSession(); }
     }
 
     // --- History ---
@@ -611,7 +615,7 @@
         return;
       }
 
-      const qMap = new Map(allQuestions().map(q => [q.id, q]));
+      const qMap = new Map(allQuestions().map(q => [String(q.id), q]));
 
       state.history.forEach(h => {
         const d = new Date(h.at);
@@ -643,7 +647,7 @@
           wrongWrap.appendChild(w);
         } else {
           h.wrong.forEach(wi => {
-            const q = qMap.get(wi.id);
+            const q = qMap.get(String(wi.id));
             const qText = q ? q.q : '(問題が見つかりません)';
             const correctOpt = q ? q.opts[wi.correct] : '(不明)';
             const selectedOpt =
@@ -719,14 +723,12 @@
     // --- Stars (Bookmarks) ---
     function ensureStars() { state.stars = state.stars || {}; }
     function getStar(qid) { ensureStars(); return state.stars[String(qid)] || null; }
-
     function starLabel(c) {
       if (c === "red") return "赤";
       if (c === "blue") return "青";
       if (c === "yellow") return "黄";
       return "なし";
     }
-
     function setStar(color) {
       if (!activeQ) return;
       ensureStars();
@@ -824,6 +826,3 @@
   </script>
 </body>
 </html>
-
-
-
