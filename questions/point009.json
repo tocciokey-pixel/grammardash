@@ -1,0 +1,77 @@
+[
+  {
+    "id": 21,
+    "cat": "Point 009",
+    "type": "mcq",
+    "q": "Can you give me a call when you ( ) at the airport?",
+    "opts": [
+      "arrive",
+      "arrived",
+      "will arrive",
+      "are arrived"
+    ],
+    "ans": 0,
+    "exp": "when 節が「〜するとき」を表す時の副詞節の場合、未来のことでも現在時制を用いる。",
+    "jp": "空港に着いたら、私に電話してもらえますか。"
+  },
+  {
+    "id": 22,
+    "cat": "Point 009",
+    "type": "mcq",
+    "q": "Mr. Tanaka is out now, and I don't know when he ( ) in the office.",
+    "opts": [
+      "will be back",
+      "is back",
+      "is being back",
+      "be back"
+    ],
+    "ans": 0,
+    "exp": "when 節が「いつ〜するか」を表す名詞節の場合、未来のことは未来時制（will）で表す。",
+    "jp": "田中さんは今外出中で、いつオフィスに戻るのか私には分かりません。"
+  },
+  {
+    "id": 23,
+    "cat": "Point 009",
+    "type": "mcq",
+    "q": "We will go to the open market tomorrow if the weather ( ) nice.",
+    "opts": [
+      "will have been",
+      "is",
+      "were",
+      "had been"
+    ],
+    "ans": 1,
+    "exp": "if 節が条件の副詞節の場合、未来のことでも現在時制を用いる。",
+    "jp": "もし天気がよければ、私たちは明日青空市に行くつもりです。"
+  },
+  {
+    "id": 24,
+    "cat": "Point 009",
+    "type": "mcq",
+    "q": "She is not sure if he ( ) to today's welcome party for the overseas students.",
+    "opts": [
+      "comes",
+      "had come",
+      "will come",
+      "would come"
+    ],
+    "ans": 2,
+    "exp": "if 節が「〜かどうか」を表す名詞節の場合、未来のことは未来時制で表す。",
+    "jp": "彼が今日の留学生歓迎会に来るかどうか、彼女は確信がありません。"
+  },
+  {
+    "id": 25,
+    "cat": "Point 009",
+    "type": "mcq",
+    "q": "Will you hand this message to her when she ( ) home?",
+    "opts": [
+      "will come",
+      "comes",
+      "is coming",
+      "will be coming"
+    ],
+    "ans": 1,
+    "exp": "when 節が時の副詞節であるため、未来のことでも現在時制を用いる。",
+    "jp": "彼女が帰宅したら、このメッセージを渡してくれませんか。"
+  }
+]
