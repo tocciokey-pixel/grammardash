@@ -157,9 +157,9 @@
     <div style="margin-top:auto; padding-top:28px; text-align:center;">
       <button onclick="resetData()" style="background:none; border:none; color:var(--text-dim); font-size:10px; font-weight:bold; letter-spacing:1px;">RESET ALL DATA</button>
     </div>
-    </div> <!-- home 終わり -->
+  </div>
 
-  <!-- ★追加：quiz-screen のラッパー -->
+  <!-- ★クイズ画面（必ず #quiz-screen で包む） -->
   <div id="quiz-screen">
     <div class="topbar">
       <span id="mode-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
@@ -188,7 +188,7 @@
     </div>
 
     <button id="next-btn" style="display:none; width:100%; background:white; color:black; padding:22px; border:none; border-radius:24px; font-weight:900; margin-top:18px;" onclick="nextStep()">NEXT</button>
-  </div> <!-- ★quiz-screen 終わり -->
+  </div>
 
   <div id="history-screen">
     <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -220,22 +220,21 @@
   <script>
     // debug（残してOK）
     window.onerror = function (msg, src, line, col, err) {
-      alert("JSエラー: " + msg + "\\n行:" + line + " 列:" + col);
+      alert("JSエラー: " + msg + "\n行:" + line + " 列:" + col);
       return false;
     };
 
     /**********************
-     * NextStage v1.6
-     * - 10問区切り廃止（無限出題）
-     * - STOPでいつでも終了（履歴保存）
-     * - questions/*.json 読み込み
-     * - 壊れデータ完全ガード
+     * NextStage v1.7-ish
+     * - endless mode
+     * - STOP saves history
+     * - questions/*.json load
+     * - supports choice + reorder (Point010)
      **********************/
 
     const CATEGORY_ORDER = [];
     const SR_INTERVAL_DAYS = [0, 1, 3, 7, 14, 30];
 
-    // ★あなたの構成に合わせて増やす
     const QUESTION_FILES = [
       "questions/point008.json",
       "questions/point009.json",
@@ -269,6 +268,9 @@
     let isAnswered = false;
     let starFilter = "all";
 
+    // reorder state
+    let reorderPicked = [];
+
     window.onload = () => { initApp(); };
 
     async function initApp() {
@@ -286,11 +288,35 @@
     function showLoading(msg) {
       const o = document.getElementById('loading-overlay');
       const s = document.getElementById('loading-sub');
-      s.textContent = msg || "LOADING...";
-      o.style.display = 'flex';
+      if (s) s.textContent = msg || "LOADING...";
+      if (o) o.style.display = 'flex';
     }
     function hideLoading() {
-      document.getElementById('loading-overlay').style.display = 'none';
+      const o = document.getElementById('loading-overlay');
+      if (o) o.style.display = 'none';
+    }
+
+    // ★あなたのJSON仕様（point/choices/question/answer/explanation/jp + reorder tokens）
+    function normalizeQuestion(raw) {
+      if (!raw || raw.id == null) return null;
+
+      const type = raw.type || "choice";
+      const cat  = raw.point || raw.cat || null;
+      const text = raw.question || raw.q || "";
+      const exp  = raw.explanation || raw.exp || "";
+      const jp   = raw.jp || "";
+
+      if (type === "reorder") {
+        const tokens = Array.isArray(raw.tokens) ? raw.tokens : [];
+        const answerArr = Array.isArray(raw.answer) ? raw.answer : [];
+        if (!cat || !text || tokens.length === 0 || answerArr.length === 0) return null;
+        return { id: raw.id, type: "reorder", cat, text, tokens, answerArr, exp, jp };
+      }
+
+      const opts = raw.choices || raw.opts || [];
+      const ans  = raw.answer;
+      if (!cat || !text || !Array.isArray(opts) || opts.length === 0 || ans == null) return null;
+      return { id: raw.id, type: "choice", cat, text, opts, ans: Number(ans), exp, jp };
     }
 
     async function loadAllQuestions() {
@@ -301,13 +327,12 @@
         const data = await res.json();
         if (Array.isArray(data)) all = all.concat(data);
       }
-      // ★必須項目が揃っているものだけ採用
-      return all.filter(q => q && q.id != null && q.cat && q.q && Array.isArray(q.opts) && q.opts.length > 0);
+      return all.map(normalizeQuestion).filter(Boolean);
     }
 
     function allQuestions() {
-      return [...(loadedQuestions || []), ...(state.custom || [])]
-        .filter(q => q && q.id != null && q.cat && q.q && Array.isArray(q.opts) && q.opts.length > 0);
+      const merged = [...(loadedQuestions || []), ...(state.custom || [])];
+      return merged.map(normalizeQuestion).filter(Boolean);
     }
 
     function getM(qid) {
@@ -337,7 +362,7 @@
       const withNum = [];
       const withoutNum = [];
       for (const c of uniq) {
-        const m = String(c).match(/Point\\s*0*([0-9]+)/i);
+        const m = String(c).match(/Point\s*0*([0-9]+)/i);
         if (m) withNum.push({ c, n: Number(m[1]) });
         else withoutNum.push(c);
       }
@@ -374,11 +399,14 @@
     function render() {
       const lv = Math.floor(state.xp / 1000) + 1;
       const xp = state.xp % 1000;
-      document.getElementById('lv-text').innerText = `LEVEL ${lv}`;
-      document.getElementById('xp-val').innerText = `${xp} / 1000 XP`;
-      document.getElementById('xp-bar').style.width = (xp / 10) + '%';
+      const lvEl = document.getElementById('lv-text');
+      const xpEl = document.getElementById('xp-val');
+      const barEl = document.getElementById('xp-bar');
+      if (lvEl) lvEl.innerText = `LEVEL ${lv}`;
+      if (xpEl) xpEl.innerText = `${xp} / 1000 XP`;
+      if (barEl) barEl.style.width = (xp / 10) + '%';
 
-      const all = allQuestions(); // ここで既にフィルタ済み
+      const all = allQuestions();
       const cur = getCurrentCategory(all);
 
       const cats = {};
@@ -394,21 +422,23 @@
       })).sort((a,b) => a.prog - b.prog);
 
       const list = document.getElementById('cat-list');
-      list.innerHTML = '';
-      sorted.forEach(c => {
-        const div = document.createElement('div');
-        div.className = 'cat-card';
-        const isCur = (cur && c.name === cur);
-        div.innerHTML =
-          `<div>
-            <div class="cat-name">${escapeHtml(c.name)} ${isCur ? `<span class="tag-current">CURRENT</span>` : ``}</div>
-            <div class="cat-meta">${c.prog}% MASTERED</div>
-          </div>
-          <div style="font-size:10px; font-weight:900; color:var(--text-dim);">
-            ${c.prog < 40 ? '⚠️ LOW' : (c.prog >= 80 ? '✨ STRONG' : 'OK')}
-          </div>`;
-        list.appendChild(div);
-      });
+      if (list) {
+        list.innerHTML = '';
+        sorted.forEach(c => {
+          const div = document.createElement('div');
+          div.className = 'cat-card';
+          const isCur = (cur && c.name === cur);
+          div.innerHTML =
+            `<div>
+              <div class="cat-name">${escapeHtml(c.name)} ${isCur ? `<span class="tag-current">CURRENT</span>` : ``}</div>
+              <div class="cat-meta">${c.prog}% MASTERED</div>
+            </div>
+            <div style="font-size:10px; font-weight:900; color:var(--text-dim);">
+              ${c.prog < 40 ? '⚠️ LOW' : (c.prog >= 80 ? '✨ STRONG' : 'OK')}
+            </div>`;
+          list.appendChild(div);
+        });
+      }
 
       localStorage.setItem('gd_v4_pro', JSON.stringify(state));
     }
@@ -457,10 +487,10 @@
         wrong: []
       };
 
-      document.getElementById('home').style.display = 'none';
-      const qs = document.getElementById('quiz-screen');
-　　　if (qs) qs.style.display = 'flex';
-
+      const home = document.getElementById('home');
+      const quiz = document.getElementById('quiz-screen');
+      if (home) home.style.display = 'none';
+      if (quiz) quiz.style.display = 'flex';
 
       loadNext();
     }
@@ -468,32 +498,49 @@
     function loadNext() {
       const q = pickNextQuestion();
       if (!q) {
-        // 今日もう出せる問題が無い → STOPと同じ終了
         stopSession();
         return;
       }
       activeQ = q;
 
-      document.getElementById('mode-tag').innerText = `${q.cat} ${q.id}`;
+      const mode = document.getElementById('mode-tag');
+      if (mode) mode.innerText = `${q.cat} ${q.id}`;
+
       renderStarNow();
 
       isAnswered = false;
-      const qIdxEl = document.getElementById('q-idx');
-　　　if (qIdxEl) qIdxEl.innerText = `${(session?.answered || 0) + 1} / ∞`;
 
-      document.getElementById('q-txt').innerText = q.q;
-      document.getElementById('exp-box').style.display = 'none';
-      document.getElementById('next-btn').style.display = 'none';
+      const qIdxEl = document.getElementById('q-idx');
+      if (qIdxEl) qIdxEl.innerText = `${(session?.answered || 0) + 1} / ∞`;
+
+      const qt = document.getElementById('q-txt');
+      if (qt) qt.innerText = q.text;
+
+      const expBox = document.getElementById('exp-box');
+      const nextBtn = document.getElementById('next-btn');
+      if (expBox) expBox.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
 
       const optCont = document.getElementById('opts');
-      optCont.innerHTML = '';
-      (q.opts || []).forEach((o, i) => {
-        const b = document.createElement('button');
-        b.className = 'option';
-        b.innerText = o;
-        b.onclick = () => handleAns(i);
-        optCont.appendChild(b);
-      });
+      if (optCont) {
+        optCont.innerHTML = '';
+
+        if (q.type === "choice") {
+          (q.opts || []).forEach((o, i) => {
+            const b = document.createElement('button');
+            b.className = 'option';
+            b.innerText = o;
+            b.onclick = () => handleChoiceAns(i);
+            optCont.appendChild(b);
+          });
+        } else if (q.type === "reorder") {
+          renderReorderUI(q, optCont);
+        } else {
+          // 未対応typeは出さない（保険）
+          stopSession();
+          return;
+        }
+      }
 
       startTimer();
     }
@@ -501,14 +548,23 @@
     function startTimer() {
       clearInterval(timer);
       timeLeft = 100;
+      const bar = document.getElementById('timer-bar');
+      if (bar) bar.style.width = '100%';
+
       timer = setInterval(() => {
         timeLeft -= 1.0;
-        document.getElementById('timer-bar').style.width = timeLeft + '%';
-        if (timeLeft <= 0) handleAns(-1);
+        const b = document.getElementById('timer-bar');
+        if (b) b.style.width = Math.max(0, timeLeft) + '%';
+
+        if (timeLeft <= 0) {
+          if (activeQ?.type === "choice") handleChoiceAns(-1);
+          else { reorderPicked = []; handleReorderSubmit(); }
+        }
       }, 100);
     }
 
-    function handleAns(idx) {
+    // ===== choice =====
+    function handleChoiceAns(idx) {
       if (isAnswered) return;
       isAnswered = true;
       clearInterval(timer);
@@ -520,15 +576,17 @@
 
       session.answered += 1;
       if (ok) session.correct += 1;
-      else session.wrong.push({ id: q.id, selected: idx, correct: q.ans });
+      else session.wrong.push({ id: q.id, type: q.type, selected: idx, correct: q.ans });
 
       const m = getM(q.id);
       m.lastSeen = Date.now();
 
       if (ok) {
         const pop = document.getElementById('success-msg');
-        pop.style.display = 'flex';
-        setTimeout(() => pop.style.display = 'none', 1600);
+        if (pop) {
+          pop.style.display = 'flex';
+          setTimeout(() => pop.style.display = 'none', 1600);
+        }
 
         state.xp += 50;
 
@@ -542,29 +600,168 @@
       }
       setM(q.id, m);
 
-      const btns = document.getElementById('opts').children;
+      const btns = document.getElementById('opts')?.children || [];
       for (let i = 0; i < btns.length; i++) {
         if (i === q.ans) btns[i].classList.add('correct');
         else if (i === idx) btns[i].classList.add('wrong');
         btns[i].disabled = true;
       }
 
-      document.getElementById('e-txt').innerText = q.exp || "";
-      document.getElementById('j-txt').innerText = q.jp ? ("和訳: " + q.jp) : "";
-      document.getElementById('exp-box').style.display = 'block';
-      document.getElementById('next-btn').style.display = 'block';
+      const e = document.getElementById('e-txt');
+      const j = document.getElementById('j-txt');
+      if (e) e.innerText = q.exp || "";
+      if (j) j.innerText = q.jp ? ("和訳: " + q.jp) : "";
+
+      const expBox = document.getElementById('exp-box');
+      const nextBtn = document.getElementById('next-btn');
+      if (expBox) expBox.style.display = 'block';
+      if (nextBtn) nextBtn.style.display = 'block';
+
+      state.last = Date.now();
+      localStorage.setItem('gd_v4_pro', JSON.stringify(state));
+    }
+
+    // ===== reorder =====
+    function renderReorderUI(q, container) {
+      reorderPicked = [];
+
+      const pickedCard = document.createElement('div');
+      pickedCard.className = 'card';
+      pickedCard.style.background = '#111827';
+      pickedCard.innerHTML = `<div class="small">並び順（タップした順）</div><div id="picked-line" style="margin-top:10px; font-weight:900;"></div>`;
+      const pickedLine = pickedCard.querySelector('#picked-line');
+
+      const poolCard = document.createElement('div');
+      poolCard.className = 'card';
+      poolCard.innerHTML = `<div class="small">単語（タップして追加）</div>`;
+
+      const pool = document.createElement('div');
+      pool.style.display = 'flex';
+      pool.style.flexWrap = 'wrap';
+      pool.style.gap = '10px';
+      pool.style.marginTop = '10px';
+
+      function refresh() {
+        if (pickedLine) pickedLine.textContent = reorderPicked.join(' ');
+      }
+
+      (q.tokens || []).forEach(tok => {
+        const b = document.createElement('button');
+        b.className = 'pill';
+        b.textContent = tok;
+        b.onclick = () => {
+          if (isAnswered) return;
+          reorderPicked.push(tok);
+          refresh();
+        };
+        pool.appendChild(b);
+      });
+
+      poolCard.appendChild(pool);
+
+      const controls = document.createElement('div');
+      controls.style.display = 'flex';
+      controls.style.gap = '10px';
+      controls.style.flexWrap = 'wrap';
+      controls.style.marginTop = '12px';
+
+      const undoBtn = document.createElement('button');
+      undoBtn.className = 'pill';
+      undoBtn.textContent = 'UNDO';
+      undoBtn.onclick = () => {
+        if (isAnswered) return;
+        reorderPicked.pop();
+        refresh();
+      };
+
+      const clearBtn = document.createElement('button');
+      clearBtn.className = 'pill';
+      clearBtn.textContent = 'CLEAR';
+      clearBtn.onclick = () => {
+        if (isAnswered) return;
+        reorderPicked = [];
+        refresh();
+      };
+
+      const submitBtn = document.createElement('button');
+      submitBtn.className = 'pill';
+      submitBtn.textContent = 'SUBMIT';
+      submitBtn.onclick = () => handleReorderSubmit();
+
+      controls.appendChild(undoBtn);
+      controls.appendChild(clearBtn);
+      controls.appendChild(submitBtn);
+
+      container.appendChild(pickedCard);
+      container.appendChild(poolCard);
+      container.appendChild(controls);
+
+      refresh();
+    }
+
+    function handleReorderSubmit() {
+      if (isAnswered) return;
+      isAnswered = true;
+      clearInterval(timer);
+
+      const q = activeQ;
+      if (!q) return;
+
+      const userArr = reorderPicked.slice();
+      const ansArr = q.answerArr || [];
+
+      const ok = userArr.length === ansArr.length &&
+                 userArr.every((v, i) => v === ansArr[i]);
+
+      session.answered += 1;
+      if (ok) session.correct += 1;
+      else session.wrong.push({ id: q.id, type: q.type, user: userArr, correct: ansArr });
+
+      const m = getM(q.id);
+      m.lastSeen = Date.now();
+
+      if (ok) {
+        const pop = document.getElementById('success-msg');
+        if (pop) {
+          pop.style.display = 'flex';
+          setTimeout(() => pop.style.display = 'none', 1600);
+        }
+
+        state.xp += 50;
+
+        const nextLevel = Math.min(m.level + 1, 5);
+        m.level = nextLevel;
+        const days = SR_INTERVAL_DAYS[nextLevel] || 1;
+        m.nextDue = Date.now() + days * 24 * 60 * 60 * 1000;
+      } else {
+        m.level = Math.max(0, m.level - 1);
+        m.nextDue = Date.now();
+      }
+      setM(q.id, m);
+
+      // reorder UI内のボタンも無効化
+      document.querySelectorAll('#opts button').forEach(b => b.disabled = true);
+
+      const extra = ok ? "" : `\n\nあなた: ${userArr.join(" ")}\n正解: ${ansArr.join(" ")}`;
+      const e = document.getElementById('e-txt');
+      const j = document.getElementById('j-txt');
+      if (e) e.innerText = (q.exp || "") + extra;
+      if (j) j.innerText = q.jp ? ("和訳: " + q.jp) : "";
+
+      const expBox = document.getElementById('exp-box');
+      const nextBtn = document.getElementById('next-btn');
+      if (expBox) expBox.style.display = 'block';
+      if (nextBtn) nextBtn.style.display = 'block';
 
       state.last = Date.now();
       localStorage.setItem('gd_v4_pro', JSON.stringify(state));
     }
 
     function nextStep() {
-      // 次の1問へ
       loadNext();
     }
 
     function stopSession() {
-      // STOP = その時点までの履歴保存して帰る
       finishSession();
     }
 
@@ -592,24 +789,32 @@
       session = null;
       activeQ = null;
 
-      document.getElementById('quiz-screen').style.display = 'none';
-      document.getElementById('home').style.display = 'flex';
+      const quiz = document.getElementById('quiz-screen');
+      const home = document.getElementById('home');
+      if (quiz) quiz.style.display = 'none';
+      if (home) home.style.display = 'flex';
       render();
     }
 
     // --- History ---
     function openHistory() {
-      document.getElementById('home').style.display = 'none';
-      document.getElementById('history-screen').style.display = 'flex';
+      const home = document.getElementById('home');
+      const hs = document.getElementById('history-screen');
+      if (home) home.style.display = 'none';
+      if (hs) hs.style.display = 'flex';
       renderHistory();
     }
     function closeHistory() {
-      document.getElementById('history-screen').style.display = 'none';
-      document.getElementById('home').style.display = 'flex';
+      const hs = document.getElementById('history-screen');
+      const home = document.getElementById('home');
+      if (hs) hs.style.display = 'none';
+      if (home) home.style.display = 'flex';
       render();
     }
+
     function renderHistory() {
       const list = document.getElementById('history-list');
+      if (!list) return;
       list.innerHTML = '';
 
       if (!state.history || state.history.length === 0) {
@@ -654,23 +859,39 @@
         } else {
           h.wrong.forEach(wi => {
             const q = qMap.get(String(wi.id));
-            const qText = q ? q.q : '(問題が見つかりません)';
-            const correctOpt = q ? q.opts[wi.correct] : '(不明)';
-            const selectedOpt =
-              wi.selected === -1 ? '（時間切れ）' : (q ? q.opts[wi.selected] : '(不明)');
+            const qText = q ? q.text : '(問題が見つかりません)';
 
             const item = document.createElement('div');
             item.className = 'card';
             item.style.background = '#111827';
             item.style.border = '1px solid rgba(255,255,255,0.06)';
             item.style.marginTop = '10px';
-            item.innerHTML = `
-              <div style="font-weight:900; line-height:1.4;">${escapeHtml(qText)}</div>
-              <div style="height:10px"></div>
-              <div class="small">あなた: <span class="danger">${escapeHtml(selectedOpt)}</span></div>
-              <div class="small">正解: <span class="success">${escapeHtml(correctOpt)}</span></div>
-              ${q && q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
-            `;
+
+            // type別表示
+            if (wi.type === "reorder") {
+              const user = Array.isArray(wi.user) ? wi.user.join(" ") : '(不明)';
+              const cor  = Array.isArray(wi.correct) ? wi.correct.join(" ") : '(不明)';
+              item.innerHTML = `
+                <div style="font-weight:900; line-height:1.4;">${escapeHtml(qText)}</div>
+                <div style="height:10px"></div>
+                <div class="small">あなた: <span class="danger">${escapeHtml(user)}</span></div>
+                <div class="small">正解: <span class="success">${escapeHtml(cor)}</span></div>
+                ${q && q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
+              `;
+            } else {
+              const correctOpt = q ? q.opts[wi.correct] : '(不明)';
+              const selectedOpt =
+                wi.selected === -1 ? '（時間切れ）' : (q ? q.opts[wi.selected] : '(不明)');
+
+              item.innerHTML = `
+                <div style="font-weight:900; line-height:1.4;">${escapeHtml(qText)}</div>
+                <div style="height:10px"></div>
+                <div class="small">あなた: <span class="danger">${escapeHtml(selectedOpt)}</span></div>
+                <div class="small">正解: <span class="success">${escapeHtml(correctOpt)}</span></div>
+                ${q && q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
+              `;
+            }
+
             wrongWrap.appendChild(item);
           });
         }
@@ -757,14 +978,19 @@
     }
 
     function openBookmarks() {
-      document.getElementById('home').style.display = 'none';
-      document.getElementById('history-screen').style.display = 'none';
-      document.getElementById('bookmarks-screen').style.display = 'flex';
+      const home = document.getElementById('home');
+      const hs = document.getElementById('history-screen');
+      const bs = document.getElementById('bookmarks-screen');
+      if (home) home.style.display = 'none';
+      if (hs) hs.style.display = 'none';
+      if (bs) bs.style.display = 'flex';
       renderBookmarks();
     }
     function closeBookmarks() {
-      document.getElementById('bookmarks-screen').style.display = 'none';
-      document.getElementById('home').style.display = 'flex';
+      const bs = document.getElementById('bookmarks-screen');
+      const home = document.getElementById('home');
+      if (bs) bs.style.display = 'none';
+      if (home) home.style.display = 'flex';
       render();
     }
     function setStarFilter(f) { starFilter = f; renderBookmarks(); }
@@ -772,6 +998,7 @@
     function renderBookmarks() {
       ensureStars();
       const list = document.getElementById('bookmarks-list');
+      if (!list) return;
       list.innerHTML = '';
 
       const all = allQuestions();
@@ -796,7 +1023,7 @@
         const ac = a.q.cat || "";
         const bc = b.q.cat || "";
         if (ac !== bc) return ac.localeCompare(bc, "ja");
-        return Number(a.q.id) - Number(b.q.id);
+        return String(a.q.id).localeCompare(String(b.q.id), "ja");
       });
 
       filtered.forEach(x => {
@@ -809,7 +1036,7 @@
             <div class="pill">📌 ${escapeHtml(starLabel(x.color))}</div>
           </div>
           <div style="height:10px"></div>
-          <div style="line-height:1.5;">${escapeHtml(q.q)}</div>
+          <div style="line-height:1.5;">${escapeHtml(q.text)}</div>
           ${q.jp ? `<div class="small" style="margin-top:10px; color:#93c5fd;">和訳: ${escapeHtml(q.jp)}</div>` : ``}
           <div style="height:10px"></div>
           <button class="pill" onclick="removeBookmark('${escapeHtml(String(q.id))}')">この付箋を外す</button>
@@ -832,5 +1059,3 @@
   </script>
 </body>
 </html>
-
-
