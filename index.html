@@ -303,8 +303,9 @@
 
     function allQuestions() {
       // JSON + 手動追加（将来用）
-      return [...loadedQuestions, ...state.custom];
-    }
+      return [...(loadedQuestions || []), ...(state.custom || [])]
+    　　.filter(q => q && q.id != null && q.cat && q.q);
+　　}
 
     function getM(qid) {
       const m = state.mastery[qid];
@@ -821,3 +822,4 @@
   </script>
 </body>
 </html>
+
