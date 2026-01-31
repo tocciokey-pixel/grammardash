@@ -220,6 +220,7 @@
   <script>
     // debug（残してOK）
     document.addEventListener('click', () => alert('tap OK'), { once: true });
+    alert("script loaded");
     window.onerror = function (msg, src, line, col, err) {
       alert("JSエラー: " + msg + "\n行:" + line + " 列:" + col);
       return false;
@@ -1059,5 +1060,6 @@
   </script>
 </body>
 </html>
+
 
 
