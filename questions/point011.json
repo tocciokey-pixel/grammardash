@@ -1,0 +1,32 @@
+[
+  {
+    "id": 28,
+    "cat": "Point 011",
+    "type": "mcq",
+    "q": "Ten years ( ) since my mother died.",
+    "opts": [
+      "have passed",
+      "has passed",
+      "had passed",
+      "will pass"
+    ],
+    "ans": 0,
+    "exp": "「Sが…してから〜になる」：時間（〜） + have passed since S + 過去時制… の形で表せる（【整理3】(1)）。",
+    "jp": "母が亡くなってから10年になります。"
+  },
+  {
+    "id": 29,
+    "cat": "Point 011",
+    "type": "mcq",
+    "q": "It's ( ).",
+    "opts": [
+      "three years since I had a real vacation",
+      "three years since I have a real vacation",
+      "three year since I had a real vacation",
+      "three years since I have had a real vacation"
+    ],
+    "ans": 0,
+    "exp": "It is + 時間 + since S + 過去時制…（＝Sしてから時間が経つ）。【整理3】の(2)のパターン。",
+    "jp": "本格的な休暇をとってから3年になる。"
+  }
+]
