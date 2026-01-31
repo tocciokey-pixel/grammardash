@@ -9,6 +9,10 @@
   <title>NextStage</title>
 
   <style>
+    .pill:disabled {
+      opacity: 0.35;
+    }
+
     :root {
       --bg: #0a0f1e;
       --card: #161e31;
@@ -623,7 +627,17 @@
 
     function refresh() {
       if (pickedLine) pickedLine.textContent = reorderPicked.join(' ');
+
+      // ★ 追加：選択済みトークンを無効化
+      pool.querySelectorAll('button').forEach(b => {
+        if (reorderPicked.includes(b.textContent)) {
+          b.disabled = true;
+        } else {
+          b.disabled = false;
+        }
+      });
     }
+
 
     (q.tokens || []).forEach(tok => {
       const b = document.createElement('button');
@@ -1062,6 +1076,7 @@
 </script>  
 </body>
 </html>
+
 
 
 
