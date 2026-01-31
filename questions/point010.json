@@ -1,32 +1,29 @@
 [
   {
-    "id": 26,
-    "cat": "Point 010",
-    "type": "mcq",
-    "q": "Last year I gave him a book for his birthday, but at the party next week I ( ) him a CD.",
-    "opts": [
+    "id": "010-26",
+    "point": "Point 010",
+    "number": 26,
+    "type": "choice",
+    "question": "Last year I gave him a book for his birthday, but at the party next week I ( ) him a CD.",
+    "choices": [
       "am going to give",
       "give",
       "have given",
       "will have given"
     ],
-    "ans": 0,
-    "exp": "be going to do は「…するつもりだ」の用法が基本。『主語の意志』を表す。ほかに「近い未来（…しようとしている）」「主観的判断（…しそうだ）」の意味もあるが、本問は『つもり』の用法。",
+    "answer": 0,
+    "explanation": "be going to do は「…するつもりだ」の用法が基本。『主語の意志』を表す。ほかに「近い未来（…しようとしている）」「主観的判断（…しそうだ）」の意味もあるが、本問は『つもり』の用法。",
     "jp": "昨年は彼の誕生日に本をあげたが、来週のパーティーではCDをあげるつもりです。"
   },
   {
-    "id": 27,
-    "cat": "Point 010",
-    "type": "mcq",
-    "q": "We were ( ) hello.",
-    "opts": [
-      "about to say when Matthew said \"leave\"",
-      "going to say when Matthew said \"leave\"",
-      "about saying when Matthew said \"leave\"",
-      "about to say when Matthew will say \"leave\""
-    ],
-    "ans": 0,
-    "exp": "be about to do は「まさに…するところだ」。be about to do + when 節 は、文構造どおりに訳すよりも、主節から訳される場合が多い。注意：文構造どおりだと「マシューが〜と言ったとき、私たちは立ち去ろうとするところだった」となるが、日本語では『ちょうど〜しようとしたとき』の訳が自然になりやすい。",
-    "jp": "私たちがちょうど「こんにちは」と言おうとしたとき、マシューが「出発しよう」と言った。"
+    "id": "010-27",
+    "point": "Point 010",
+    "number": 27,
+    "type": "reorder",
+    "question": "We were ( ) hello.",
+    "tokens": ["about", "Matthew", "said", "leave", "to", "when"],
+    "answer": ["about", "to", "leave", "when", "Matthew", "said"],
+    "explanation": "be about to do は「まさに…するところだ」。be about to do + when 節 は、文構造どおりに訳すよりも、主節から訳される場合が多い（主節→when節の順で理解すると自然）。",
+    "jp": "私たちが立ち去ろうとすると，ちょうどマシューがあいさつしてきた。"
   }
 ]
