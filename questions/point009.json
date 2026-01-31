@@ -44,4 +44,39 @@
       "had been"
     ],
     "answer": 1,
-    "explanation": "if 節が条件の副詞節の場合、未来のことでも現在時制
+    "explanation": "if 節が条件の副詞節の場合、未来のことでも現在時制を用いる。",
+    "jp": "もし天気がよければ、私たちは明日青空市に行くつもりです。"
+  },
+  {
+    "id": "009-24",
+    "point": "Point 009",
+    "number": 24,
+    "type": "choice",
+    "question": "She is not sure if he ( ) to today's welcome party for the overseas students.",
+    "choices": [
+      "comes",
+      "had come",
+      "will come",
+      "would come"
+    ],
+    "answer": 2,
+    "explanation": "if 節が「〜かどうか」を表す名詞節の場合、未来のことは未来時制で表す。",
+    "jp": "彼が今日の留学生歓迎会に来るかどうか、彼女は確信がありません。"
+  },
+  {
+    "id": "009-25",
+    "point": "Point 009",
+    "number": 25,
+    "type": "choice",
+    "question": "Will you hand this message to her when she ( ) home?",
+    "choices": [
+      "will come",
+      "comes",
+      "is coming",
+      "will be coming"
+    ],
+    "answer": 1,
+    "explanation": "when 節が時の副詞節であるため、未来のことでも現在時制を用いる。",
+    "jp": "彼女が帰宅したら、このメッセージを渡してくれませんか。"
+  }
+]
