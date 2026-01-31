@@ -9,9 +9,10 @@
   <title>NextStage</title>
 
   <style>
-    .pill:disabled {
-      opacity: 0.35;
-    }
+   button.pill:disabled {
+     opacity: 0.35;
+  }
+
 
     :root {
       --bg: #0a0f1e;
@@ -606,92 +607,103 @@
 
   }
 
-  function renderReorderUI(q, container) {
-    reorderPicked = [];
+function renderReorderUI(q, container) {
+  reorderPicked = [];
 
-    const pickedCard = document.createElement('div');
-    pickedCard.className = 'card';
-    pickedCard.style.background = '#111827';
-    pickedCard.innerHTML = `<div class="small">並び順（タップした順）</div><div id="picked-line" style="margin-top:10px; font-weight:900;"></div>`;
-    const pickedLine = pickedCard.querySelector('#picked-line');
+  const pickedCard = document.createElement('div');
+  pickedCard.className = 'card';
+  pickedCard.style.background = '#111827';
+  pickedCard.innerHTML = `<div class="small">並び順（タップした順）</div><div id="picked-line" style="margin-top:10px; font-weight:900;"></div>`;
+  const pickedLine = pickedCard.querySelector('#picked-line');
 
-    const poolCard = document.createElement('div');
-    poolCard.className = 'card';
-    poolCard.innerHTML = `<div class="small">単語（タップして追加）</div>`;
+  const poolCard = document.createElement('div');
+  poolCard.className = 'card';
+  poolCard.innerHTML = `<div class="small">単語（タップして追加）</div>`;
 
-    const pool = document.createElement('div');
-    pool.style.display = 'flex';
-    pool.style.flexWrap = 'wrap';
-    pool.style.gap = '10px';
-    pool.style.marginTop = '10px';
+  const pool = document.createElement('div');
+  pool.style.display = 'flex';
+  pool.style.flexWrap = 'wrap';
+  pool.style.gap = '10px';
+  pool.style.marginTop = '10px';
 
-    function refresh() {
-      if (pickedLine) pickedLine.textContent = reorderPicked.join(' ');
+  // ★ ボタン参照を保持（UNDO/CLEARで戻すため）
+  const tokenButtons = [];
 
-      // ★ 追加：選択済みトークンを無効化
-      pool.querySelectorAll('button').forEach(b => {
-        if (reorderPicked.includes(b.textContent)) {
-          b.disabled = true;
-        } else {
-          b.disabled = false;
-        }
-      });
-    }
-
-
-    (q.tokens || []).forEach(tok => {
-      const b = document.createElement('button');
-      b.className = 'pill';
-      b.textContent = tok;
-      b.onclick = () => {
-        if (isAnswered) return;
-        reorderPicked.push(tok);
-        refresh();
-      };
-      pool.appendChild(b);
-    });
-
-    poolCard.appendChild(pool);
-
-    const controls = document.createElement('div');
-    controls.style.display = 'flex';
-    controls.style.gap = '10px';
-    controls.style.flexWrap = 'wrap';
-    controls.style.marginTop = '12px';
-
-    const undoBtn = document.createElement('button');
-    undoBtn.className = 'pill';
-    undoBtn.textContent = 'UNDO';
-    undoBtn.onclick = () => {
-      if (isAnswered) return;
-      reorderPicked.pop();
-      refresh();
-    };
-
-    const clearBtn = document.createElement('button');
-    clearBtn.className = 'pill';
-    clearBtn.textContent = 'CLEAR';
-    clearBtn.onclick = () => {
-      if (isAnswered) return;
-      reorderPicked = [];
-      refresh();
-    };
-
-    const submitBtn = document.createElement('button');
-    submitBtn.className = 'pill';
-    submitBtn.textContent = 'SUBMIT';
-    submitBtn.onclick = () => handleReorderSubmit();
-
-    controls.appendChild(undoBtn);
-    controls.appendChild(clearBtn);
-    controls.appendChild(submitBtn);
-
-    container.appendChild(pickedCard);
-    container.appendChild(poolCard);
-    container.appendChild(controls);
-
-    refresh();
+  function refreshPicked() {
+    if (pickedLine) pickedLine.textContent = reorderPicked.join(' ');
   }
+
+  (q.tokens || []).forEach(tok => {
+    const b = document.createElement('button');
+    b.className = 'pill';
+    b.type = 'button';
+    b.textContent = tok;
+
+    b.onclick = () => {
+      if (isAnswered) return;
+      if (b.disabled) return;        // ★ 連打・重複防止
+      reorderPicked.push(tok);
+      b.disabled = true;             // ★ 押した瞬間に無効化（確実）
+      refreshPicked();
+    };
+
+    tokenButtons.push(b);
+    pool.appendChild(b);
+  });
+
+  poolCard.appendChild(pool);
+
+  const controls = document.createElement('div');
+  controls.style.display = 'flex';
+  controls.style.gap = '10px';
+  controls.style.flexWrap = 'wrap';
+  controls.style.marginTop = '12px';
+
+  const undoBtn = document.createElement('button');
+  undoBtn.className = 'pill';
+  undoBtn.type = 'button';
+  undoBtn.textContent = 'UNDO';
+  undoBtn.onclick = () => {
+    if (isAnswered) return;
+    const last = reorderPicked.pop();
+    if (last == null) return;
+
+    // ★ 戻したトークンのボタンを再び押せるようにする
+    // （同じ文字が複数ある場合もあるので「disabledのものを1つだけ戻す」）
+    const btn = tokenButtons.find(x => x.textContent === last && x.disabled);
+    if (btn) btn.disabled = false;
+
+    refreshPicked();
+  };
+
+  const clearBtn = document.createElement('button');
+  clearBtn.className = 'pill';
+  clearBtn.type = 'button';
+  clearBtn.textContent = 'CLEAR';
+  clearBtn.onclick = () => {
+    if (isAnswered) return;
+    reorderPicked = [];
+    tokenButtons.forEach(b => (b.disabled = false)); // ★ 全部復活
+    refreshPicked();
+  };
+
+  const submitBtn = document.createElement('button');
+  submitBtn.className = 'pill';
+  submitBtn.type = 'button';
+  submitBtn.textContent = 'SUBMIT';
+  submitBtn.onclick = () => handleReorderSubmit();
+
+  controls.appendChild(undoBtn);
+  controls.appendChild(clearBtn);
+  controls.appendChild(submitBtn);
+
+  container.appendChild(pickedCard);
+  container.appendChild(poolCard);
+  container.appendChild(controls);
+
+  refreshPicked();
+}
+
 
   function handleReorderSubmit() {
     if (isAnswered) return;
@@ -1076,6 +1088,7 @@
 </script>  
 </body>
 </html>
+
 
 
 
