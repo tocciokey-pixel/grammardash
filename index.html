@@ -76,6 +76,7 @@
     #timer-track { width: 100%; height: 6px; background: #1e293b; border-radius: 3px; margin: 16px 0 10px; overflow: hidden; }
     #timer-bar { height: 100%; background: var(--accent); width: 100%; transition: width 0.1s linear; }
 
+    .q-jp-above { font-size: 15px; color: var(--accent); margin-bottom: 12px; line-height: 1.5; font-weight: 600; }
     .q-text { font-size: 24px; font-weight: 800; line-height: 1.4; margin-bottom: 22px; }
     .option {
       background: var(--card); border: 2px solid #2d3748; padding: 20px;
@@ -186,6 +187,7 @@
     <div id="star-now" class="small" style="margin-top:-6px; margin-bottom:10px;"></div>
 
     <div id="q-box" style="flex:1; overflow-y:auto;">
+      <div id="q-jp-above" class="q-jp-above" style="display:none;"></div>
       <div class="q-text" id="q-txt"></div>
       <div id="opts"></div>
       <div id="exp-box" style="display:none; margin-top:18px; background:#1e293b; padding:18px; border-radius:22px;">
@@ -537,6 +539,16 @@
     const qIdxEl = document.getElementById('q-idx');
     if (qIdxEl) qIdxEl.innerText = `${(session?.answered || 0) + 1} / ∞`;
 
+    const jpAbove = document.getElementById('q-jp-above');
+    if (jpAbove) {
+      if (q.type === 'reorder' && q.jp) {
+        jpAbove.textContent = q.jp;
+        jpAbove.style.display = 'block';
+      } else {
+        jpAbove.textContent = '';
+        jpAbove.style.display = 'none';
+      }
+    }
     const qt = document.getElementById('q-txt');
     if (qt) qt.innerText = q.text;
 
