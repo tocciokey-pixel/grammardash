@@ -1,0 +1,34 @@
+[
+  {
+    "id": "013-33",
+    "point": "Point 013",
+    "number": 33,
+    "type": "choice",
+    "question": "I have to find a policeman as soon as possible because my bag ( ).",
+    "choices": [
+      "has been stealing",
+      "has been stolen",
+      "has stolen",
+      "was being stolen"
+    ],
+    "answer": 1,
+    "explanation": "完了形の受動態は have been + 過去分詞。『盗まれた結果、今困っている』なので has been stolen。",
+    "jp": "バッグが盗まれたので、できるだけ早く警官を見つけなければならない。"
+  },
+  {
+    "id": "013-34",
+    "point": "Point 013",
+    "number": 34,
+    "type": "choice",
+    "question": "While the presentation ( ), the teachers were taking notes.",
+    "choices": [
+      "was being given",
+      "has been given",
+      "was giving",
+      "gave"
+    ],
+    "answer": 0,
+    "explanation": "過去進行の受動態は was/were being + 過去分詞。『行われている間』なので was being given。",
+    "jp": "プレゼンテーションが行われている間、教師たちはメモを取っていた。"
+  }
+]

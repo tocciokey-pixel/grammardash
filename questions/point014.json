@@ -1,0 +1,43 @@
+[
+  {
+    "id": "014-35",
+    "point": "Point 014",
+    "number": 35,
+    "type": "choice",
+    "question": "On his way home, Taro was ( ) a stranger.",
+    "choices": [
+      "spoken at",
+      "spoken to by",
+      "spoken by",
+      "spoken with by"
+    ],
+    "answer": 1,
+    "explanation": "spoke to A は群動詞なので、受動態では was spoken to by A の形になる。",
+    "jp": "家に帰る途中、太郎は見知らぬ人に話しかけられた。"
+  },
+  {
+    "id": "014-36",
+    "point": "Point 014",
+    "number": 36,
+    "type": "reorder",
+    "question": "He has never ( ) Alaska.",
+    "tokens": [
+      "heard",
+      "from",
+      "since",
+      "he",
+      "left",
+      "for"
+    ],
+    "answer": [
+      "heard",
+      "from",
+      "since",
+      "he",
+      "left",
+      "for"
+    ],
+    "explanation": "hear from A（Aから便りがある）の受動的な意味を完了形で用い、since 以下で時点を示す。",
+    "jp": "彼はアラスカへ行ったまま、連絡がありません。"
+  }
+]

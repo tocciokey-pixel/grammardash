@@ -1,0 +1,77 @@
+[
+  {
+    "id": "011-281",
+    "point": "Point 011",
+    "number": 281,
+    "type": "choice",
+    "question": "Ten years ( ) ( ) my mother died.",
+    "choices": [
+      "have passed since",
+      "has passed since",
+      "had passed since",
+      "will pass since"
+    ],
+    "answer": 0,
+    "explanation": "「Sが…してから〜になる」：時間（〜） + have passed since S + 過去時制… の形で表せる。",
+    "jp": "私の母が亡くなってから10年になります。"
+  },
+  {
+    "id": "011-282",
+    "point": "Point 011",
+    "number": 282,
+    "type": "choice",
+    "question": "It ( ) ( ) ten years ( ) my mother died.",
+    "choices": [
+      "has been / since",
+      "have been / since",
+      "was / since",
+      "has been / for"
+    ],
+    "answer": 0,
+    "explanation": "It has been + 時間 + since S + 過去時制… で「Sが…してから〜になる」。",
+    "jp": "私の母が亡くなってから10年になります。"
+  },
+  {
+    "id": "011-283",
+    "point": "Point 011",
+    "number": 283,
+    "type": "choice",
+    "question": "My mother ( ) ten years ( ).",
+    "choices": [
+      "died / ago",
+      "has died / ago",
+      "died / before",
+      "has been dead / ago"
+    ],
+    "answer": 0,
+    "explanation": "S + 過去時制 + 時間 + ago で「〜前に…した」。",
+    "jp": "私の母が亡くなってから10年になります。"
+  },
+  {
+    "id": "011-284",
+    "point": "Point 011",
+    "number": 284,
+    "type": "choice",
+    "question": "My mother ( ) ( ) ( ) for ten years.",
+    "choices": [
+      "has been dead",
+      "has died",
+      "is dead",
+      "had been dead"
+    ],
+    "answer": 0,
+    "explanation": "have been dead for A は「死んだ状態がAの期間続いている」。主語が My mother なので has been dead。",
+    "jp": "私の母が亡くなってから10年になります。"
+  },
+  {
+    "id": "011-29",
+    "point": "Point 011",
+    "number": 29,
+    "type": "reorder",
+    "question": "It's ( ).",
+    "tokens": ["a", "had", "I", "real", "since", "three", "vacation", "years"],
+    "answer": ["three", "years", "since", "I", "had", "a", "real", "vacation"],
+    "explanation": "It is + 時間 + since S + 過去時制…（＝Sしてから時間が経つ）。",
+    "jp": "本格的な休暇をとってから3年になる。"
+  }
+]

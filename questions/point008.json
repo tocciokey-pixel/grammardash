@@ -1,0 +1,34 @@
+[
+  {
+    "id": "008-19",
+    "point": "Point 008",
+    "number": 19,
+    "type": "choice",
+    "question": "I'll be at home watching TV until ( ).",
+    "choices": [
+      "you come back",
+      "you be back",
+      "you will be back",
+      "you will have been back"
+    ],
+    "answer": 0,
+    "explanation": "接続詞 until / before / after / as soon as などで導かれる節は時の副詞節になる。時の副詞節では、未来のことを表す場合でも現在時制を用いる。",
+    "jp": "あなたが戻ってくるまで、私は家でテレビを見ています。"
+  },
+  {
+    "id": "008-20",
+    "point": "Point 008",
+    "number": 20,
+    "type": "choice",
+    "question": "When I ( ) a thousand English words, will I be able to read an English newspaper?",
+    "choices": [
+      "am learning",
+      "have learned",
+      "will have learned",
+      "will learn"
+    ],
+    "answer": 1,
+    "explanation": "時・条件の副詞節では未来完了は用いず、現在完了を用いる。",
+    "jp": "英単語を1000個覚えたら、英字新聞が読めるでしょうか。"
+  }
+]

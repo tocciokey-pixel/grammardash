@@ -1,0 +1,50 @@
+[
+  {
+    "id": "012-30",
+    "point": "Point 012",
+    "number": 30,
+    "type": "choice",
+    "question": "This temple is beautiful. How old is it? It ( ) in 1343.",
+    "choices": [
+      "was built",
+      "built",
+      "was building",
+      "build"
+    ],
+    "answer": 0,
+    "explanation": "It (=This temple) が主語で、build は他動詞なので受動態。受動態は be + 過去分詞の形をとる。動作主が一般的・不明な場合は by A を省略できる。",
+    "jp": "「この寺院は1343年に建てられました」"
+  },
+  {
+    "id": "012-31",
+    "point": "Point 012",
+    "number": 31,
+    "type": "choice",
+    "question": "The music at the dance was very loud and ( ) from far away.",
+    "choices": [
+      "can hear",
+      "can have heard",
+      "could be heard",
+      "could be hearing"
+    ],
+    "answer": 2,
+    "explanation": "助動詞がある受動態は「助動詞 + be + 過去分詞」。過去の文脈なので could be heard が正しい。",
+    "jp": "ダンスパーティーの音楽はとても音が大きく、遠くからでも聞こえた。"
+  },
+  {
+    "id": "012-32",
+    "point": "Point 012",
+    "number": 32,
+    "type": "choice",
+    "question": "The temperature in the refrigerator should ( ) low so that the food there will not go bad.",
+    "choices": [
+      "kept",
+      "be kept",
+      "keep",
+      "keeping"
+    ],
+    "answer": 1,
+    "explanation": "助動詞 should の後は動詞の原形。受動態なので should be kept が正しい。",
+    "jp": "冷蔵庫の温度は、中の食べ物が腐らないように低く保たれなければならない。"
+  }
+]
