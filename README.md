@@ -141,6 +141,52 @@ Dドライブのフォルダは「GitHub からダウンロードした最新版
 
 ### よくあるエラー
 
+**「Please tell me who you are」「Author identity unknown」と出る場合**
+
+- 初めて Git を使う PC では、コミットする前に **名前** と **メール** を登録する必要があります。
+- 次の2つを実行する（`Your Name` と `you@example.com` を自分の名前に置き換える）：
+  ```powershell
+  git config --global user.name "Your Name"
+  git config --global user.email "you@example.com"
+  ```
+  - **user.name**：GitHub の表示名や本名など、好きな名前で OK。
+  - **user.email**：GitHub に登録しているメールアドレスを入れると、GitHub のプロフィールと紐づきます（非公開設定も可能）。
+- 設定後、もう一度 `git commit -m "Point 012-014 追加、v1_7 保存、README 更新"` を実行する。
+
+---
+
+**「Your local changes to the following files would be overwritten by merge」と出る場合**
+
+- ローカルで **まだコミットしていない変更**（README の編集など）があると、pull で上書きされるためマージが止まります。
+- **対処**：変更をいったんコミットしてから pull する。
+  ```powershell
+  git add .
+  git commit -m "README 更新（よくあるエラー追記など）"
+  git pull origin main --allow-unrelated-histories
+  ```
+  競合（conflict）が出たら、該当ファイルを開いて `<<<<<<<` 〜 `>>>>>>>` を編集で解消し、`git add .` → `git commit` してから `git push -u origin main` する。
+
+---
+
+**「repository '...' not found」と出る場合（github.io の URL を使った場合）**
+
+- `https://〇〇.github.io/リポジトリ名/` は **GitHub Pages（公開サイト）の URL** です。Git の push/pull には使えません。
+- Git 用の **リポジトリ URL** は `https://github.com/ユーザー名/リポジトリ名` または `https://github.com/ユーザー名/リポジトリ名.git` です。
+- 間違えて登録した場合は `git remote remove origin` で削除してから、正しい URL で `git remote add origin ...` をやり直す。
+
+---
+
+**「'origin' does not appear to be a git repository」と出る場合**
+
+- まだ GitHub のリポジトリを「origin」として登録していない状態です。
+- 次のコマンドで **1回だけ** 登録する（URL は自分のリポジトリに合わせる）：
+  ```powershell
+  git remote add origin https://github.com/あなたのユーザー名/grammardash.git
+  ```
+- 登録後、`git pull origin main --allow-unrelated-histories` や `git push -u origin main` を実行する。
+
+---
+
 **「fatal: detected dubious ownership in repository」と出る場合**
 
 - Dドライブなど、別ドライブや別ユーザー由来のフォルダで `git` を実行すると、Git が「所有権が不明」と判断してこのエラーを出すことがあります。
