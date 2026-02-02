@@ -12,7 +12,7 @@
       "spoken with by"
     ],
     "answer": 1,
-    "explanation": "spoke to A は群動詞なので、受動態では was spoken to by A の形になる。",
+    "explanation": "A spoke to B は群動詞なので、受動態では B was spoken to by A の形になる。",
     "jp": "家に帰る途中、太郎は見知らぬ人に話しかけられた。"
   },
   {
@@ -22,12 +22,13 @@
     "type": "reorder",
     "question": "He has never ( ) Alaska.",
     "tokens": [
-      "heard",
-      "from",
-      "since",
       "he",
       "left",
-      "for"
+      "for",
+      "heard",
+      "from",
+      "since"
+    ]
     ],
     "answer": [
       "heard",

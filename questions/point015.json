@@ -1,0 +1,43 @@
+[
+  {
+    "id": "015-37",
+    "point": "Point 015",
+    "number": 37,
+    "type": "choice",
+    "question": "To tell the truth, I'm not much ( ) in your story.",
+    "choices": [
+      "interest",
+      "interested",
+      "interesting",
+      "interestingly"
+    ],
+    "answer": 1,
+    "explanation": "be interested in A は「Aに興味がある」という意味の成句表現。ここでは過去分詞 interested が形容詞として用いられている。",
+    "jp": "実を言うと、僕は君の話にあまり興味がないんだよ。"
+  },
+  {
+    "id": "015-38",
+    "point": "Point 015",
+    "number": 38,
+    "type": "reorder",
+    "question": "She was caught ( ) home.",
+    "tokens": [
+      "on",
+      "her",
+      "in",
+      "way",
+      "a",
+      "shower"
+    ],
+    "answer": [
+      "in",
+      "a",
+      "shower",
+      "on",
+      "her",
+      "way"
+    ],
+    "explanation": "be caught in A は「雨や渋滞などにあう」という意味の成句表現。in a shower で「にわか雨に」、on her way home で「帰宅途中で」を表す。",
+    "jp": "彼女は帰宅の途中でにわか雨にあった。"
+  }
+]
