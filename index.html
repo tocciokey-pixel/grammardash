@@ -519,7 +519,30 @@
   window.removeBookmark = removeBookmark;
   window.resetToday = resetToday;
 
+  function showTransientMessage(msg, ms = 1600) {
+    const pop = document.getElementById('success-msg');
+    const inner = pop?.querySelector('.pop');
+    if (inner) inner.textContent = msg;
+    if (pop) {
+      pop.style.display = 'flex';
+      setTimeout(() => {
+        pop.style.display = 'none';
+        if (inner) inner.textContent = 'EXCELLENT!';
+      }, ms);
+    } else {
+      alert(msg);
+    }
+  }
+
   function startSession() {
+    // まず今日解くべき問題が残っているか確認
+    const q = pickNextQuestion();
+    if (!q) {
+      // If no questions remain for today, show a message and return
+      showTransientMessage("Today's Mission Complete");
+      return;
+    }
+
     session = { startedAt: Date.now(), answered: 0, correct: 0, wrong: [] };
 
     const home = document.getElementById('home');
