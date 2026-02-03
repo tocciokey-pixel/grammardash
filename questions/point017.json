@@ -1,0 +1,37 @@
+[
+  {
+    "id": "017-44",
+    "point": "Point 017",
+    "number": 44,
+    "type": "choice",
+    "question": "I couldn't go out with my friends last night because I ( ) finish my homework.",
+    "choices": ["had to", "must", "must have", "might"],
+    "answer": 0,
+    "explanation": "過去の義務は had to",
+    "jp": "宿題を終わらせなければならなかったので、昨晩は友だちと外出できなかった。"
+  },
+  {
+    "id": "017-45",
+    "point": "Point 017",
+    "number": 45,
+    "type": "choice",
+    "question": "You ( ) go to university today because all the lectures are cancelled.",
+    "choices": ["don't have to", "may", "ought to", "should"],
+    "answer": 0,
+    "explanation": "don't have to「〜する必要はない」",
+    "jp": "すべての講義が中止になったので今日は大学に行く必要はない。"
+  },
+  {
+    "id": "017-46",
+    "point": "Point 017",
+    "number": 46,
+    "type": "reorder",
+    "question": "In order to know the applicant, we have ( ) ( ) talk with her face to face for half an hour.",
+    "tokens": ["only", "to", "have", "just", "need", "must"],
+    "answer": ["only", "to"],
+    "explanation": "have only to do「〜しさえすればよい」。候補トークンを6つに増やし、語順の誤答を含めました。",
+    "jp": "その応募者の人となりを知るには、30分間面と向かって話すだけでよい。"
+  }
+]
+
+

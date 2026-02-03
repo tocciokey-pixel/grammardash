@@ -2,7 +2,7 @@
   {
     "id": "011-281",
     "point": "Point 011",
-    "number": 281,
+    "number": 28-1,
     "type": "choice",
     "question": "Ten years ( ) ( ) my mother died.",
     "choices": [
@@ -18,7 +18,7 @@
   {
     "id": "011-282",
     "point": "Point 011",
-    "number": 282,
+    "number": 28-2,
     "type": "choice",
     "question": "It ( ) ( ) ten years ( ) my mother died.",
     "choices": [
@@ -34,7 +34,7 @@
   {
     "id": "011-283",
     "point": "Point 011",
-    "number": 283,
+    "number": 28-3,
     "type": "choice",
     "question": "My mother ( ) ten years ( ).",
     "choices": [
@@ -50,7 +50,7 @@
   {
     "id": "011-284",
     "point": "Point 011",
-    "number": 284,
+    "number": 28d,
     "type": "choice",
     "question": "My mother ( ) ( ) ( ) for ten years.",
     "choices": [
