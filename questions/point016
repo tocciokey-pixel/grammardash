@@ -1,0 +1,59 @@
+[
+  {
+    "id": "016-39",
+    "point": "Point 016",
+    "number": 39,
+    "type": "choice",
+    "question": "\"Have you seen Jim?\" \"No, but he ( ) be at his desk.\"",
+    "choices": ["may", "ought", "must not", "can't"],
+    "answer": 0,
+    "explanation": "may「〜かもしれない」",
+    "jp": "「ジムを見ましたか」「いいえ、でも彼は自分の席にいるかもしれません」"
+  },
+  {
+    "id": "016-40",
+    "point": "Point 016",
+    "number": 40,
+    "type": "choice",
+    "question": "(a) He wished me success. (b) \"( ) you succeed!\" he said to me.",
+    "choices": ["May", "Wanting", "Had", "Wished"],
+    "answer": 0,
+    "explanation": "May + S + 原形・・・！の形で「Sが〜しますように！」という意味を表す。",
+    "jp": "(a) 彼は私がうまくいくことを祈った。(b)「あなたがうまくいきますように！」と彼は私に言った。"
+  },
+  {
+    "id": "016-41",
+    "point": "Point 016",
+    "number": 41,
+    "type": "choice",
+    "question": "He ( ) be over thirty; he must still be in his twenties.",
+    "choices": ["may", "must", "can't", "oughtn't"],
+    "answer": 2,
+    "explanation": "can't「〜のはずがない」",
+    "jp": "彼は30歳を超えているはずがない。まだ20代に違いない。"
+  },
+  {
+    "id": "016-42",
+    "point": "Point 016",
+    "number": 42,
+    "type": "choice",
+    "question": "The boy solved the problem faster than anybody else. He ( ) be very intelligent.",
+    "choices": ["had better", "must", "ought", "can't"],
+    "answer": 1,
+    "explanation": "must「〜に違いない」",
+    "jp": "その少年は他の誰よりも速く問題を解いた。彼はとても頭がよいに違いない。"
+  },
+  {
+    "id": "016-43",
+    "point": "Point 016",
+    "number": 43,
+    "type": "choice",
+    "question": "Hurry! The meeting starts at seven. We ( ) be late.",
+    "choices": ["needn't", "don't have to", "have to", "mustn't"],
+    "answer": 3,
+    "explanation": "mustn't「〜してはいけない」",
+    "jp": "急いで。会議は7時に始まります。遅れてはいけません。"
+  }
+]
+
+

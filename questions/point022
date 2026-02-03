@@ -1,0 +1,31 @@
+[
+  {
+    "id": "022-58",
+    "point": "Point 022",
+    "number": 58,
+    "type": "choice",
+    "question": "I suppose this is where an old church ( ) be.",
+    "choices": [
+      "was used to",
+      "used to",
+      "would often",
+      "was kept"
+    ],
+    "answer": 1,
+    "explanation": "used to do は「以前は〜だった」。過去の状態を表す。",
+    "jp": "ここは,かつて古い教会があったところだと思います。"
+  },
+  {
+    "id": "022-59",
+    "point": "Point 022",
+    "number": 59,
+    "type": "choice",
+    "question": "She ( ) often come to see us when she was a child.",
+    "choices": ["has", "should", "would", "would have"],
+    "answer": 2,
+    "explanation": "would (often) do は過去の習慣的動作を表す。",
+    "jp": "彼女は子どものころよく私たちの家に遊びに来ました。"
+  }
+]
+
+

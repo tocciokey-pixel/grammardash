@@ -1,0 +1,91 @@
+[
+  {
+    "id": "024-64",
+    "point": "Point 024",
+    "number": 64,
+    "type": "choice",
+    "question": "Why did you try to fix the computer by yourself? You ( ) for help before you gave up.",
+    "choices": [
+      "should ask",
+      "should have asked",
+      "would ask",
+      "would have asked"
+    ],
+    "answer": 1,
+    "explanation": "should have done は「〜すべきだったのに（実際はしなかった）」。",
+    "jp": "どうして一人でコンピュータを修理しようとしたの? あきらめてしまう前に助けを求めればよかったのに。"
+  },
+  {
+    "id": "024-65",
+    "point": "Point 024",
+    "number": 65,
+    "type": "choice",
+    "question": "I ( ) an e-mail from Jane in the morning but it hasn't come yet.",
+    "choices": [
+      "could have received",
+      "must have received",
+      "ought to have received",
+      "may have received"
+    ],
+    "answer": 2,
+    "explanation": "ought to have done は「（当然）〜したはずだ」。",
+    "jp": "午前中にジェーンからメールを受け取るはずだったのだが, まだ届いていない。"
+  },
+  {
+    "id": "024-66",
+    "point": "Point 024",
+    "number": 66,
+    "type": "choice",
+    "question": "I hurt my back. I ( ) that heavy box up two flights of stairs.",
+    "choices": [
+      "should be carrying",
+      "should carry",
+      "should have carried",
+      "should not have carried"
+    ],
+    "answer": 3,
+    "explanation": "should not have done は「〜すべきでなかったのに（実際はした）」。",
+    "jp": "私は背中を痛めてしまった。あの重い箱を持って2階分の階段を上がるべきではなかった。"
+  },
+  {
+    "id": "024-67",
+    "point": "Point 024",
+    "number": 67,
+    "type": "reorder",
+    "question": "You ( ) her waiting on such a cold night.",
+    "tokens": [
+      "to",
+      "not",
+      "kept",
+      "have",
+      "ought"
+    ],
+    "answer": [
+      "ought",
+      "not",
+      "to",
+      "have",
+      "kept"
+    ],
+    "explanation": "ought not to have done は「〜すべきでなかったのに」。",
+    "jp": "あんな寒い夜に彼女を待たせておくべきではなかった。"
+  },
+  {
+    "id": "024-68",
+    "point": "Point 024",
+    "number": 68,
+    "type": "choice",
+    "question": "(a) There was no need to buy me an expensive birthday present, but you did. (b) You ( ) me an expensive birthday present.",
+    "choices": [
+      "needn't have bought",
+      "shouldn't have bought",
+      "didn't need to buy",
+      "mustn't have bought"
+    ],
+    "answer": 0,
+    "explanation": "needn't have done は「する必要はなかったのに（実際はした）」。",
+    "jp": "(a) 私に高価な誕生日のプレゼントを買う必要はなかったのに、あなたは買った。(b) あなたは私に高価な誕生日のプレゼントを買う必要はなかったのに。"
+  }
+]
+
+

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "019-49",
+    "point": "Point 019",
+    "number": 49,
+    "type": "choice",
+    "question": "We ( ) call him \"Sir.\"",
+    "choices": [
+      "I don't need",
+      "not need",
+      "need not to",
+      "needn't"
+    ],
+    "answer": 3,
+    "explanation": "needn't は助動詞 need の否定形で「〜する必要はない」。",
+    "jp": "彼を「サー(卿)」と呼ぶ必要はありません。"
+  },
+  {
+    "id": "019-50",
+    "point": "Point 019",
+    "number": 50,
+    "type": "reorder",
+    "question": "We ( ) not suggest something that would unnecessarily hurt him.",
+    "tokens": [
+      "to",
+      "dare",
+      "not",
+      "suggest"
+    ],
+    "answer": [
+      "dare"
+    ],
+    "explanation": "dare not do は「あえて〜しない」という意味。否定文では dare を助動詞として用いる。",
+    "jp": "彼を不必要に傷つけるような提案を、私たちはあえてする気はない。"
+  },
+  {
+    "id": "019-51",
+    "point": "Point 019",
+    "number": 51,
+    "type": "choice",
+    "question": "How dare you ( ) to me like that!",
+    "choices": [
+      "speaking",
+      "to speak",
+      "spoken",
+      "speak"
+    ],
+    "answer": 3,
+    "explanation": "How dare you do ...! はよくも...できるね。定式化された表現として押さえる。",
+    "jp": "よくも私にあんなふうに言えるね!"
+  }
+]
+
+

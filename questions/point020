@@ -1,0 +1,36 @@
+[
+  {
+    "id": "020-52",
+    "point": "Point 020",
+    "number": 52,
+    "type": "choice",
+    "question": "If you ( )introduce me to Mr. White, I'll be much obliged.",
+    "choices": [
+      "shall",
+      "are",
+      "will",
+      "to"
+    ],
+    "answer": 2,
+    "explanation": "If S will do は「もしSが〜するつもりなら」という主語の意志を表す。",
+    "jp": "もし私をホワイトさんに紹介してくださるおつもりであれば、たいへんありがたいのですが。"
+  },
+  {
+    "id": "020-53",
+    "point": "Point 020",
+    "number": 53,
+    "type": "choice",
+    "question": "She ( ) not give up smoking, although I told her to many times.",
+    "choices": [
+      "must",
+      "need",
+      "should",
+      "would"
+    ],
+    "answer": 3,
+    "explanation": "would not は過去の主語の強い意志・拒否を表す。",
+    "jp": "彼女に何回も喫煙をやめるように言ったのだけれど、彼女はやめようとはしなかった。"
+  }
+]
+
+

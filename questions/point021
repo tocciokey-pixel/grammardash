@@ -1,0 +1,65 @@
+[
+  {
+    "id": "021-54",
+    "point": "Point 021",
+    "number": 54,
+    "type": "choice",
+    "question": "\"Why don't you come along with me?\" \"I ( ) rather stay here.\"",
+    "choices": ["will", "could", "must", "would"],
+    "answer": 3,
+    "explanation": "would rather do は「むしろ〜したい」。",
+    "jp": "「私と一緒に行かない?」「ここにいる方がいい」"
+  },
+  {
+    "id": "021-55",
+    "point": "Point 021",
+    "number": 55,
+    "type": "reorder",
+    "question": "できれば,この宿題は明日に持ち越したくない。 I ( ) this assignment till tomorrow.",
+    "tokens": [
+      "rather",
+      "not",
+      "better",
+      "would",
+      "leave"
+    ],
+    ],
+    "answer": [
+      "would",
+      "rather",
+      "not",
+      "leave"
+    ],
+    "explanation": "would rather not do は「むしろ〜したくない」という意味の定型表現。",
+    "jp": "できれば,この宿題は明日に持ち越したくない。"
+  },
+  {
+    "id": "021-56",
+    "point": "Point 021",
+    "number": 56,
+    "type": "choice",
+    "question": "\"I tripped on the stairs and fell. I've hurt my ankle badly.\" \"You ( ) go and see a doctor right away.\"",
+    "choices": ["are better", "do better", "had better", "would better"],
+    "answer": 2,
+    "explanation": "had better do は「〜した方がよい」。",
+    "jp": "「階段でつまずいて転んだんだ。くるぶしをひどく痛めてしまったよ」「すぐに医者に診てもらった方がいいわ」"
+  },
+  {
+    "id": "021-57",
+    "point": "Point 021",
+    "number": 57,
+    "type": "choice",
+    "question": "We ( ) bother Father now. He seems to be very busy.",
+    "choices": [
+      "don't have better",
+      "had better not",
+      "had no better",
+      "had not better"
+    ],
+    "answer": 1,
+    "explanation": "had better not do は「〜しない方がよい」。",
+    "jp": "今はお父さんに面倒をかけない方がいいね。とても忙しそうだから。"
+  }
+]
+
+

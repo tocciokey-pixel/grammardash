@@ -1,0 +1,42 @@
+[
+  {
+    "id": "018-47",
+    "point": "Point 018",
+    "number": 47,
+    "type": "choice",
+    "question": "You ( ) leave your heavy clothing here as it is warmer there.",
+    "choices": [
+      "don't have to",
+      "has to",
+      "won't",
+      "should"
+    ],
+    "answer": 3,
+    "explanation": "should は「〜すべきだ」。",
+    "jp": "そこはもっと暖かいので,厚手の服はここに置いていくべきです。"
+  },
+  {
+    "id": "018-48",
+    "point": "Point 018",
+    "number": 48,
+    "type": "reorder",
+    "question": "He ( ) such a rude thing to her.",
+    "tokens": [
+      "not",
+      "ought",
+      "say",
+      "to"
+    ],
+    "answer": [
+      "ought",
+      "not",
+      "to",
+      "say"
+    ],
+    "explanation": "ought not to do は「〜すべきでない」。",
+    "jp": "彼はそんな失礼なことを彼女に言うべきではない。"
+  }
+]
+
+
+

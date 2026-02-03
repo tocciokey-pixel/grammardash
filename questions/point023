@@ -1,0 +1,68 @@
+[
+  {
+    "id": "023-60",
+    "point": "Point 023",
+    "number": 60,
+    "type": "choice",
+    "question": "The street is all wet; it ( ) during the night.",
+    "choices": [
+      "must have rained",
+      "should rain",
+      "cannot have rained",
+      "may rain"
+    ],
+    "answer": 0,
+    "explanation": "must have done は「〜したに違いない」。",
+    "jp": "通りがすっかりぬれている。夜のうちに雨が降ったに違いない。"
+  },
+  {
+    "id": "023-61",
+    "point": "Point 023",
+    "number": 61,
+    "type": "choice",
+    "question": "The thief ( ) through this window. It's much too small.",
+    "choices": [
+      "can't have escaped",
+      "must have escaped",
+      "mustn't escape",
+      "should have escaped"
+    ],
+    "answer": 0,
+    "explanation": "can't have done は「〜したはずがない」。",
+    "jp": "泥棒はこの窓から逃げたはずがない。この窓はあまりに小さすぎます。"
+  },
+  {
+    "id": "023-62",
+    "point": "Point 023",
+    "number": 62,
+    "type": "choice",
+    "question": "I ( ) the movie, but I don't remember whether I have.",
+    "choices": [
+      "should not have seen",
+      "need not have seen",
+      "may have seen",
+      "cannot have seen"
+    ],
+    "answer": 2,
+    "explanation": "may have done は「〜したかもしれない」。",
+    "jp": "私はその映画を見たかもしれないけれど、見たかどうか覚えていない。"
+  },
+  {
+    "id": "023-63",
+    "point": "Point 023",
+    "number": 63,
+    "type": "choice",
+    "question": "Tom ( ) there yesterday, but we didn't see him.",
+    "choices": [
+      "should be",
+      "might have been",
+      "may not have been",
+      "must be"
+    ],
+    "answer": 1,
+    "explanation": "might have done は「（ひょっとして）〜したかもしれない」。",
+    "jp": "トムは昨日、そこにいたかもしれませんが, 私たちは彼には会いませんでした。"
+  }
+]
+
+
