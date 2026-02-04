@@ -1,0 +1,70 @@
+[
+  {
+    "id": "026-70",
+    "point": "Point 026",
+    "number": 70,
+    "type": "choice",
+    "question": "You ( ) be too careful in your choice of friends.",
+    "choices": ["aren't", "don't", "can't", "ought not to"],
+    "answer": 2,
+    "explanation": "cannot ... too ～ で「いくら～してもしすぎることはない」という意味になる。",
+    "jp": "友だちを選ぶ際には、いくら注意してもしすぎることはない。"
+  },
+  {
+    "id": "026-71",
+    "point": "Point 026",
+    "number": 71,
+    "type": "choice",
+    "question": "I know it's not important, but I can't help ( ) about it.",
+    "choices": ["but to think", "think", "but thinking", "thinking"],
+    "answer": 3,
+    "explanation": "can't help doing で「～せずにはいられない」。",
+    "jp": "それが重要ではないのはわかっていますが、私はそれについて考えずにはいられません。"
+  },
+  {
+    "id": "026-72",
+    "point": "Point 026",
+    "number": 72,
+    "type": "reorder",
+    "question": "彼女は出て行かざるをえなかった。（1語不要）",
+    "tokens": ["not", "should", "could", "but"],
+    "answer": ["could", "not", "but"],
+    "explanation": "cannot but do は「～せざるをえない」という意味。should は不要。",
+    "jp": "彼女は出て行かざるをえなかった。"
+  },
+{
+  "id": "026-73",
+  "point": "Point 026",
+  "number": 73,
+  "type": "choice",
+  "question": "(a) It is only natural that he should complain about the treatment.\n(b) He ( ) complain about the treatment.",
+  "choices": ["may well", "may rather", "might better", "should likely"],
+  "answer": 0,
+  "explanation": "It is only natural that ... should ～ は「～するのも当然だ」。これを言い換えると may well do「～するのももっともだ」になる。",
+  "jp": "(a) 彼がその扱いに対して不平を言うのは当然だ。\n(b) 彼がその扱いに対して不平を言うのももっともだ。"
+},
+  {
+    "id": "026-74",
+    "point": "Point 026",
+    "number": 74,
+    "type": "reorder",
+    "question": "We might as ( ) for the few customers we are likely to get.",
+    "tokens": ["close", "open", "shop", "the", "keep", "it", "as", "well"],
+    "answer": ["well", "close", "the", "shop", "as", "keep", "it", "open"],
+    "explanation": "might as well A as B で「BするくらいならAする方がよい」。",
+    "jp": "やって来そうなわずかな客のために店を開けておくよりは、閉めてしまう方がましだ。"
+  },
+{
+  "id": "026-75",
+  "point": "Point 026",
+  "number": 75,
+  "type": "reorder",
+  "question": "“Oh, we just missed the bus! Shall we wait half an hour for the next one?”\n“It's so nice today. We ( ).”",
+  "tokens": ["well", "as", "walk", "might"],
+  "answer": ["might", "as", "well", "walk"],
+  "explanation": "might as well do は「（他の選択肢より）～する方がいいだろう」という意味の婉曲表現。",
+  "jp": "「ああ、バスに乗りそこねてしまった。次のバスまで30分待つことにする？」\n「今日はとても天気がいいわ。（バスを待つより）歩く方がいいわ」"
+}
+]
+
+

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "025-69",
+    "point": "Point 025",
+    "number": 69,
+    "type": "choice",
+    "question": "It is necessary that every member ( ) inform himself of the rules of the club.",
+    "choices": ["would", "should", "might", "could"],
+    "answer": 1,
+    "explanation": "It is necessary that S (should) + 原形 の構文。必要・要求を表す形容詞の後のthat節では should を用いる。",
+    "jp": "すべてのメンバーがクラブの規則を知っておく必要があります。"
+  }
+]
+
+
+
