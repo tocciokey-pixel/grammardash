@@ -1,0 +1,62 @@
+[
+  {
+    "id": "031-85",
+    "point": "Point 031",
+    "number": 85,
+    "type": "choice",
+    "question": "Jim wishes he ( ) better grades, but he isn't willing to study harder.",
+    "choices": [
+      "got",
+      "have got",
+      "gets",
+      "has"
+    ],
+    "answer": 0,
+    "explanation": "S wish + S'+動詞の過去形 現在の事実の反対を想定しているので仮定法過去の形が来る。",
+    "jp": "ジムはもっとよい成績がとれればいいのにと思っているが,もっと一生懸命勉強しようという気はない。"
+  },
+  {
+    "id": "031-86",
+    "point": "Point 031",
+    "number": 86,
+    "type": "choice",
+    "question": "I wish I ( ) enough money to buy the house around this time last year.",
+    "choices": [
+      "had",
+      "could have",
+      "had had",
+      "should have"
+    ],
+    "answer": 2,
+    "explanation": "S wish + S'+動詞の過去完了形　過去の事実の反対を想定しているのだから仮定法過去完了の形が来る。",
+    "jp": "昨年の今ごろ、その家を買うだけのお金があったらよかったのになあ。"
+  },
+  {
+    "id": "031-87",
+    "point": "Point 031",
+    "number": 87,
+    "type": "reorder",
+    "question": "I ( ) .",
+    "tokens": [
+      "would",
+      "wish",
+      "finish",
+      "the work",
+      "you",
+      "by",
+      "Friday"
+    ],
+    "answer": [
+      "wish",
+      "you",
+      "would",
+      "finish",
+      "the work",
+      "by",
+      "Friday"
+    ],
+    "explanation": "wish you would do は「（これからのこととして）〜してほしい」という願望を表す。",
+    "jp": "金曜日までには仕事を終えていただきたいのですが。"
+  }
+]
+ 

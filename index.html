@@ -30,10 +30,11 @@
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", sans-serif;
       overflow-x: hidden;
       -webkit-user-select: none;
+      user-select: none;
     }
     .container { max-width: 500px; margin: 0 auto; min-height: 100vh; padding: 20px; display: flex; flex-direction: column; padding-bottom: 50px; }
     header { padding: 40px 0 20px; }
-    h1 { font-size: 32px; font-weight: 900; font-style: italic; background: linear-gradient(90deg, #22d3ee, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; }
+    h1 { font-size: 32px; font-weight: 900; font-style: italic; background: linear-gradient(90deg, #22d3ee, #818cf8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; }
 
     .xp-container { background: #1e293b; height: 10px; border-radius: 5px; margin-top: 15px; overflow: hidden; }
     .xp-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -170,6 +171,7 @@
   <div id="quiz-screen">
     <div class="topbar">
       <span id="cat-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">READY</span>
+      <span id="q-idx" style="font-size:12px; font-weight:900;">1 / ∞</span>
       <span id="qid-tag" style="font-size:11px; font-weight:900; color:var(--text-dim);">-- / ∞</span>
       <button class="pill" onclick="stopSession()">STOP</button>
     </div>
@@ -258,7 +260,12 @@
     "questions/point027.json",
     "questions/point028.json",
     "questions/point029.json",
-    "questions/point030.json"
+    "questions/point030.json",
+    "questions/point031.json",
+    "questions/point032.json",
+    "questions/point033.json",
+    "questions/point034.json",
+    "questions/point035.json"
   ];
 
   let loadedQuestions = [];
@@ -492,7 +499,11 @@
       .filter(q => !seenToday(q.id) && (getM(q.id).nextDue || 0) <= now)
       .sort((a,b) => (getM(a.id).nextDue - getM(b.id).nextDue) || (getM(a.id).level - getM(b.id).level));
 
-    if (due.length) return shuffle(due.slice())[0];
+    if (due.length) {
+      const q = shuffle(due.slice())[0];
+      state.currCat = q.cat;
+      return q;
+    }
 
     for (let k = 0; k < order.length; k++) {
       const cat = order[(startIdx + k) % order.length];
@@ -500,7 +511,7 @@
         .filter(q => q.cat === cat && !seenToday(q.id))
         .sort((a,b) => (getM(a.id).level - getM(b.id).level) || ((getM(a.id).nextDue||0) - (getM(b.id).nextDue||0)));
       if (catQs.length) {
-        state.currCat = order[(startIdx + 1) % order.length];
+        state.currCat = cat;
         return shuffle(catQs.slice())[0];
       }
     }

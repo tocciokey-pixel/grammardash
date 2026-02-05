@@ -12,7 +12,7 @@
       "have been"
     ],
     "answer": 0,
-    "explanation": "従節が過去完了（then）、主節が現在（now）なので、併用形で主節は would + 原形（would be）。",
+    "explanation": "仮定法過去・過去完了の併用系。",
     "jp": "もし私がそのときそのように言われたならば、今はもっと幸せでしょうに。"
   },
   {
@@ -28,7 +28,7 @@
       "wouldn't buy"
     ],
     "answer": 0,
-    "explanation": "過去（last year）と反対の仮定なので、If節は過去完了（had done）。",
+    "explanation": "併用形　if節のlast yearに着目。",
     "jp": "もし昨年コンピュータを買わなかったならば,私はまだ古いタイプライターを使っているでしょう。"
   }
 ]

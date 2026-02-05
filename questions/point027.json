@@ -6,7 +6,7 @@
     "type": "choice",
     "question": "Tom would answer the phone himself if he ( ) at home.",
     "choices": [
-      "was",
+      "is",
       "were",
       "would be",
       "would have been"
@@ -36,7 +36,7 @@
     "point": "Point 027",
     "number": 78,
     "type": "reorder",
-    "question": "その知らせを聞いたらメアリーはどうするだろうか。",
+    "question": "() the news?",
     "tokens": [
       "would",
       "do",

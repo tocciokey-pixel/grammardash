@@ -1,0 +1,42 @@
+[
+  {
+    "id": "032-88",
+    "point": "Point 032",
+    "number": 88,
+    "type": "choice",
+    "question": "If ( ) there were forty-eight hours in a day!",
+    "choices": [
+      "only",
+      "merely",
+      "little",
+      "greatly"
+    ],
+    "answer": 0,
+    "explanation": "If only + 仮定法...! は「...であればいいのだが」",
+    "jp": "1日が48時間あればいいのに！"
+  },
+  {
+    "id": "032-89",
+    "point": "Point 032",
+    "number": 89,
+    "type": "reorder",
+    "question": "I ( ) on the radio.",
+    "tokens": [
+      "didn't",
+      "you",
+      "would",
+      "turn",
+      "rather"
+    ],
+    "answer": [
+      "would",
+      "rather",
+      "you",
+      "didn't",
+      "turn"
+    ],
+    "explanation": "S would rather + S' + 仮定法過去 は「Sに〜してほしくない」という願望を表す。",
+    "jp": "ラジオをつけないでほしいのですが。"
+  }
+]
+

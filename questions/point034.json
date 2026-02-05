@@ -1,0 +1,56 @@
+[
+  {
+    "id": "034-92",
+    "point": "Point 034",
+    "number": 92,
+    "type": "choice",
+    "question": "If ( ) not for his faults, I would marry Paul at once.",
+    "choices": [
+      "it is",
+      "it were",
+      "there are",
+      "there were"
+    ],
+    "answer": 1,
+    "explanation": "if it were not for A は「もしAがなければ」という仮定法過去の慣用表現。",
+    "jp": "もし彼に欠点がなければ,私はすぐにでもポールと結婚するでしょう。"
+  },
+  {
+    "id": "034-93",
+    "point": "Point 034",
+    "number": 93,
+    "type": "choice",
+    "question": "If it ( ) ( ) for his help, I could not have succeeded.",
+    "choices": [
+      "were not",
+      "had not been",
+      "has not been",
+      "was not"
+    ],
+    "answer": 1,
+    "explanation": "if it had not been for A は「もしAがなかったら」という仮定法過去完了。",
+    "jp": "彼の助けがなかったら、私は成功することはできなかったでしょう。"
+  },
+  {
+    "id": "034-94",
+    "point": "Point 034",
+    "number": 94,
+    "type": "reorder",
+    "question": "(a) He recommended me, so I got a promotion. (b) ( ) his recommendation, I would not have got a promotion.",
+    "tokens": [
+      "but",
+      "for",
+      "his",
+      "recommendation"
+    ],
+    "answer": [
+      "but",
+      "for",
+      "his",
+      "recommendation"
+    ],
+    "explanation": "but for A は「もしAがなかったら」という意味で、仮定法過去完了の内容を表す。",
+    "jp": "(a) 彼が私を推薦してくれたので昇進できた。(b) 彼の推薦がなかったら、私は昇進できなかっただろう。"
+  }
+]
+

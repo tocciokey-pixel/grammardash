@@ -1,0 +1,42 @@
+[
+  {
+    "id": "033-90",
+    "point": "Point 033",
+    "number": 90,
+    "type": "choice",
+    "question": "It is time she ( ) to think about her future.",
+    "choices": [
+      "begin",
+      "begins",
+      "is beginning",
+      "began"
+    ],
+    "answer": 3,
+    "explanation": "It is time + S + 仮定法過去（動詞の過去形）は定型表現。",
+    "jp": "彼女はもう自分の将来について考えてもいいころだ。"
+  },
+  {
+    "id": "033-91",
+    "point": "Point 033",
+    "number": 91,
+    "type": "reorder",
+    "question": "He talks ( ) about Australia.",
+    "tokens": [
+      "knew",
+      "if",
+      "everything",
+      "he",
+      "as"
+    ],
+    "answer": [
+      "as",
+      "if",
+      "he",
+      "knew",
+      "everything"
+    ],
+    "explanation": "as if + S + 仮定法過去 は「まるで〜であるかのように」。",
+    "jp": "彼は、まるでオーストラリアのことは何でも知っているかのように話します。"
+  }
+]
+

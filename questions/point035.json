@@ -1,0 +1,110 @@
+[
+  {
+    "id": "035-95",
+    "point": "Point 035",
+    "number": 95,
+    "type": "choice",
+    "question": "( ) in your place, I would not forgive him for betraying you.",
+    "choices": [
+      "I were",
+      "If were I",
+      "Were I",
+      "Were if I"
+    ],
+    "answer": 2,
+    "explanation": "仮定法過去で be 動詞が were の場合、if を省略して倒置（Were I ...）にできる。",
+    "jp": "私があなたの立場ならば,あなたを裏切ったことについて彼を許したりしないだろう。"
+  },
+  {
+    "id": "035-96",
+    "point": "Point 035",
+    "number": 96,
+    "type": "choice",
+    "question": "( ) he read my letter then, he would have understood me.",
+    "choices": [
+      "If",
+      "Were",
+      "Did",
+      "Had"
+    ],
+    "answer": 3,
+    "explanation": "仮定法過去完了の if 節（If he had read ...）は、if を省略して倒置（Had he read ...）にできる。",
+    "jp": "そのとき彼が私の手紙を読んでいたならば、私のことを理解しただろう。"
+  },
+  {
+    "id": "035-97",
+    "point": "Point 035",
+    "number": 97,
+    "type": "choice",
+    "question": "( ), the government would have to act swiftly.",
+    "choices": [
+      "If a serious crisis will arise",
+      "A serious crisis were to arise",
+      "Were a serious crisis to arise",
+      "Were a serious crisis arisen"
+    ],
+    "answer": 2,
+    "explanation": "If S were to do ... は未来の仮定。if を省略すると Were S to do ... の倒置形になる。",
+    "jp": "もし重大な危機が発生するとすれば,政府はすばやく行動しなければならないだろう。"
+  },
+  {
+    "id": "035-98",
+    "point": "Point 035",
+    "number": 98,
+    "type": "choice",
+    "question": "( ) you notice any suspicious bags, please inform the conductor.",
+    "choices": [
+      "Could",
+      "Might",
+      "Should",
+      "Would"
+    ],
+    "answer": 2,
+    "explanation": "If S should do ... の if 省略倒置は Should S do ...。主節に命令文が来ることがある。",
+    "jp": "不審なバッグにお気づきの際は、車掌までお知らせください。"
+  },
+  {
+    "id": "035-99",
+    "point": "Point 035",
+    "number": 99,
+    "type": "reorder",
+    "question": "()that time, I would have given up the idea of studying abroad.",
+        "tokens": [
+      "for",
+      "been",
+      "had",
+      "at",
+      "Michael's help",
+      "not",
+      "it"
+    ],
+    "answer": [
+      "Had",
+      "it",
+      "not",
+      "been",
+      "for",
+      "Michael's help",
+      "at"
+    ],
+    "explanation": "If it had not been for A の倒置形は Had it not been for A。at that time を続けて用いる。",
+    "jp": "あのときマイケルが助けてくれなかったら,私は留学をあきらめていたことだろう。"
+  },
+  {
+    "id": "035-100",
+    "point": "Point 035",
+    "number": 100,
+    "type": "choice",
+    "question": "A better bridge could have been built ( ).",
+    "choices": [
+      "if they didn't assist us",
+      "had it been not for their help",
+      "having had them help us",
+      "had they offered assistance"
+    ],
+    "answer": 3,
+    "explanation": "仮定法過去完了の if 節（If they had offered assistance ...）は、if を省略して倒置（Had they offered assistance ...）にできる。主節の後ろに置かれることもある。",
+    "jp": "もし彼らが援助を申し出ていたならば,もっとよい橋が建設されていただろう。"
+  }
+]
+
