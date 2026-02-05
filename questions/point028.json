@@ -1,0 +1,35 @@
+[
+  {
+    "id": "028-79",
+    "point": "Point 028",
+    "number": 79,
+    "type": "choice",
+    "question": "If I ( ) more time then, I could have checked my report again.",
+    "choices": [
+      "have",
+      "would have",
+      "had",
+      "had had"
+    ],
+    "answer": 3,
+    "explanation": "仮定法過去完了の従節は had + 過去分詞（had done）。",
+    "jp": "もしそのときもっと多くの時間があったならば,私はもう一度報告書の内容を確認することができただろう。"
+  },
+  {
+    "id": "028-80",
+    "point": "Point 028",
+    "number": 80,
+    "type": "choice",
+    "question": "If we had known your new address, we ( ) to see you.",
+    "choices": [
+      "came",
+      "will come",
+      "would come",
+      "would have come"
+    ],
+    "answer": 3,
+    "explanation": "仮定法過去完了の主節は would have + 過去分詞。",
+    "jp": "もし私たちがあなたの新しい住所を知っていたら,あなたに会いに行ったでしょう。"
+  }
+]
+

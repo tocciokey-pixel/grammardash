@@ -1,0 +1,62 @@
+[
+  {
+    "id": "027-76",
+    "point": "Point 027",
+    "number": 76,
+    "type": "choice",
+    "question": "Tom would answer the phone himself if he ( ) at home.",
+    "choices": [
+      "was",
+      "were",
+      "would be",
+      "would have been"
+    ],
+    "answer": 1,
+    "explanation": "仮定法過去の従節では、be動詞は原則として were を用いる。",
+    "jp": "もし家にいれば,トム自身が電話にでるだろう。"
+  },
+  {
+    "id": "027-77",
+    "point": "Point 027",
+    "number": 77,
+    "type": "choice",
+    "question": "If my sister were here, she ( ) me on what to do to solve this problem.",
+    "choices": [
+      "has advised",
+      "will advise",
+      "would advise",
+      "will have advised"
+    ],
+    "answer": 2,
+    "explanation": "仮定法過去の主節は would + 動詞の原形。",
+    "jp": "もしここに姉がいれば,この問題を解くためにどうしたらいいか助言してくれるのに。"
+  },
+  {
+    "id": "027-78",
+    "point": "Point 027",
+    "number": 78,
+    "type": "reorder",
+    "question": "その知らせを聞いたらメアリーはどうするだろうか。",
+    "tokens": [
+      "would",
+      "do",
+      "if",
+      "heard",
+      "Mary",
+      "what",
+      "she"
+    ],
+    "answer": [
+      "What",
+      "would",
+      "Mary",
+      "do",
+      "if",
+      "she",
+      "heard"
+    ],
+    "explanation": "仮定法過去の疑問文は What would S do if ...? の語順になる。",
+    "jp": "その知らせを聞いたらメアリーはどうするだろうか。"
+  }
+]
+

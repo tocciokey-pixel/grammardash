@@ -1,0 +1,36 @@
+[
+  {
+    "id": "029-81",
+    "point": "Point 029",
+    "number": 81,
+    "type": "choice",
+    "question": "If I had been told so then, I ( ) happier now.",
+    "choices": [
+      "would be",
+      "will be",
+      "am",
+      "have been"
+    ],
+    "answer": 0,
+    "explanation": "従節が過去完了（then）、主節が現在（now）なので、併用形で主節は would + 原形（would be）。",
+    "jp": "もし私がそのときそのように言われたならば、今はもっと幸せでしょうに。"
+  },
+  {
+    "id": "029-82",
+    "point": "Point 029",
+    "number": 82,
+    "type": "choice",
+    "question": "If I ( ) a computer last year, I'd still be using my old typewriter.",
+    "choices": [
+      "hadn't bought",
+      "haven't bought",
+      "shouldn't buy",
+      "wouldn't buy"
+    ],
+    "answer": 0,
+    "explanation": "過去（last year）と反対の仮定なので、If節は過去完了（had done）。",
+    "jp": "もし昨年コンピュータを買わなかったならば,私はまだ古いタイプライターを使っているでしょう。"
+  }
+]
+
+

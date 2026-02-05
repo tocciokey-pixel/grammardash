@@ -1,0 +1,35 @@
+[
+  {
+    "id": "030-83",
+    "point": "Point 030",
+    "number": 83,
+    "type": "choice",
+    "question": "Even if the sun ( ) in the west, he would not change his mind.",
+    "choices": [
+      "would arise",
+      "were to rise",
+      "might raise",
+      "were to rouse"
+    ],
+    "answer": 1,
+    "explanation": "If S were to do は（ありえない）未来の仮定を表す。",
+    "jp": "たとえ太陽が西から昇っても、彼は意見を変えないでしょう。"
+  },
+  {
+    "id": "030-84",
+    "point": "Point 030",
+    "number": 84,
+    "type": "choice",
+    "question": "I don't think he will stop by my office. But if he ( ) while I'm out, give him more information.",
+    "choices": [
+      "came",
+      "will come",
+      "should come",
+      "had come"
+    ],
+    "answer": 2,
+    "explanation": "If S should do は未来の仮定を表し、主節に命令文が来ることもある。",
+    "jp": "彼が私のオフィスに立ち寄るとは思わない。だが、万一、私がいない間にやって来たら、さらに情報を教えてあげなさい。"
+  }
+]
+

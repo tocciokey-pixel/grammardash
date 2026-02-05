@@ -26,7 +26,7 @@
     "point": "Point 026",
     "number": 72,
     "type": "reorder",
-    "question": "彼女は出て行かざるをえなかった。（1語不要）",
+    "question": "彼女は出て行かざるをえなかった。（1語不要）She () leave.",
     "tokens": ["not", "should", "could", "but"],
     "answer": ["could", "not", "but"],
     "explanation": "cannot but do は「～せざるをえない」という意味。should は不要。",
