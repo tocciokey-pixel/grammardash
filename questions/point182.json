@@ -84,7 +84,7 @@
     "question": "You shouldn't ( ) the stock market repeating past results.It's very hard to predict.",
     "choices": ["bear with", "keep off", "live on", "count on"],
     "answer": 3,
-    "explanation": "count on [upon] A A を当てにする」= depend on [upon] A, rely on [upon] A  本問は count on A doing 「Aが・・・することを当てにする」の形。",
+    "explanation": "count on [upon] A 「A を当てにする」= depend on [upon] A, rely on [upon] A  本問は count on A doing 「Aが・・・することを当てにする」の形。",
     "jp": "株式市場が過去の実績を繰り返すことを当てにすべきではない。"
   },
   {
@@ -129,7 +129,7 @@
     "question": "She ( ) some shirts in the drawer after she had ironed them.",
     "choices": ["put by", "put off", "put away", "put on"],
     "answer": 2,
-    "explanation": "put away A / put A away 「Aを片づける」+プラス put away A / put A away は 「ア：Aを片づける, イ：Aを蓄える ( = put asideA） ウ：Aを平らげる」 の3つの意味で押さえる。 Joyce put away a big pizza and was still hungry. (ジョイスは大きなピザを平らげても, まだお腹が空いていた) ",
+    "explanation": "put away A / put A away 「Aを片づける」+プラス put away A / put A away は 「ア：Aを片づける, イ：Aを蓄える ( = put aside A） ウ：Aを平らげる」 の3つの意味で押さえる。 Joyce put away a big pizza and was still hungry. (ジョイスは大きなピザを平らげても, まだお腹が空いていた) ",
     "jp": "彼女は数枚のシャツにアイロンをかけてから、引き出しに片づけた。"
   },
   {
@@ -288,7 +288,7 @@
     "question": "I am so busy that I cannot do ( ) the help of a secretary.",
     "choices": ["by", "for", "over", "without"],
     "answer": 3,
-    "explanation": "do without A 「Aなしですます」",
+    "explanation": "do without A 「Aなしですます」= dispense with A",
     "jp": "私は多忙なので秘書の助けなしにはやっていけない。"
   },
   {
@@ -455,7 +455,7 @@
       "to meet with"
     ],
     "answer": 1,
-    "explanation": "turn to A 「Aを当てにする/頼りにする」+プラス 同意表現として depend on [upon] A(819), rely on [upon] A ,count on [upon] A を押さえる。本英文の no one 以下は, turn to no one という表現を前提に no one to turn to と いう名詞 no one を修飾する形容詞用法の不定詞を使った形",
+    "explanation": "turn to A 「Aを当てにする/頼りにする」+プラス 同意表現として depend on [upon] A, rely on [upon] A ,count on [upon] A を押さえる。本英文の no one 以下は, turn to no one という表現を前提に no one to turn to と いう名詞 no one を修飾する形容詞用法の不定詞を使った形",
     "jp": "彼はとてもひどい経済状態にあって,頼る人が誰もいない。"
   },
   {
@@ -471,7 +471,7 @@
       "over"
     ],
     "answer": 3,
-    "explanation": "think over A / think A over 「Aをじっくり考える/Aを検討する」 Aには suggestion/proposal などの名詞のほか, 本間のように what to do や what I should do what someone said などの語句が来る。",
+    "explanation": "think over A / think A over 「Aをじっくり考える/Aを検討する」 Aには suggestion/proposal などの名詞のほか, 本間のように what to do や what I should do, what someone said などの語句が来る。",
     "jp": "彼女はどうしたらいいのか慎重に考えてきたのだが,いまだに決められないでいる。"
   },
   {
@@ -580,7 +580,7 @@
     "question": "The government has ruled ( ) any further support for the industry because of the cost.",
     "choices": ["in", "off", "out", "over"],
     "answer": 2,
-    "explanation": "rule out A / rule A out 「Aを除外する / 頑として) 認めない」",
+    "explanation": "rule out A / rule A out 「Aを除外する / (頑として) 認めない」",
     "jp": "政府は費用の問題から、その産業へのさらなる援助を認めなかった。"
   },
   {
@@ -646,7 +646,7 @@
     "question": "He had a great deal of evidence to ( ) his story.",
     "choices": ["turn down", "look into", "back up", "make out"],
     "answer": 2,
-    "explanation": "back up A / back Aup 「Aを立証する」 = support A 　+プラス back up A / back A up には 「Aを後援する/支持する」 (=support A) の 意味もあるので注意。Nobody backed up Taro when he protested against the decision.(太郎がその決定に抗議したとき, 誰も彼を支援してくれなかった) ",
+    "explanation": "back up A / back A up 「Aを立証する」 = support A 　+プラス back up A / back A up には 「Aを後援する/支持する」 (=support A) の 意味もあるので注意。Nobody backed up Taro when he protested against the decision.(太郎がその決定に抗議したとき, 誰も彼を支援してくれなかった) ",
     "jp": "彼には、自分の話を裏付けるたくさんの証拠があった。"
   },
   {
@@ -835,6 +835,40 @@
     "answer": 0,
     "explanation": "persist in A は「Aを貫く／Aに固執する」。",
     "jp": "ジョンの最初の提案は受け入れられなかったが、彼は努力し続けて、ついに上司に彼の計画を採用させた。"
+  },
+  {
+    "id": "182-884",
+    "point": "Point 182",
+    "number": 884,
+    "type": "choice",
+    "question": "Our bill at the Chinese restaurant 【amounted to】 thirty dollars.",
+    "choices": ["added", "exceeded", "totaled", "subtracted"],
+    "answer": 2,
+    "explanation": "amount to A 「総計Aになる」\n= total A\n+プラス amount to A は「結局Aになる」の意味もあるので注意。\nI don't think his proposals amount to much.\n（彼の提案は結局たいしたものにはならないと思う）",
+    "jp": "中華料理店の勘定は合計30ドルになった。"
+  },
+  {
+    "id": "182-885",
+    "point": "Point 182",
+    "number": 885,
+    "type": "choice",
+    "question": "Because she spoke in a low voice, I couldn't 【make out】 what she was saying.",
+    "choices": ["reject", "imitate", "summarize", "understand"],
+    "answer": 3,
+    "explanation": "make out A / make A out 「Aを理解する」\n= understand A, comprehend A, figure out A / figure A out ",
+    "jp": "彼女は小さな声で話したので、私は彼女が言っていることがわからなかった。"
+  },
+  {
+    "id": "182-886",
+    "point": "Point 182",
+    "number": 886,
+    "type": "choice",
+    "question": "I would like you to 【look over】 these documents.",
+    "choices": ["classify", "demand", "examine", "fill in"],
+    "answer": 2,
+    "explanation": "look over A / look A over 「Aを調べる」\n= examine A, check A",
+    "jp": "これらの書類に目を通していただきたいのですが。"
   }
 ]
+
 
