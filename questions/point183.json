@@ -1,0 +1,257 @@
+[
+  {
+    "id": "183-922",
+    "point": "Point 183",
+    "number": 922,
+    "type": "choice",
+    "question": "I won't be able to get to work on time because my car broke ( ).",
+    "choices": ["over", "down", "in", "off"],
+    "answer": 1,
+    "explanation": "break down 「故障する/ だめになる」",
+    "jp": "車が故障したので、時間通りに会社に行けそうもない。"
+  },
+  {
+    "id": "183-923",
+    "point": "Point 183",
+    "number": 923,
+    "type": "choice",
+    "question": "Martha came right on time; she showed ( ) at 4 o'clock.",
+    "choices": ["up", "on", "by", "in"],
+    "answer": 0,
+    "explanation": "show up 「現れる」\n=turn up(924), appear, come, arrive",
+    "jp": "マーサはちょうど時間どおりに来た。つまり彼女は4時に現れた。"
+  },
+  {
+    "id": "183-924",
+    "point": "Point 183",
+    "number": 924,
+    "type": "choice",
+    "question": "Bill is sure to turn ( ) on time.",
+    "choices": ["around", "off", "in", "up"],
+    "answer": 3,
+    "explanation": "turn up 「現れる」",
+    "jp": "ビルはきっと時間どおりに姿を現すよ。"
+  },
+  {
+    "id": "183-925",
+    "point": "Point 183",
+    "number": 925,
+    "type": "choice",
+    "question": "You can stay ( ) till your mother comes home and then you must go to bed.",
+    "choices": ["down", "over", "in", "up"],
+    "answer": 3,
+    "explanation": "stay up 「寝ずに起きている」\n= sit up\n+プラス stay up (till) late=sit up till) late 「夜ふかしをする」 も押さえる。",
+    "jp": "お母さんが家に帰ってくるまでは起きていてもいいけれど、帰ったら寝なくちゃだめだよ。"
+  },
+  {
+    "id": "183-926",
+    "point": "Point 183",
+    "number": 926,
+    "type": "choice",
+    "question": "Look ( )! There's a car coming!",
+    "choices": ["at", "over", "out", "through"],
+    "answer": 2,
+    "explanation": "look out (for A) 「(Aに) 気をつける / 注意する」\n= watch out (for A)",
+    "jp": "気をつけて！車が来るよ！"
+  },
+  {
+    "id": "183-927",
+    "point": "Point 183",
+    "number": 927,
+    "type": "choice",
+    "question": "Don't ( ) up; hold on, please. He left a message for you.",
+    "choices": ["back", "get", "hang", "stand"],
+    "answer": 2,
+    "explanation": "hang up 「電話を切る」\n= ring off\nhold [hang] on, hold the line 「電話を切らないでおく」 (1262)",
+    "jp": "電話を切らずに、お待ちください。彼からのメッセージがあります。"
+  },
+  {
+    "id": "183-928",
+    "point": "Point 183",
+    "number": 928,
+    "type": "choice",
+    "question": "When the new encyclopedia ( ), everyone will be amazed at its beautiful pictures.",
+    "choices": ["comes about", "comes in", "comes due", "comes out"],
+    "answer": 3,
+    "explanation": "come out 「(本などが)出版される」\n=be published\n+プラス 他動詞表現の bring out A / bring A out 「Aを出版する」 も頻出。\nProfessor White brought out his first book last year.\n(ホワイト教授は昨年、彼の処女作の本を出版した)",
+    "jp": "その新しい百科事典が出版されると、美しい挿し絵にみな驚くでしょう。"
+  },
+  {
+    "id": "183-929",
+    "point": "Point 183",
+    "number": 929,
+    "type": "choice",
+    "question": "Two men fought while a crowd of people looked ( ).",
+    "choices": ["after", "at", "for", "on"],
+    "answer": 3,
+    "explanation": "look on 「傍観する」\n= stand by (901)",
+    "jp": "群衆が見物する中、2人の男が取っ組み合いのけんかをした。"
+  },
+  {
+    "id": "183-930",
+    "point": "Point 183",
+    "number": 930,
+    "type": "choice",
+    "question": "The boxer finally ( ) ten minutes after he had been knocked out.",
+    "choices": ["pulled through", "turned out", "came about", "came to"],
+    "answer": 3,
+    "explanation": "come to 「意識[正気]を取り戻す」\n+プラス 同意表現の come around, come to one's senses もここで押さえる。\nThe boy came around when we threw water on his face.\n(私たちが顔に水をかけると、その少年は意識を取り戻した)\nShe came to her senses in hospital.\n(彼女は病院で意識を取り戻した)",
+    "jp": "そのボクサーは、ノックアウトされてから10分後、ついに意識が戻った。"
+  },
+  {
+    "id": "183-931",
+    "point": "Point 183",
+    "number": 931,
+    "type": "choice",
+    "question": "Jim was extremely rude. He broke ( ) on our conversation.",
+    "choices": ["in", "for", "up", "out"],
+    "answer": 0,
+    "explanation": "break in (on A) 「(Aに) 割り込む」",
+    "jp": "ジムは本当に無礼だった。彼は私たちの会話に割り込んだ。"
+  },
+  {
+    "id": "183-932",
+    "point": "Point 183",
+    "number": 932,
+    "type": "choice",
+    "question": "He finally got married and settled ( ).",
+    "choices": ["down", "to", "on", "of"],
+    "answer": 0,
+    "explanation": "settle down 「落ち着く」\n+プラス settle down には「定住する/移住する」の意味もあるので注意。",
+    "jp": "彼はついに結婚し、身を固めた。"
+  },
+  {
+    "id": "183-933",
+    "point": "Point 183",
+    "number": 933,
+    "type": "choice",
+    "question": "He usually walks to work, but yesterday he was late, so he called a cab. A few minutes later, a taxi ( ) in front of his house.",
+    "choices": ["caught up", "fixed up", "pulled up", "went up"],
+    "answer": 2,
+    "explanation": "pull up 「(車が) 止まる」\n+プラス pull over 「(車が) 片側に寄る」も一緒に押さえておこう。",
+    "jp": "彼は、ふだんは歩いて仕事に行くが、昨日は遅くなってしまったのでタクシーを呼んだ。数分後、タクシーが彼の家の前に止まった。"
+  },
+  {
+    "id": "183-934",
+    "point": "Point 183",
+    "number": 934,
+    "type": "choice",
+    "question": "As it was her birthday, they decided to ( ) for a change.",
+    "choices": ["eat off", "eat out", "eat through", "eat up"],
+    "answer": 1,
+    "explanation": "eat out 「外食する」",
+    "jp": "彼女の誕生日だったので、彼らはいつもと違って外食をすることにした。"
+  },
+  {
+    "id": "183-935",
+    "point": "Point 183",
+    "number": 935,
+    "type": "choice",
+    "question": "Does everyone know what to do if a fire 【breaks out】?",
+    "choices": ["deserves", "explains", "occurs", "prevents"],
+    "answer": 2,
+    "explanation": "break out 「急に起こる / 勃発する」\n!! 注意 break out は「戦争・火事・病気」などが主語になる。",
+    "jp": "皆さんは火事が発生したときにどうすべきかご存じですか。"
+  },
+  {
+    "id": "183-936",
+    "point": "Point 183",
+    "number": 936,
+    "type": "choice",
+    "question": "The meeting finally 【broke up】 at ten.",
+    "choices": ["came to an end", "was canceled", "was postponed", "began"],
+    "answer": 0,
+    "explanation": "break up 「（会議が）散会する」\n+プラス break up は「（学校などが）休みになる」「（関係などが）終わる」の意味もあるので注意。\ncome to an end は「終わる」の意味のイディオムとして押さえる（1008）。",
+    "jp": "その会議はようやく10時に散会した。"
+  },
+  {
+    "id": "183-937",
+    "point": "Point 183",
+    "number": 937,
+    "type": "choice",
+    "question": "The director 【passed away】 at eight o'clock last night.",
+    "choices": ["disappeared gradually", "died", "lost consciousness", "went away"],
+    "answer": 1,
+    "explanation": "pass away 「死ぬ / すたれる」\n= die",
+    "jp": "その監督は昨夜8時に亡くなった。"
+  },
+  {
+    "id": "183-938",
+    "point": "Point 183",
+    "number": 938,
+    "type": "choice",
+    "question": "We don't know how the accident 【came about】.",
+    "choices": ["happened", "began", "finished", "started"],
+    "answer": 0,
+    "explanation": "come about 「起こる」\n= happen, take place\n+プラス 同意表現 come to pass も重要。\nI will see that such a thing does not come to pass.\n（そのようなことが起こらないように気をつけます）",
+    "jp": "私たちは、どうしてその事故が起こったのかわからない。"
+  },
+  {
+    "id": "183-939",
+    "point": "Point 183",
+    "number": 939,
+    "type": "choice",
+    "question": "After lunch, they 【set out】 for the next destination.",
+    "choices": ["brought", "started", "vanished", "reached"],
+    "answer": 1,
+    "explanation": "set out 「出発する」\n= start\n+プラス set off も同意表現としてここで押さえる。\nAfter saying goodbye, he set off on a long journey.\n(別れを告げた後、彼は長い旅に出発した)",
+    "jp": "昼食後、彼らは次の目的地に向けて出発した。"
+  },
+  {
+    "id": "183-940",
+    "point": "Point 183",
+    "number": 940,
+    "type": "choice",
+    "question": "The tourists 【put up】 at the hillside hotel.",
+    "choices": ["built", "found", "stayed", "visited"],
+    "answer": 2,
+    "explanation": "put up (at A) 「(Aに) 泊まる」\n= stay (at A)",
+    "jp": "旅行者たちは、丘の中腹のホテルに泊まった。"
+  },
+  {
+    "id": "183-941",
+    "point": "Point 183",
+    "number": 941,
+    "type": "choice",
+    "question": "You will recognize him because he 【stands out】.",
+    "choices": ["is very tall", "is alone", "walks strangely", "is noticeable"],
+    "answer": 3,
+    "explanation": "stand out 「目立つ」",
+    "jp": "彼は目立つから、すぐに彼に気づくでしょう。"
+  },
+  {
+    "id": "183-942",
+    "point": "Point 183",
+    "number": 942,
+    "type": "choice",
+    "question": "I tried to stop him, but he 【made off】.",
+    "choices": ["rushed", "stood up", "got away", "started"],
+    "answer": 2,
+    "explanation": "make off [away] 「急いで逃げる / 立ち去る」\n= get away, run away, escape",
+    "jp": "私は彼を止めようとしたが、彼は急いで逃げていった。"
+  },
+  {
+    "id": "183-943",
+    "point": "Point 183",
+    "number": 943,
+    "type": "choice",
+    "question": "Please don't 【cut in】 while I'm talking with our boss.",
+    "choices": ["hang up", "interrupt", "ring up", "deliver"],
+    "answer": 1,
+    "explanation": "cut in 「(人の話を)さえぎる」\n= interrupt A, break in (on A) (931)",
+    "jp": "私が上司と話しているときは横から口をはさまないでください。"
+  },
+  {
+    "id": "183-944",
+    "point": "Point 183",
+    "number": 944,
+    "type": "choice",
+    "question": "An old bomb under the ground 【went off】 but nobody was injured.",
+    "choices": ["was stolen", "was arranged", "exploded", "broke"],
+    "answer": 2,
+    "explanation": "go off 「爆発する」\n= explode",
+    "jp": "地中の古い爆弾が爆発したが、誰もけがをしなかった。"
+  }
+]
+
+
