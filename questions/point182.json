@@ -1,0 +1,840 @@
+[
+  {
+    "id": "182-813",
+    "point": "Point 182",
+    "number": 813,
+    "type": "choice",
+    "question": "Are there still many people in Europe who believe ( ) ghosts?",
+    "choices": ["to", "of", "at", "in"],
+    "answer": 3,
+    "explanation": "believe in A 「Aの存在を信じる / Aを良いと信じる」  believe A は基本的に 「Aを本当だと思う/信用する」 の意味。",
+    "jp": "幽霊を信じている人は,まだヨーロッパにはたくさんいますか。"
+  },
+  {
+    "id": "182-814",
+    "point": "Point 182",
+    "number": 814,
+    "type": "choice",
+    "question": "Have many workers been ( ) off in the factory?",
+    "choices": ["laid", "employed", "taken", "stuck"],
+    "answer": 0,
+    "explanation": "lay off A / lay A off 「Aを一時解雇する」",
+    "jp": "その工場では、多くの労働者が一時解雇されてきたのですか。"
+  },
+  {
+    "id": "182-815",
+    "point": "Point 182",
+    "number": 815,
+    "type": "choice",
+    "question": "We should not ( ) off relations with the countries around us.",
+    "choices": ["break", "carry", "give", "take"],
+    "answer": 0,
+    "explanation": "break off A 「A (関係など) を絶つ/A (交渉など) を打ち切る」 +プラス 自動詞用法 「休憩する」 「絶交する」 も押さえておこう。",
+    "jp": "私たちは周囲の国々との関係を絶つべきではない。"
+  },
+  {
+    "id": "182-816",
+    "point": "Point 182",
+    "number": 816,
+    "type": "choice",
+    "question": "People always hope ( ) more pleasant and comfortable surroundings.",
+    "choices": ["for", "from", "in", "on"],
+    "answer": 0,
+    "explanation": "hope for A は「Aを望む」。",
+    "jp": "人々はいつも、より心地よく、より快適な環境を望む。"
+  },
+  {
+    "id": "182-817",
+    "point": "Point 182",
+    "number": 817,
+    "type": "choice",
+    "question": "Happiness ( ) in contentment.",
+    "choices": ["depends", "invests", "involves", "consists"],
+    "answer": 3,
+    "explanation": "consist in A は「Aにある」。= lie in A",
+    "jp": "幸福は心の安らぎの中にある。"
+  },
+  {
+    "id": "182-818",
+    "point": "Point 182",
+    "number": 818,
+    "type": "choice",
+    "question": "I don't approve ( ) the plan.",
+    "choices": ["to", "with", "of", "at"],
+    "answer": 2,
+    "explanation": "approve of A は「Aに賛成する」。⇔disapprove of A 「Aに賛成しない」",
+    "jp": "私はその計画に賛成ではない。"
+  },
+  {
+    "id": "182-819",
+    "point": "Point 182",
+    "number": 819,
+    "type": "choice",
+    "question": "The total fee for the summer course ( ) how many classes you take.",
+    "choices": ["counts on", "depends on", "leans on", "relies on"],
+    "answer": 1,
+    "explanation": "depend on [upon] A 「Aによる/A次第である」 +プラス depend on [upon] A は 「Aを当てにする」の意味でも用いられる。",
+    "jp": "この夏期講座の費用総額は受講するクラスの数によって異なります。"
+  },
+  {
+    "id": "182-820",
+    "point": "Point 182",
+    "number": 820,
+    "type": "choice",
+    "question": "You shouldn't ( ) the stock market repeating past results.It's very hard to predict.",
+    "choices": ["bear with", "keep off", "live on", "count on"],
+    "answer": 3,
+    "explanation": "count on [upon] A A を当てにする」= depend on [upon] A, rely on [upon] A  本問は count on A doing 「Aが・・・することを当てにする」の形。",
+    "jp": "株式市場が過去の実績を繰り返すことを当てにすべきではない。"
+  },
+  {
+    "id": "182-821",
+    "point": "Point 182",
+    "number": 821,
+    "type": "choice",
+    "question": "Don't show ( ) your new bicycle so much in front of your friends.",
+    "choices": ["up", "off", "in", "around"],
+    "answer": 1,
+    "explanation": "show off A / show A off 「A を見せびらかす」 +プラス show off A / show A off には「(人物が) Aを引き立たせる」 の意味もある。",
+    "jp": "友だちの前で、新しい自転車をそんなに見せびらかすなよ。"
+  },
+
+  {
+    "id": "182-822",
+    "point": "Point 182",
+    "number": 822,
+    "type": "choice",
+    "question": "Japan ( ) of four large islands and many small islands.",
+    "choices": ["consists", "contains", "forms", "organizes"],
+    "answer": 0,
+    "explanation": "consist of A 「Aから成り立つ」=be made up of A, be composed of A +プラス consist in Aは 「Aにある」 の意味。",
+    "jp": "日本は4つの大きな島と多くの小さな島から構成される。"
+  },
+ {
+    "id": "182-823",
+    "point": "Point 182",
+    "number": 823,
+    "type": "choice",
+    "question": "To put some money ( ) means \"to save some money.\"",
+    "choices": ["across", "aside", "back", "under"],
+    "answer": 1,
+    "explanation": "put aside A / put A aside 「Aを取っておく/蓄える」= save A, put[lay] by A / put[lay] A by, lay aside A / lay A aside",
+    "jp": "金を取っておくというのは「貯金する」ということだ。"
+  },
+  {
+    "id": "182-824",
+    "point": "Point 182",
+    "number": 824,
+    "type": "choice",
+    "question": "She ( ) some shirts in the drawer after she had ironed them.",
+    "choices": ["put by", "put off", "put away", "put on"],
+    "answer": 2,
+    "explanation": "put away A / put A away 「Aを片づける」+プラス put away A / put A away は 「ア：Aを片づける, イ：Aを蓄える ( = put asideA） ウ：Aを平らげる」 の3つの意味で押さえる。 Joyce put away a big pizza and was still hungry. (ジョイスは大きなピザを平らげても, まだお腹が空いていた) ",
+    "jp": "彼女は数枚のシャツにアイロンをかけてから、引き出しに片づけた。"
+  },
+  {
+    "id": "182-825",
+    "point": "Point 182",
+    "number": 825,
+    "type": "choice",
+    "question": "Technology ( ) practical problems.",
+    "choices": [
+      "is in charge of",
+      "is interested of",
+      "deals with",
+      "cares for"
+    ],
+    "answer": 2,
+    "explanation": "deal with A 「Aを扱う/Aに対処する」+プラス deal in A 「Aを商品として扱う/Aを売る」もここで押さえる。At that shop they deal in kitchen utensils. (その店では台所用品を扱っている)",
+    "jp": "科学技術は実用的な諸問題を取り扱う。"
+  },
+  {
+    "id": "182-826",
+    "point": "Point 182",
+    "number": 826,
+    "type": "choice",
+    "question": "It amazes me how many people can cope ( ) both a job and a family.",
+    "choices": ["between", "in", "up", "with"],
+    "answer": 3,
+    "explanation": "cope with A は「Aをうまく処理する／対処する」。",
+    "jp": "たくさんの人々が仕事と家庭を両立させることができるのは、私にとって驚くべきことだ。"
+  },
+  {
+    "id": "182-827",
+    "point": "Point 182",
+    "number": 827,
+    "type": "choice",
+    "question": "Her illness resulted ( ) her living environment.",
+    "choices": ["from", "of", "by", "with"],
+    "answer": 0,
+    "explanation": "result from A は「（結果として）Aから生じる」。",
+    "jp": "彼女の病気は、生活環境に起因していた。"
+  },
+  {
+    "id": "182-828",
+    "point": "Point 182",
+    "number": 828,
+    "type": "choice",
+    "question": "The match resulted ( ) a goalless draw after extra time.",
+    "choices": ["from", "to", "with", "in"],
+    "answer": 3,
+    "explanation": "result in A 「(結果として)Aに終わる/Aになる」A result from B=B result in A の因果関係で押さえる。",
+    "jp": "その試合は延長戦のあと、0対0の引き分けに終わった。"
+  },
+  {
+    "id": "182-829",
+    "point": "Point 182",
+    "number": 829,
+    "type": "choice",
+    "question": "John will call ( ) his teacher this afternoon.",
+    "choices": ["at", "about", "on", "with"],
+    "answer": 2,
+    "explanation": "call on A は「A（人）を訪問する」。①の call at A は 「A (場所)を訪問する」 の意味を表す。",
+    "jp": "今日の午後、ジョンは先生を訪ねるつもりです。"
+  },
+  {
+    "id": "182-830",
+    "point": "Point 182",
+    "number": 830,
+    "type": "choice",
+    "question": "There was too much information for me to ( ).",
+    "choices": ["take after", "take over", "take on", "take in"],
+    "answer": 3,
+    "explanation": "take in A / take A in 「A (新しい事実・情報など) を理解する」= understand A, comprehend A ▶take in A / take A in は 「Aをだます」 (=deceive A. cheat A) の意味 もある",
+    "jp": "私が理解しきれないほど多くの情報があった。"
+  },
+  {
+    "id": "182-831",
+    "point": "Point 182",
+    "number": 831,
+    "type": "choice",
+    "question": "Student exchange programs ( ) for good relations between nations.",
+    "choices": ["make", "get", "take", "do"],
+    "answer": 0,
+    "explanation": "make for A は「Aに役立つ／Aを生み出す」。",
+    "jp": "学生交流プログラムは、国家間の良好な関係を築くのに役立つ。"
+  },
+  {
+    "id": "182-832",
+    "point": "Point 182",
+    "number": 832,
+    "type": "choice",
+    "question": "A friendly clerk carefully explained how to ( ) the forms to receive a tax refund.",
+    "choices": ["deliver", "fill out", "sign up", "turn down"],
+    "answer": 1,
+    "explanation": "fill out [in] A/ fill A out [in] 「A (文書など) に必要事項を書き込む」= complete A",
+    "jp": "親切な職員が税金の払い戻しを受けるための用紙の記入方法を念入りに説明してくれた。"
+  },
+  {
+    "id": "182-833",
+    "point": "Point 182",
+    "number": 833,
+    "type": "choice",
+    "question": "Try to speak English with a lot of native speakers if you want to ( ) your English.",
+    "choices": ["pick out", "hand up", "look up to", "brush up"],
+    "answer": 3,
+    "explanation": "brush up A 「Aに磨きをかける / Aをやり直す」+プラス brush up on A でも同じ意味を表すことに注意。",
+    "jp": "英語に磨きをかけたいのならば、英語を母語とする多くの人たちと英語を話しなさい。"
+  },
+  {
+    "id": "182-834",
+    "point": "Point 182",
+    "number": 834,
+    "type": "choice",
+    "question": "I lost Mother's medicine which I had ( ) up at the pharmacy.",
+    "choices": ["brought", "handed", "picked", "taken"],
+    "answer": 2,
+    "explanation": "pick up A / pick Aup 「Aを買う/Aを手に入れる」+プラス pick up Aは,ほかに 「(車で) A (人) を迎えに行く [来る]」 「Aを手に取る」 「Aを身に付ける」 「Aを (中断したところから) 再開する」 などの意味もあるの で注意。",
+    "jp": "私は薬局で買った母の薬をなくしてしまった。"
+  },
+  {
+    "id": "182-835",
+    "point": "Point 182",
+    "number": 835,
+    "type": "choice",
+    "question": "Before we left, Jane went to ( ) the hotel room.",
+    "choices": ["pay", "pay for", "paying", "paying for"],
+    "answer": 1,
+    "explanation": "pay for A 「Aの代金を払う」+プラス pay for A には 「Aの償いをする/Aの罰を受ける」の意味もある。She will be made to pay for her arrogance. (彼女は自分の傲慢さに対して報いを受けることになるだろう)",
+    "jp": "私たちが出発する前に、ジェーンはホテルの部屋代を支払いに行った。"
+  },
+  {
+    "id": "182-836",
+    "point": "Point 182",
+    "number": 836,
+    "type": "choice",
+    "question": "I ( ) to her as soon as we met.",
+    "choices": ["took", "made", "put", "set"],
+    "answer": 0,
+    "explanation": "take to A 「Aを好きになる」= come to like A +プラス take to A は 「Aにふける/Aが習慣になる」 の意味もある。 He had taken to drinking more than was good for him. (彼は体によくないほど酒にふけるようになっていた",
+    "jp": "会うとたちまち、私は彼女が好きになった。"
+  },
+  {
+    "id": "182-837",
+    "point": "Point 182",
+    "number": 837,
+    "type": "choice",
+    "question": "Sheep live ( ) grass.",
+    "choices": ["at", "on", "with", "up"],
+    "answer": 1,
+    "explanation": "live on A 「Aを常食とする/Aで生活していく」",
+    "jp": "羊は草を常食とする。"
+  },
+  {
+    "id": "182-838",
+    "point": "Point 182",
+    "number": 838,
+    "type": "choice",
+    "question": "I am so busy that I cannot do ( ) the help of a secretary.",
+    "choices": ["by", "for", "over", "without"],
+    "answer": 3,
+    "explanation": "do without A 「Aなしですます」",
+    "jp": "私は多忙なので秘書の助けなしにはやっていけない。"
+  },
+  {
+    "id": "182-839",
+    "point": "Point 182",
+    "number": 839,
+    "type": "choice",
+    "question": "Since the early 1980s, more than 25 million people have died ( ) AIDS worldwide.",
+    "choices": ["by", "off", "out", "of"],
+    "answer": 3,
+    "explanation": "die of A は「A（病気）が原因で死ぬ」。",
+    "jp": "1980年代の初頭以来、世界中で2,500万人以上がエイズで亡くなった。"
+  },
+  {
+    "id": "182-840",
+    "point": "Point 182",
+    "number": 840,
+    "type": "choice",
+    "question": "I need Johnny. Please ( ) him.",
+    "choices": ["send up", "get on", "send for", "get out"],
+    "answer": 2,
+    "explanation": "send for A は「Aを呼びにやる」。",
+    "jp": "私にはジョニーが必要です。どうか、彼を呼びにやってください。"
+  },
+  {
+    "id": "182-841",
+    "point": "Point 182",
+    "number": 841,
+    "type": "choice",
+    "question": "John's father owns a small clothing company.When his father retires, John will ( ) over the company.",
+    "choices": ["run", "take", "control", "manage"],
+    "answer": 1,
+    "explanation": "take over A/ take A over 「Aを引き継ぐ」",
+    "jp": "父親が退職したら、ジョンが会社を引き継ぐことにしている。"
+  },
+  {
+    "id": "182-842",
+    "point": "Point 182",
+    "number": 842,
+    "type": "choice",
+    "question": "What subject are you majoring ( ) at university?",
+    "choices": ["on", "of", "in", "with"],
+    "answer": 2,
+    "explanation": "major in A 「Aを専攻する/専門にする」 ",
+    "jp": "大学では何の科目を専攻していますか。"
+  },
+  {
+    "id": "182-843",
+    "point": "Point 182",
+    "number": 843,
+    "type": "choice",
+    "question": "My brother specializes ( ) ancient Greek history.",
+    "choices": ["at", "in", "of", "on"],
+    "answer": 1,
+    "explanation": "specialize in A 「A を専攻する/専門にする」=major in A",
+    "jp": "私の兄は古代ギリシャ史を専攻しています。"
+   },
+  {
+    "id": "182-844",
+    "point": "Point 182",
+    "number": 844,
+    "type": "choice",
+    "question": "His house was ( ) into last night.",
+    "choices": [
+      "entered",
+      "gone",
+      "stolen",
+      "broken"
+    ],
+    "answer": 3,
+    "explanation": "break into A 「Aに押し入る」+プラス break into A には, break into a run 「急に走り始める」 のように 「急にA (動作) をし始める」 の意味もある。",
+    "jp": "昨夜、彼の家はどろぼうに押し入られた。"
+  },
+  {
+    "id": "182-845",
+    "point": "Point 182",
+    "number": 845,
+    "type": "choice",
+    "question": "I'm terribly sorry; it never ( ) to me that my words would hurt your feelings.",
+    "choices": [
+      "happened",
+      "occurred",
+      "took",
+      "thought"
+    ],
+    "answer": 1,
+    "explanation": "occur to A 「Aの心にふと浮かぶ」= strike A ①のhappen to A は 「Aに起こる / ふりかかる」の意味。 本英文のit は, that節を受ける形式主語",
+    "jp": "本当に申し訳ありません。私が口にした言葉があなたの気持ちを傷つけることになるとは思ってもみませんでした。"
+  },
+  {
+    "id": "182-846",
+    "point": "Point 182",
+    "number": 846,
+    "type": "choice",
+    "question": "Because I walk a lot, I wear ( ) shoes quickly.",
+    "choices": [
+      "away",
+      "out",
+      "over",
+      "up"
+    ],
+    "answer": 1,
+    "explanation": "wear out A/ wear A out 「A (物) を使い古す」 +プラス wear out A / wear A out には 「A(人) を疲れ果てさせる」の意味もある。 His wife is worn out after looking after the children. (彼の妻は子どもたちの世話をした後で疲れ切っている)",
+    "jp": "たくさん歩くので,私はすぐに靴をすり減らす。"
+  },
+  {
+    "id": "182-847",
+    "point": "Point 182",
+    "number": 847,
+    "type": "choice",
+    "question": "The woman tried to ( ) a cry for help.",
+    "choices": [
+      "take out",
+      "move out",
+      "set out",
+      "let out"
+    ],
+    "answer": 3,
+    "explanation": "let out A / let A out 「A (声など) を上げる」let out a cry で 「叫び声を上げる」の意味を表す。 ③ set out は 「出発する」 の意味。+プラス let out a laugh 「笑い声を上げる」。",
+    "jp": "女性は叫び声を上げて助けを求めようとした。"
+  },
+  {
+    "id": "182-848",
+    "point": "Point 182",
+    "number": 848,
+    "type": "choice",
+    "question": "I've ( ) for the job and I hope I get it.",
+    "choices": [
+      "appointed",
+      "applied",
+      "presented",
+      "succeeded"
+    ],
+    "answer": 1,
+    "explanation": "apply for A 「Aに申し込む/Aを求める」",
+    "jp": "私はその仕事に応募しました。その仕事に就けたらな,と思います。"
+  },
+  {
+    "id": "182-849",
+    "point": "Point 182",
+    "number": 849,
+    "type": "choice",
+    "question": "You can rely ( ) her to do the job properly.",
+    "choices": [
+      "to",
+      "with",
+      "in",
+      "on"
+    ],
+    "answer": 3,
+    "explanation": "rely on [upon] A 「Aを当てにする/頼りにする」",
+    "jp": "あなたは彼女がその仕事をきちんとこなすことを当てにしてよい。"
+  },
+  {
+    "id": "182-850",
+    "point": "Point 182",
+    "number": 850,
+    "type": "choice",
+    "question": "He is in a very poor financial situation and he has no one ( ).",
+    "choices": [
+      "to die for",
+      "to turn to",
+      "who will pardon him",
+      "to meet with"
+    ],
+    "answer": 1,
+    "explanation": "turn to A 「Aを当てにする/頼りにする」+プラス 同意表現として depend on [upon] A(819), rely on [upon] A ,count on [upon] A を押さえる。本英文の no one 以下は, turn to no one という表現を前提に no one to turn to と いう名詞 no one を修飾する形容詞用法の不定詞を使った形",
+    "jp": "彼はとてもひどい経済状態にあって,頼る人が誰もいない。"
+  },
+  {
+    "id": "182-851",
+    "point": "Point 182",
+    "number": 851,
+    "type": "choice",
+    "question": "She has been thinking ( ) what to do, but she still hasn't made a decision.",
+    "choices": [
+      "around",
+      "until",
+      "against",
+      "over"
+    ],
+    "answer": 3,
+    "explanation": "think over A / think A over 「Aをじっくり考える/Aを検討する」 Aには suggestion/proposal などの名詞のほか, 本間のように what to do や what I should do what someone said などの語句が来る。",
+    "jp": "彼女はどうしたらいいのか慎重に考えてきたのだが,いまだに決められないでいる。"
+  },
+  {
+    "id": "182-852",
+    "point": "Point 182",
+    "number": 852,
+    "type": "choice",
+    "question": "The new prime minister had worked ( ) a detailed list of policies.",
+    "choices": [
+      "more",
+      "away",
+      "out",
+      "hard"
+    ],
+    "answer": 2,
+    "explanation": "work out A / work A out 「A (方法など) を (苦労して) 考え出す」 +プラス work out A / work A out は 「Aを苦労して解く」 (= solve A) や 「A (税金・費用など) を計算する」 の意味もあることに注意。I'll give you five minutes to work out this problem. この問題を解くのに5分与えます)",
+    "jp": "新しい首相は、政策の詳細なリストを苦労して考え出した。"
+  },
+  {
+    "id": "182-853",
+    "point": "Point 182",
+    "number": 853,
+    "type": "choice",
+    "question": "This math question is really hard to figure ( ).",
+    "choices": [
+      "away",
+      "down",
+      "in",
+      "out"
+    ],
+    "answer": 3,
+    "explanation": "figure out A / figure A out 「Aを解決する」= solve A, work out A / work A out +プラス figure out A / figure A out は 「Aを理解する」 (=understand A) の意味も あるので注意。I can figure out what he is trying to say.(彼の言わんとしていることは理解できる)",
+    "jp": "この数学の問題は、解くのが本当に難しい。"
+  },
+  {
+    "id": "182-854",
+    "point": "Point 182",
+    "number": 854,
+    "type": "choice",
+    "question": "We must ( ) our promise or we will lose our credibility.",
+    "choices": ["go to", "refer to", "look to", "stick to"],
+    "answer": 3,
+    "explanation": "stick to A 「Aを固守する」②の refer to Aは 「Aに言及する」の意味。",
+    "jp": "私たちは約束を守り抜かなければならない。さもないと、信用を失うだろう。"
+  },
+  {
+    "id": "182-855",
+    "point": "Point 182",
+    "number": 855,
+    "type": "choice",
+    "question": "The people in this area still ( ) their ancient traditions.",
+    "choices": ["true to", "loyal to", "bring to", "cling to"],
+    "answer": 3,
+    "explanation": "cling to A 「Aを固守する」= stick to A",
+    "jp": "この地域の人々は古い伝統を今でも守っている。"
+  },
+  {
+    "id": "182-856",
+    "point": "Point 182",
+    "number": 856,
+    "type": "choice",
+    "question": "His actions do not always correspond ( ) his words.",
+    "choices": ["by", "with", "on", "in"],
+    "answer": 1,
+    "explanation": "correspond with A 「Aに一致する」+プラス correspond with A には 「Aと文通する」 の意味もあるので注意。I often correspond with my friends in America. (私はアメリカの友人たちとよく手紙のやりとりをする)",
+    "jp": "彼の行動が彼の言葉といつも一致するとは限らない。"
+  },
+  {
+    "id": "182-857",
+    "point": "Point 182",
+    "number": 857,
+    "type": "choice",
+    "question": "Christmas Day ( ) on a Thursday this year.",
+    "choices": ["takes", "goes", "gets", "falls"],
+    "answer": 3,
+    "explanation": "fall on A 「(ある日が) Aに当たる」",
+    "jp": "クリスマスは今年は木曜日に当たる。"
+  },
+  {
+    "id": "182-858",
+    "point": "Point 182",
+    "number": 858,
+    "type": "choice",
+    "question": "Now I must ( ) about my work.",
+    "choices": ["set", "come", "do", "excite"],
+    "answer": 0,
+    "explanation": "set about A 「Aにとりかかる」= go about A",
+    "jp": "さて、私は仕事にとりかからなければならない。"
+  },
+  {
+    "id": "182-859",
+    "point": "Point 182",
+    "number": 859,
+    "type": "choice",
+    "question": "A succession of late nights is beginning to ( ) my health.",
+    "choices": ["tell from", "tell off", "tell on", "tell to"],
+    "answer": 2,
+    "explanation": "tell on A 「Aにこたえる/影響する」+プラス tell on A には 「Aのことを告げ口する」の意味もあることに注意。",
+    "jp": "夜ふかし続きで、健康にこたえ始めている。"
+  },
+  {
+    "id": "182-860",
+    "point": "Point 182",
+    "number": 860,
+    "type": "choice",
+    "question": "The government has ruled ( ) any further support for the industry because of the cost.",
+    "choices": ["in", "off", "out", "over"],
+    "answer": 2,
+    "explanation": "rule out A / rule A out 「Aを除外する / 頑として) 認めない」",
+    "jp": "政府は費用の問題から、その産業へのさらなる援助を認めなかった。"
+  },
+  {
+    "id": "182-861",
+    "point": "Point 182",
+    "number": 861,
+    "type": "choice",
+    "question": "Our neighborhood is an area where garbage is often disposed ( ) illegally.",
+    "choices": ["by", "to", "of", "with"],
+    "answer": 2,
+    "explanation": "dispose of A 「Aを捨てる/Aを処分 [処理] する」 = get rid of A",
+    "jp": "うちの近所はゴミがしばしば不法に捨てられる区域です。"
+  },
+  {
+    "id": "182-862",
+    "point": "Point 182",
+    "number": 862,
+    "type": "choice",
+    "question": "I hated to ( ) my car, but I had to sell it because I needed money.",
+    "choices": ["break in", "clear up", "part with", "take over"],
+    "answer": 2,
+    "explanation": "part with A 「Aを手放す/売り払う」",
+    "jp": "車を手放したくなかったが、お金が必要だったので売らなければならなかった。"
+  },
+  {
+    "id": "182-863",
+    "point": "Point 182",
+    "number": 863,
+    "type": "choice",
+    "question": "The company had to ( ) down expenses.",
+    "choices": ["reduce", "cut", "try", "make"],
+    "answer": 1,
+    "explanation": "cut down A/ cut A down 「Aを減らす」 =reduce A, cut down on A",
+    "jp": "その会社は経費を削減しなければならなかった。"
+  },
+  {
+    "id": "182-864",
+    "point": "Point 182",
+    "number": 864,
+    "type": "choice",
+    "question": "Now I see what you are ( ) at.",
+    "choices": ["expecting", "aiming", "considering", "thinking"],
+    "answer": 1,
+    "explanation": "aim at A 「A をねらう」本間では, aim at A のAは what で, 節の先頭に出ている。 +プラス 他動詞用法の aim を用いた aim A at B 「AをBに向ける」 もここで押さえる。",
+    "jp": "君のねらいがわかったぞ。"
+  },
+  {
+    "id": "182-865",
+    "point": "Point 182",
+    "number": 865,
+    "type": "choice",
+    "question": "John was able to hold ( ) his anger and avoid a fight.",
+    "choices": ["back", "out", "up", "on"],
+    "answer": 0,
+    "explanation": "hold back A / hold A back 「A (感情など) を抑える/Aを秘密にしておく」",
+    "jp": "ジョンは怒りを抑え、けんかを避けることができた。"
+  },
+  {
+    "id": "182-866",
+    "point": "Point 182",
+    "number": 866,
+    "type": "choice",
+    "question": "He had a great deal of evidence to ( ) his story.",
+    "choices": ["turn down", "look into", "back up", "make out"],
+    "answer": 2,
+    "explanation": "back up A / back Aup 「Aを立証する」 = support A 　+プラス back up A / back A up には 「Aを後援する/支持する」 (=support A) の 意味もあるので注意。Nobody backed up Taro when he protested against the decision.(太郎がその決定に抗議したとき, 誰も彼を支援してくれなかった) ",
+    "jp": "彼には、自分の話を裏付けるたくさんの証拠があった。"
+  },
+  {
+    "id": "182-867",
+    "point": "Point 182",
+    "number": 867,
+    "type": "choice",
+    "question": "My doctor said that I must ( ) up a sport to keep fit.",
+    "choices": ["get", "sit", "stand", "take"],
+    "answer": 3,
+    "explanation": "take up A 「A (スポーツなど) を始める」+プラス このほか 「A (場所など) を占める」「A (時間) をとる」 「A (申し出など) に応じる」 などの意味がある。",
+    "jp": "健康を保つためにスポーツを始めなければならないと医者は言った。"
+  },
+  {
+    "id": "182-868",
+    "point": "Point 182",
+    "number": 868,
+    "type": "choice",
+    "question": "Please let him work as a part-timer. I'll ( ) for his character.",
+    "choices": ["reply", "answer", "tell", "help"],
+    "answer": 1,
+    "explanation": "answer for A 「Aを保証する/Aの責任を負う」=be responsible for A",
+    "jp": "どうか彼をアルバイトとして働かせてください。私が彼の人格を保証します。"
+  },
+  {
+    "id": "182-869",
+    "point": "Point 182",
+    "number": 869,
+    "type": "choice",
+    "question": "The teacher pointed ( ) a few mistakes that the student had not corrected.",
+    "choices": ["for", "in", "out", "with"],
+    "answer": 2,
+    "explanation": "point out A は「Aを指摘する」。+プラス point out that ... 「・・・であるということを指摘する」 の用法もあるので注意。",
+    "jp": "先生は、その学生が直さなかった間違いをいくつか指摘した。"
+  },
+  {
+    "id": "182-870",
+    "point": "Point 182",
+    "number": 870,
+    "type": "choice",
+    "question": "The old woman was almost ( ) over by a bus when she walked out into the road.",
+    "choices": ["taken", "run", "come", "passed"],
+    "answer": 1,
+    "explanation": "run over A は「Aをひく」。almost は「危うく〜するところだった」。",
+    "jp": "その老婦人は歩いて道路に出たとき、バスにひかれそうになった。"
+  },
+  {
+    "id": "182-871",
+    "point": "Point 182",
+    "number": 871,
+    "type": "choice",
+    "question": "The old couple ( ) for peace.",
+    "choices": ["demanded", "suggested", "believed", "longed"],
+    "answer": 3,
+    "explanation": "long for A は「Aを切望する」。=be anxious for A, be eager for A　+プラス long for A to do 「Aが・・・するのを切望する」 も重要。",
+    "jp": "その年老いた夫婦は平和を切望していた。"
+  },
+  {
+    "id": "182-872",
+    "point": "Point 182",
+    "number": 872,
+    "type": "choice",
+    "question": "We just need to keep ( ) our schedule if we are to finish on time.",
+    "choices": ["for", "from", "out", "to"],
+    "answer": 3,
+    "explanation": "keep to A 「A(規則・計画など) に従う」 ",
+    "jp": "時間どおりに終えるつもりならば、予定に従うことが必要です。"
+  },
+  {
+    "id": "182-873",
+    "point": "Point 182",
+    "number": 873,
+    "type": "choice",
+    "question": "The president insisted ( ) traveling first-class.",
+    "choices": ["to", "of", "for", "on"],
+    "answer": 3,
+    "explanation": "insist on A は「Aを主張する」。",
+    "jp": "社長はファーストクラスでの移動を主張した。"
+  },
+  {
+    "id": "182-874",
+    "point": "Point 182",
+    "number": 874,
+    "type": "choice",
+    "question": "I think I left my passport ( ) at the hotel.",
+    "choices": ["near", "beyond", "behind", "with"],
+    "answer": 2,
+    "explanation": "leave behind A / leave A behind 「Aを置き忘れる」+プラス leave behind A / leave A behind には 「Aをあとに残す」 の意味もあるの で注意。",
+    "jp": "私はパスポートをホテルに置き忘れてきたと思う。"
+  },
+  {
+    "id": "182-875",
+    "point": "Point 182",
+    "number": 875,
+    "type": "choice",
+    "question": "Mike asked ( ) his friend, who was in hospital.",
+    "choices": ["in", "on", "to", "after"],
+    "answer": 3,
+    "explanation": "ask after A は「（第三者を通して）Aの安否・健康を尋ねる」。= inquire after A",
+    "jp": "マイクは入院中の友人の容態を尋ねた。"
+  },
+  {
+    "id": "182-876",
+    "point": "Point 182",
+    "number": 876,
+    "type": "choice",
+    "question": "I agree ( ) him.",
+    "choices": ["of", "for", "before", "with"],
+    "answer": 3,
+    "explanation": "agree with A 「A (人・考え)に同意する」+プラス agree with A は 「Aの体質に合う」の意味もあることに注意。This food does not agree with me.この食べ物は私には合わない)",
+    "jp": "私は彼の考えに同意する。"
+  },
+  {
+    "id": "182-877",
+    "point": "Point 182",
+    "number": 877,
+    "type": "choice",
+    "question": "Everyone in my family agreed ( ) my proposal.",
+    "choices": ["to", "down", "for", "into"],
+    "answer": 0,
+    "explanation": "agree to A は「A（提案など）に同意する」。通常 to の後に「人」は来ない。",
+    "jp": "家族みんなが私の提案に同意した。"
+  },
+  {
+    "id": "182-878",
+    "point": "Point 182",
+    "number": 878,
+    "type": "choice",
+    "question": "It is a good idea to ( ) before you hand it in.",
+    "choices": ["go over your paper", "look down your paper", "look your paper into", "read your paper on"],
+    "answer": 0,
+    "explanation": "go over A 「Aを入念に調べる」+プラス go over A には 「Aを復習する」 の意味もあるので注意。 Have you ever gone over the lesson? (その課を復習しましたか)",
+    "jp": "提出する前に、答案を入念に見直すのはよい考えだ。"
+  },
+  {
+    "id": "182-879",
+    "point": "Point 182",
+    "number": 879,
+    "type": "choice",
+    "question": "I'll ( ) you off when you leave Matsuyama.",
+    "choices": ["bear", "drive", "see", "run"],
+    "answer": 2,
+    "explanation": "see A off は「Aを見送る」。+プラス 反意表現の meet A 「Aを出迎える」もここで押さえる。",
+    "jp": "あなたが松山を離れるときには、お見送りしましょう。"
+  },
+  {
+    "id": "182-880",
+    "point": "Point 182",
+    "number": 880,
+    "type": "choice",
+    "question": "We didn't pay the bill so they ( ) our electricity.",
+    "choices": ["cut off", "got off", "took off", "went off"],
+    "answer": 0,
+    "explanation": "cut off A / cut A off は「A（電気・電話など）を断つ」。",
+    "jp": "料金を払わなかったので、電気を止められた。"
+  },
+  {
+    "id": "182-881",
+    "point": "Point 182",
+    "number": 881,
+    "type": "choice",
+    "question": "Keep ( ) the grass.",
+    "choices": ["over", "in", "off", "for"],
+    "answer": 2,
+    "explanation": "keep off A は「Aに立ち入らない」。",
+    "jp": "芝生に立ち入るな。"
+  },
+  {
+    "id": "182-882",
+    "point": "Point 182",
+    "number": 882,
+    "type": "choice",
+    "question": "I can't concentrate ( ) my homework with the radio playing so loud.",
+    "choices": ["in", "on", "for", "with"],
+    "answer": 1,
+    "explanation": "concentrate on A は「Aに集中する」。",
+    "jp": "ラジオが大きな音をたてているので、宿題に集中できない。"
+  },
+  {
+    "id": "182-883",
+    "point": "Point 182",
+    "number": 883,
+    "type": "choice",
+    "question": "John's first proposal was not accepted, but he ( ) in his efforts and finally got the boss to adopt his plan.",
+    "choices": ["persisted", "persuaded", "convinced", "confronted"],
+    "answer": 0,
+    "explanation": "persist in A は「Aを貫く／Aに固執する」。",
+    "jp": "ジョンの最初の提案は受け入れられなかったが、彼は努力し続けて、ついに上司に彼の計画を採用させた。"
+  }
+]
+
