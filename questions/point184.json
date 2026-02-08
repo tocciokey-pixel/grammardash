@@ -128,7 +128,111 @@
     "answer": 2,
     "explanation": "look down on A 「Aを見下す」\n= despise A, scorn A",
     "jp": "単に貧しいからといって、そのような人々を見下すべきではない。"
+  },
+  {
+    "id": "184-958",
+    "point": "Point 184",
+    "number": 958,
+    "question": "It is difficult for a son always to 【live up to】 the expectations of his parents.",
+    "choices": ["melt", "mean", "mate", "meet"],
+    "answer": 3,
+    "explanation": "live up to A 「A (期待など)に応える」\n!! 注意 通例, 否定文で用いる。\nmeet は「(要求・期待など)を満たす / かなえる」の意味。",
+    "jp": "息子が常に両親の期待に応えるのは難しい。"
+  },
+  {
+    "id": "184-959",
+    "point": "Point 184",
+    "number": 959,
+    "question": "The report which you submitted yesterday didn't 【come up to】 our expectations.",
+    "choices": ["meet", "observe", "receive", "resemble"],
+    "answer": 0,
+    "explanation": "come up to A 「A (期待など) に応える」\n= live up to A",
+    "jp": "あなたが昨日提出したレポートは私たちの期待に応えていなかった。"
+  },
+  {
+    "id": "184-960",
+    "point": "Point 184",
+    "number": 960,
+    "question": "You'll 【catch up with】 him if you leave at once.",
+    "choices": ["pursue", "occupy", "overtake", "recover"],
+    "answer": 2,
+    "explanation": "catch up with A 「Aに追いつく」\n= overtake A",
+    "jp": "すぐに出発すれば、あなたは彼に追いつくでしょう。"
+  },
+  {
+    "id": "184-961",
+    "point": "Point 184",
+    "number": 961,
+    "question": "Shall we 【drop in at】 his house on our way home?",
+    "choices": ["call on", "visit", "look at", "go for"],
+    "answer": 1,
+    "explanation": "drop in at A 「A (場所)に立ち寄る」= visit A, call at A ①の call on A は A(人)のところに立ち寄る の意味。本問では his house という 「場所」 が来ているので不可。 +プラス drop in on A=call on A (829) 「A(人)のところに立ち寄る」もここで押さえる。I'm going to drop in on him tomorrow. 私は明日, 彼のところに立ち寄るつもりだ",
+    "jp": "家に帰る途中、彼の家に寄っていきましょうか。"
+  },
+  {
+    "id": "184-962",
+    "point": "Point 184",
+    "number": 962,
+    "question": "Jim 【stood up for】 his views despite heavy criticism.",
+    "choices": ["expressed", "held", "spread", "defended"],
+    "answer": 3,
+    "explanation": "stand up for A 「Aを擁護する」\n= defend A",
+    "jp": "ジムは激しい非難にもかかわらず、自分の意見を守り通した。"
+  },
+  {
+    "id": "184-963",
+    "point": "Point 184",
+    "number": 963,
+    "question": "It was brave of her to 【stand up to】 those bullies.",
+    "choices": ["afford", "continue", "resist", "welcome"],
+    "answer": 2,
+    "explanation": "stand up to A 「Aに抵抗する / (勇敢に)立ち向かう」\n= resist A\n+プラス 「Aに耐える」の意味でも使う。",
+    "jp": "彼女がそのいじめっ子たちに立ち向かったのは勇敢だった。"
+  },
+  {
+    "id": "184-964",
+    "point": "Point 184",
+    "number": 964,
+    "question": "I always have to 【give in 】to him.",
+    "choices": ["be polite", "be kind", "submit", "say hello"],
+    "answer": 2,
+    "explanation": "give in to A 「Aに服従する」\n= submit to A, yield to A",
+    "jp": "私はいつも彼に服従しなければならない。"
+  },
+  {
+    "id": "184-965",
+    "point": "Point 184",
+    "number": 965,
+    "question": "Have you 【signed up for】 the yoga class yet?",
+    "choices": ["enrolled in", "canceled", "attended", "checked with"],
+    "answer": 0,
+    "explanation": "sign up for A 「Aに参加申し込みをする / Aに参加する」",
+    "jp": "もうヨガのクラスに申し込みましたか。"
+  },
+  {
+    "id": "184-966",
+    "point": "Point 184",
+    "number": 966,
+    "question": "New clothes are expensive, so you'll just have to 【make do with】 what you've got.",
+    "choices": ["manage with", "part with", "show off", "take off"],
+    "answer": 0,
+    "explanation": "make do with A 「Aで間に合わす / すます」\n= manage with A",
+    "jp": "新しい服は高いので、持っているもので何とか間に合わせなければならない。"
+  },
+  {
+    "id": "184-967",
+    "point": "Point 184",
+    "number": 967,
+    "question": "She can't come here today,so she asked me to 【fill in for】 her.",
+    "choices": ["contact", "forgive", "substitute for", "wait for"],
+    "answer": 2,
+    "explanation": "fill in for A 「A (人) の代理を務める」\n= substitute for A",
+    "jp": "彼女は私に彼女の代わりを務めるよう頼んだ。"
   }
 ]
+
+
+
+
 
 

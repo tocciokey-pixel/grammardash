@@ -62,7 +62,7 @@
     "question": "Don't ( ) up; hold on, please. He left a message for you.",
     "choices": ["back", "get", "hang", "stand"],
     "answer": 2,
-    "explanation": "hang up 「電話を切る」\n= ring off\nhold [hang] on, hold the line 「電話を切らないでおく」 (1262)",
+    "explanation": "hang up 「電話を切る」\n= ring off\n⇔hold [hang] on, hold the line 「電話を切らないでおく」 (1262)",
     "jp": "電話を切らずに、お待ちください。彼からのメッセージがあります。"
   },
   {

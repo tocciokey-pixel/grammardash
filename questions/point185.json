@@ -1,0 +1,223 @@
+[
+  {
+    "id": "185-968",
+    "point": "Point 185",
+    "number": 968,
+    "question": "We tried to ( ) his foolish idea of climbing the mountain alone, but he could not be persuaded to change his mind.",
+    "choices": ["cross him off", "talk him out of", "give him up", "throw him onto"],
+    "answer": 1,
+    "explanation": "talk A out of B / doing 「A(人) を説得してB / …することを思いとどまらせる」\n⇔ talk A into B / doing 「A(人) を説得してB / …させる」",
+    "jp": "私たちは単独で登山をするという愚かな考えを思いとどまるよう彼を説得してみたが、考えを変えるように説き伏せることはできなかった。"
+  },
+  {
+    "id": "185-969",
+    "point": "Point 185",
+    "number": 969,
+    "question": "I hope you will excuse me ( ) doing so.",
+    "choices": ["about", "for", "with", "at"],
+    "answer": 1,
+    "explanation": "excuse [forgive] A for B 「BのことでAを許す」",
+    "jp": "そのようにしたことについて、私を許していただきたいのです。"
+  },
+  {
+    "id": "185-970",
+    "point": "Point 185",
+    "number": 970,
+    "question": "He was named Robert ( ) his father.",
+    "choices": ["into", "through", "from", "after"],
+    "answer": 3,
+    "explanation": "name A after [for] B 「BにちなんでAに名前をつける」\n+プラス name A B after C の用法もある。",
+    "jp": "彼は父親にちなんでロバートと名づけられた。"
+  },
+  {
+    "id": "185-971",
+    "point": "Point 185",
+    "number": 971,
+    "question": "The girl who saved the child from drowning has been ( ) with an award for courage.",
+    "choices": ["given", "offered", "presented", "promised"],
+    "answer": 2,
+    "explanation": "present A with B 「AにBを贈る」",
+    "jp": "おぼれている子どもを助けた少女は、その勇気に対して賞を授与された。"
+  },
+  {
+    "id": "185-972",
+    "point": "Point 185",
+    "number": 972,
+    "question": "Tom ordered many books ( ) an online bookstore.",
+    "choices": ["by", "to", "from", "over"],
+    "answer": 2,
+    "explanation": "order A from B 「AをBに注文する」",
+    "jp": "トムはオンライン書店に多くの本を注文した。"
+  },
+  {
+    "id": "185-973",
+    "point": "Point 185",
+    "number": 973,
+    "question": "The relief team ( ) the villagers with food and blankets.",
+    "choices": ["brought", "gave", "offered", "supplied"],
+    "answer": 3,
+    "explanation": "supply A with B 「AにBを供給する」\n= provide A with B(607), provide B for A(608)を再確認しよう",
+    "jp": "救援隊は、村人たちに食料と毛布を支給した。"
+  },
+  {
+    "id": "185-974",
+    "point": "Point 185",
+    "number": 974,
+    "question": "I can't ( ) a genuine pearl from an imitation.",
+    "choices": ["say", "speak", "tell", "look"],
+    "answer": 2,
+    "explanation": "tell A from B 「AをBと区別する」",
+    "jp": "私は本物の真珠と模造品とを見分けられない。"
+  },
+  {
+    "id": "185-975",
+    "point": "Point 185",
+    "number": 975,
+    "question": "For small children, it is difficult to distinguish good ( ) evil.",
+    "choices": ["but", "from", "over", "to"],
+    "answer": 1,
+    "explanation": "distinguish A from B 「AをBと区別する」\n= tell A from B　+プラス 同意表現の know Afrom B もここで押さえる。It is difficult to know a good book from a bad one. (良い本と悪い本を見分けるのは難しい) ",
+    "jp": "小さな子どもたちにとって、良いことと悪いことを区別するのは難しい。"
+  },
+  {
+    "id": "185-976",
+    "point": "Point 185",
+    "number": 976,
+    "question": "My mother forgot to add salt ( ) the salad.",
+    "choices": ["off", "at", "above", "to"],
+    "answer": 3,
+    "explanation": "add A to B 「AをBに加える」\nadd to A 「Aを増す」もあるので注意。=increase A もここで再確認しよう。",
+    "jp": "私の母は、サラダに塩を加えるのを忘れた。"
+  },
+  {
+    "id": "185-977",
+    "point": "Point 185",
+    "number": 977,
+    "question": "Death is often compared ( ) sleep.",
+    "choices": ["by", "for", "on", "to"],
+    "answer": 3,
+    "explanation": "compare A to B 「AをBにたとえる」\n!! 注意 compare A to B は compare A with B 「AをBと比較する」と同意で用いられることもあるので注意。",
+    "jp": "死はよく眠りにたとえられる。"
+  },
+  {
+    "id": "185-978",
+    "point": "Point 185",
+    "number": 978,
+    "question": "The young doctor devoted himself ( ) helping the poor and sick.",
+    "choices": ["on", "to", "for", "at"],
+    "answer": 1,
+    "explanation": "devote A to B 「AをBにささげる」\n本問のように, Aに再帰代名詞を用いた devote oneself to A / doing 「A/・・・することに専念する」の形で出題されることが多い。",
+    "jp": "その若い医者は、貧しい人々や病気の人々を助けることに身をささげた。"
+  },
+  {
+    "id": "185-979",
+    "point": "Point 185",
+    "number": 979,
+    "question": "Ted asked a question ( ) his teacher.",
+    "choices": ["to", "for", "of", "in"],
+    "answer": 2,
+    "explanation": "ask B of A 「AにBを尋ねる」\n= ask A B\n!! 注意 ask a question of A 「Aに質問する」はかなり古い表現。 ask A a question と表現するのが一般的。",
+    "jp": "テッドは先生に質問をした。"
+  },
+  {
+    "id": "185-980",
+    "point": "Point 185",
+    "number": 980,
+    "question": "It's been years since I asked you ( ) any help.",
+    "choices": ["for", "from", "of", "with"],
+    "answer": 0,
+    "explanation": "ask A for B 「AにBを求める」\n+プラス 自動詞用法の ask を用いた ask for A 「Aを求める」 (765) も再確認しよう。",
+    "jp": "私があなたに援助を求めてから何年も経った。"
+  },
+  {
+    "id": "185-981",
+    "point": "Point 185",
+    "number": 981,
+    "question": "His uncle left New York ( ) Paris by plane yesterday.",
+    "choices": ["for", "forward", "into", "onto"],
+    "answer": 0,
+    "explanation": "leave A for B 「Bに向けてAを出発する」\n+プラス 自動詞用法の leave を用いた leave for A 「Aに向けて出発する」もここで押さえる。\nHe left for America this morning. (彼は今朝, アメリカへ出発した)",
+    "jp": "昨日、彼のおじさんは飛行機でパリに向けてニューヨークを出発した。"
+  },
+  {
+    "id": "185-982",
+    "point": "Point 185",
+    "number": 982,
+    "question": "It was reported that as high as 70% of the world's cases of illness can be ( ) unclean water.",
+    "choices": ["attributed to", "caused to", "consisted of", "resulted from"],
+    "answer": 0,
+    "explanation": "attribute A to B 「AをBに帰する」\n= ascribe A to B\nas high as A は「Aほども(高い)」という意味。 as many as A (p.76【整理19】) を参照。",
+    "jp": "世界中の症例の7割もが汚れた水に起因している可能性があると報じられた。"
+  },
+  {
+    "id": "185-983",
+    "point": "Point 185",
+    "number": 983,
+    "question": "I must remember to congratulate your uncle ( ) his new appointment.",
+    "choices": ["of", "on", "with", "to"],
+    "answer": 1,
+    "explanation": "congratulate A on [upon] B 「AをBのことで祝う」",
+    "jp": "私は、君のおじさんが新たな役職に就かれたことのお祝いを、忘れずに言わなくてはならない。"
+  },
+  {
+    "id": "185-984",
+    "point": "Point 185",
+    "number": 984,
+    "question": "She is regarded by her parents ( ) the cleverest of their children.",
+    "choices": ["on", "for", "as", "to"],
+    "answer": 2,
+    "explanation": "regard A as B 「AをBとみなす」\n= see [view] A as B, think of A as B, look on [upon] A as B(916)",
+    "jp": "彼女は両親から、子どもたちの中では最も頭がよいと見なされている。"
+  },
+  {
+    "id": "185-985",
+    "point": "Point 185",
+    "number": 985,
+    "question": "It was raining so much every day that I exchanged my silk jacket ( ) a cotton one.",
+    "choices": ["for", "with", "by", "to"],
+    "answer": 0,
+    "explanation": "exchange A for B 「AをBと交換する」",
+    "jp": "毎日雨がたくさん降っていたので、私は絹のジャケットを木綿のものに替えた。"
+  },
+  {
+    "id": "185-986",
+    "point": "Point 185",
+    "number": 986,
+    "question": "She doesn't like to depend on any man ( ) support.",
+    "choices": ["as", "for", "in", "to"],
+    "answer": 1,
+    "explanation": "depend on [upon] A for B 「BのことでAを当てにする」\n+プラス 同意表現として turn to A for B, look to A for B, rely on A for B, count on A for B を押さえる。",
+    "jp": "彼女はどんな男の人からの援助であっても、それを当てにしようという気がない。"
+  },
+  {
+    "id": "185-987",
+    "point": "Point 185",
+    "number": 987,
+    "question": "We ( ) to them for economic aid.",
+    "choices": ["live", "depend", "appear", "look"],
+    "answer": 3,
+    "explanation": "look to A for B 「AにBを期待する / AのBに頼る」\n= depend on [upon] A for B(986), turn to A for B, rely on A for B, count on A for B",
+    "jp": "私たちは、彼らに経済的な援助を当てにしている。"
+  },
+  {
+    "id": "185-988",
+    "point": "Point 185",
+    "number": 988,
+    "question": "Your decision will ( ) a great strain on our friendship.",
+    "choices": ["impose", "propose", "expose", "suppose"],
+    "answer": 0,
+    "explanation": "impose A on B 「AをBに押しつける」",
+    "jp": "君の決断は、私たちの交友関係に相当な重圧を強いるだろう。"
+  },
+  {
+    "id": "185-989",
+    "point": "Point 185",
+    "number": 989,
+    "question": "We were ( ) to dinner at the home of the town's mayor.",
+    "choices": ["tasted", "bought", "treated", "visited"],
+    "answer": 2,
+    "explanation": "treat A to B 「AにBをおごる / ごちそうする」",
+    "jp": "私たちは、町長の家で夕食をごちそうになった。"
+  }
+]
+
