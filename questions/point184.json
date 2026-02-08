@@ -4,7 +4,7 @@
     "point": 184,
     "question": "I ran as fast as possible to ( ) up with her.",
     "choices": ["go", "keep", "get", "put"],
-    "answer": 2,
+    "answer": 1,
     "explanation": "keep up with A 「Aに遅れずについていく」\n+プラス 同意表現の keep pace with A, keep abreast of [with] Aも重要。\nI can't keep pace with your plan. (あなたの計画にはついていけない)\nDoctors should keep abreast of all the latest developments in medicine. (医者は,医学における全ての最新の進歩に遅れずについていくべきだ)",
     "jp": "彼女に遅れないでついていくために、私はできる限り速く走った。"
   },
@@ -13,7 +13,7 @@
     "point": 184,
     "question": "I stayed home two weeks on account of illness, so I had to work hard to ( ) lost time.",
     "choices": ["make for", "make up for", "make out", "make use of"],
-    "answer": 2,
+    "answer": 1,
     "explanation": "make up for A 「Aを償う/ 埋め合わせる」\n=compensate for A, make amends for A",
     "jp": "病気で2週間家にいたので、失った時間を埋め合わせるために、私は一生懸命働かなければならなかった。"
   },
@@ -22,7 +22,7 @@
     "point": 184,
     "question": "She is absent today. I hear she ( ) down with a cold.",
     "choices": ["blew", "came", "gave", "made"],
-    "answer": 2,
+    "answer": 1,
     "explanation": "come down with A 「A (病気)にかかる」\n!!注意 よく似た表現に come down to A 「結局Aに行き着く, A(人) に伝わる」 もあるが意味の違いを正確にしておくこと。",
     "jp": "彼女は今日欠席しているが、風邪をひいたそうだ。"
   },
@@ -31,7 +31,7 @@
     "point": 184,
     "question": "The money I have now falls short ( ) what I need.",
     "choices": ["to", "of", "by", "on"],
-    "answer": 2,
+    "answer": 1,
     "explanation": "fall short of A 「Aに達しない」",
     "jp": "今私が持っているお金は、必要な額に足りない。"
   },
@@ -40,7 +40,7 @@
     "point": 184,
     "question": "It is very important to cut down ( ) the production of CO2 to stop global warming.",
     "choices": ["at", "for", "on", "with"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "cut down on A 「A (量)を減らす」\n= reduce A, cut down A / cut A down, cut back on A",
     "jp": "地球温暖化を食い止めるためには、二酸化炭素の産出量を減らすことが非常に重要である。"
   },
@@ -49,7 +49,7 @@
     "point": 184,
     "question": "The professor 【went on with】 his lecture even though the bell had rung.",
     "choices": ["kept out", "ran for", "went on", "set in"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "go on with A 「Aを続ける」\n!! 注意 go on to do 「続けて・・・する」, 自動詞表現の go on 「続く・行われる」との意味の違いに注意。",
     "jp": "教授は終了のベルが鳴ったのに講義を続けた。"
   },
@@ -58,7 +58,7 @@
     "point": 184,
     "question": "What sports do most students 【go in for】 these days?",
     "choices": ["go over", "go in for", "give in", "consist of"],
-    "answer": 2,
+    "answer": 1,
     "explanation": "go in for A 「Aを好む」\n+プラス go in for A は「A (競技など) に参加する」「Aを始める」の意味もある。",
     "jp": "最近、たいていの学生が好むスポーツは何ですか。"
   },
@@ -67,7 +67,7 @@
     "point": 184,
     "question": "They wanted to 【get away from】 the rigid timetables of the past.",
     "choices": ["come to rest", "get away from", "come over", "sit up late"],
-    "answer": 2,
+    "answer": 1,
     "explanation": "get away from A 「Aから逃れる」\n= escape from A",
     "jp": "彼らは、昔の厳格な時間割から逃れたいと思っていた。"
   },
@@ -76,7 +76,7 @@
     "point": 184,
     "question": "【Looking back on】 the summer, I realize that it went by all too quickly.",
     "choices": ["Recalling", "Remembering", "Looking", "Imagining"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "look back on [upon] A 「Aを振り返ってみる / 思い出す」",
     "jp": "その夏を振り返ってみると、時があまりにも速く過ぎ去ったことに気づく。"
   },
@@ -85,7 +85,7 @@
     "point": 184,
     "question": "They are all nice boys, and I'm sure you'll 【get on with】 them very well.",
     "choices": ["by", "for", "to", "with"],
-    "answer": 4,
+    "answer": 3,
     "explanation": "get on with A 「Aと仲良くやる」\n= get along with A",
     "jp": "彼らはみな良い少年たちで、あなたはきっと彼らとうまくやっていけると思います。"
   },
@@ -94,7 +94,7 @@
     "point": 184,
     "question": "The lawyer soon 【got down to】 business.",
     "choices": ["began", "finished", "left", "rejected"],
-    "answer": 1,
+    "answer": 0,
     "explanation": "get down to A 「A (仕事・問題)に取り掛かる / Aの本題に入る」\n+プラス 「仕事に取り掛かる」の意味では go about A's business とも言う。",
     "jp": "弁護士はすぐに仕事に取り掛かった。"
   },
@@ -103,7 +103,7 @@
     "point": 184,
     "question": "Every child needs someone to 【look up to】 and copy.",
     "choices": ["respect", "despise", "understand", "make friends"],
-    "answer": 1,
+    "answer": 0,
     "explanation": "look up to A 「Aを尊敬する」\n= respect A",
     "jp": "子どもにはみな、尊敬し見習える人が必要だ。"
   },
@@ -112,7 +112,7 @@
     "point": 184,
     "question": "We should not 【look down on】 people merely because they are poor.",
     "choices": ["appreciate", "congratulate", "despise", "sympathize with"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "look down on A 「Aを見下す」\n= despise A, scorn A",
     "jp": "単に貧しいからといって、そのような人々を見下すべきではない。"
   },
@@ -121,7 +121,7 @@
     "point": 184,
     "question": "It is difficult for a son always to 【live up to】 the expectations of his parents.",
     "choices": ["melt", "mean", "mate", "meet"],
-    "answer": 4,
+    "answer": 3,
     "explanation": "live up to A 「A (期待など)に応える」\n!! 注意 通例, 否定文で用いる。\nmeet は「(要求・期待など)を満たす / かなえる」の意味。",
     "jp": "息子が常に両親の期待に応えるのは難しい。"
   },
@@ -130,7 +130,7 @@
     "point": 184,
     "question": "The report which you submitted yesterday didn't 【come up to】 our expectations.",
     "choices": ["meet", "observe", "receive", "resemble"],
-    "answer": 1,
+    "answer": 0,
     "explanation": "come up to A 「A (期待など) に応える」\n= live up to A",
     "jp": "あなたが昨日提出したレポートは私たちの期待に応えていなかった。"
   },
@@ -139,7 +139,7 @@
     "point": 184,
     "question": "You'll 【catch up with】 him if you leave at once.",
     "choices": ["pursue", "occupy", "overtake", "recover"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "catch up with A 「Aに追いつく」\n= overtake A",
     "jp": "すぐに出発すれば、あなたは彼に追いつくでしょう。"
   },
@@ -148,7 +148,7 @@
     "point": 184,
     "question": "Shall we 【drop in at】 his house on our way home?",
     "choices": ["call on", "visit", "look at", "go for"],
-    "answer": 2,
+    "answer": 1,
     "explanation": "drop in at A 「A (場所)に立ち寄る」\n= visit A, call at A\n1の call on A は A(人)のところに立ち寄る の意味。",
     "jp": "家に帰る途中、彼の家に寄っていきましょうか。"
   },
@@ -157,7 +157,7 @@
     "point": 184,
     "question": "Jim 【stood up for】 his views despite heavy criticism.",
     "choices": ["expressed", "held", "spread", "defended"],
-    "answer": 4,
+    "answer": 3,
     "explanation": "stand up for A 「Aを擁護する」\n= defend A",
     "jp": "ジムは激しい非難にもかかわらず、自分の意見を守り通した。"
   },
@@ -166,7 +166,7 @@
     "point": 184,
     "question": "It was brave of her to 【stand up to】 those bullies.",
     "choices": ["afford", "continue", "resist", "welcome"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "stand up to A 「Aに抵抗する / (勇敢に)立ち向かう」\n= resist A\n+プラス 「Aに耐える」の意味でも使う。",
     "jp": "彼女がそのいじめっ子たちに立ち向かったのは勇敢だった。"
   },
@@ -175,7 +175,7 @@
     "point": 184,
     "question": "I always have to 【give in to】 him.",
     "choices": ["be polite", "be kind", "submit", "say hello"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "give in to A 「Aに服従する」\n= submit to A, yield to A",
     "jp": "私はいつも彼に服従しなければならない。"
   },
@@ -184,7 +184,7 @@
     "point": 184,
     "question": "Have you 【signed up for】 the yoga class yet?",
     "choices": ["enrolled in", "canceled", "attended", "checked with"],
-    "answer": 1,
+    "answer": 0,
     "explanation": "sign up for A 「Aに参加申し込みをする / Aに参加する」",
     "jp": "もうヨガのクラスに申し込みましたか。"
   },
@@ -193,7 +193,7 @@
     "point": 184,
     "question": "New clothes are expensive, so you'll just have to 【make do with】 what you've got.",
     "choices": ["manage with", "part with", "show off", "take off"],
-    "answer": 1,
+    "answer": 0,
     "explanation": "make do with A 「Aで間に合わす / すます」\n= manage with A",
     "jp": "新しい服は高いので、持っているもので何とか間に合わせなければならない。"
   },
@@ -202,7 +202,7 @@
     "point": 184,
     "question": "She asked me to 【fill in for】 her.",
     "choices": ["contact", "forgive", "substitute for", "wait for"],
-    "answer": 3,
+    "answer": 2,
     "explanation": "fill in for A 「A (人) の代理を務める」\n= substitute for A",
     "jp": "彼女は私に彼女の代わりを務めるよう頼んだ。"
   }
