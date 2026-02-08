@@ -538,7 +538,7 @@
   window.removeBookmark = removeBookmark;
   window.resetToday = resetToday;
 
-  function showTransientMessage(msg, ms = 1100) {
+  function showTransientMessage(msg, ms = 850) {
     const pop = document.getElementById('success-msg');
     const inner = pop?.querySelector('.pop');
     if (inner) inner.textContent = msg;
